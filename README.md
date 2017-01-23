@@ -70,17 +70,17 @@ Como habreís deducido al usar una shell es posible hacer scrpits y ejecutarlos 
 
     #!/bin/bash
     # ADD Y COMMIT
-    #primer parametro carpeta a añadir
-    #segundo parámetro repositorio 
-    #tercer parámetro branch
+    
+    #primer parámetro repositorio 
+    #segundo parámetro branch
     # si no ponemos parámetros usará los que vienen entre llaves. guardamos con extensión .sh y listo
 
 
-    git add ${1-"ProyectoFinal"}
+    git add -A
 
 	  git commit 
 
-	  git push ${1-"origin"} ${1-"master"}
+	  git push ${1-"origin"} ${2-"master"}
 
 ##PULL##
 

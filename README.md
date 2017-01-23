@@ -14,4 +14,7 @@ Instrucciones de git
     Opcion a: (la facil) decirle a eclipse que nos importe el repositorio
           boton derecho>IMPORT 
             buscamos y le decimos un proyecto de git y luego "clone URI"
+               repositorio https://github.com/alvarinchin/ProyectoFinal.git
+              
+            Y andando, usando los comandos de eclipse podemos ir funcionando, recordadno que los archivos al modificarlos pasan a estar en unsatged, es decir que la version del archivo del repositorio es anterior al nuevo, entonces hay que hacer un "add"( del archivo o de la carpeta entera) y luego hacer un "commit" para que añada los cambios al repos
     

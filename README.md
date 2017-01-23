@@ -2,9 +2,9 @@
 Proyecto final del grado en desarrollo de aplicaciones web
 
 
-Instrucciones de git
-
-1-> Bajaros el git bash, https://git-for-windows.github.io/ , lo instalais y es una ventana de comandos de linux, tiene las mismas funcione, asi que puedes hacer scripts de shell, los comandos, etc.. incluso tiene SSH que sirve para hacer conexiones remotas a otros linux.
+# Instrucciones De Git
+##1-> Bajaros el git bash, https://git-for-windows.github.io/ , lo instalais y es una ventana de comandos de linux, tiene las mismas funcione, asi que puedes hacer scripts de shell, los comandos, etc.. incluso tiene SSH que sirve para hacer conexiones remotas a otros linux.
+  ##  
 
 2-> CREAR EL REPOSITORIO LOCAL
 

@@ -1,0 +1,79 @@
+<!DOCTYPE html> <html lang="es">
+	 <head> <meta charset="utf-8"> 
+	 	<title>Andraga
+fija</title>
+ 
+        <link rel="stylesheet" href="../style/andraga.css">
+</head>
+<?php 
+function Conectarse() 
+{ 
+  echo "entrando";   
+if (!($link=mysql_connect("localhost","",""))) 
+   { 
+      echo "Error conectando a la base de datos."; 
+      exit(); 
+   } 
+   if (!mysql_select_db("campeonatos",$link)) 
+   { 
+      echo "Error seleccionando la base de datos."; 
+      exit(); 
+   } 
+   return $link; 
+} 
+ ?>
+<body>
+	
+	<header id="main-header">
+		
+		<a id="logo-header" href="#">
+			<span class="site-name">Club Andraga.<span>
+			<span class="site-desc">Panel de Administración</span>
+		</a> <!-- / #logo-header -->
+ 
+		<nav>
+			<ul>
+				<li><a href="deportistas.html">Participantes</a></li>
+				<li><a href="#">Inscripción</a></li>
+				<li><a href="#">Puntuación</a></li>
+				
+			</ul>
+		</nav><!-- / nav -->
+ 
+	</header><!-- / #main-header -->
+ 
+	
+	<section id="main-content">
+	
+		<article>
+			<header>
+				<h1>Panel de Administracion</h1>
+			</header>
+			
+			<img src="../img/andraga.jpg" alt="Andraga" />
+			
+			<div class="content">
+Holaaaaaaaaaaaaaaaaa
+
+<?php 
+			$link=Conectarse(); 
+			echo "Conexión con la base de datos conseguida.<br>"; 
+
+			mysql_close($link); //cierra la conexion 
+?> 	
+ 
+			</div>
+			
+		</article> <!-- /article -->
+	
+	</section> <!-- / #main-content -->
+ 
+	
+	
+	<footer id="main-footer">
+		<p></p>
+	</footer> <!-- / #main-footer -->
+ 
+	
+</body>
+</html>

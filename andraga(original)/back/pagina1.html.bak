@@ -1,0 +1,55 @@
+<!DOCTYPE html> <html lang="es">
+	 <head> <meta charset="utf-8"> 
+	 	<title>Cabecera
+fija</title>
+ 
+        <link rel="stylesheet" href="andraga.css">
+</head>
+ 
+<body>
+	
+	<header id="main-header">
+		
+		<a id="logo-header" href="#">
+			<span class="site-name">Club Andraga.<span>
+			<span class="site-desc">Marcadores</span>
+		</a> <!-- / #logo-header -->
+ 
+		<nav>
+			<ul>
+				<li><a href="#">Amnistracion</a></li>
+				<li><a href="#">Marcador</a></li>
+				
+			</ul>
+		</nav><!-- / nav -->
+ 
+	</header><!-- / #main-header -->
+ 
+	
+	<section id="main-content">
+	
+		<article>
+			<header>
+				<h1>Andraga</h1>
+			</header>
+			
+			<img src="../img/andraga.jpg" alt="Andraga" />
+			
+			<div class="content">
+				
+ 
+			</div>
+			
+		</article> <!-- /article -->
+	
+	</section> <!-- / #main-content -->
+ 
+	
+	
+	<footer id="main-footer">
+		<p></p>
+	</footer> <!-- / #main-footer -->
+ 
+	
+</body>
+</html>

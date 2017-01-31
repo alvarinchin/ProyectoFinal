@@ -1,0 +1,95 @@
+<!DOCTYPE html> <html lang="es">
+	 <head> <meta charset="utf-8">
+	 	<title>Andraga
+fija</title>
+
+        <link rel="stylesheet" href="../style/andraga.css">
+</head>
+<?php
+function Conectarse()
+{
+
+if (!($link=mysql_connect("localhost","root","")))
+   {
+      echo "Error conectando a la base de datos.";
+      exit();
+   }
+   if (!$conex=mysql_select_db("campeonatos"))
+   { echo $conex;
+     echo("<br><br>");
+
+	echo "Error seleccionando la base de datos.";
+echo "campeonatos";
+      exit();
+   }
+   return $link;
+}
+ ?>
+
+<body>
+
+	<header id="main-header">
+
+		<a id="logo-header" href="#">
+			<span class="site-name">Club Andraga.<span>
+			<span class="site-desc">Panel de Administración</span>
+		</a> <!-- / #logo-header -->
+
+		<nav>
+			<ul>
+				<li><a href="#">Participantes</a></li>
+				<li><a href="#">Inscripción</a></li>
+				<li><a href="#">Puntuación</a></li>
+
+			</ul>
+		</nav><!-- / nav -->
+
+	</header><!-- / #main-header -->
+
+
+	<section id="main-content">
+
+		<article>
+			<header>
+				<h1>Panel de Administracion</h1>
+				<h2>Puntuaciones</h2>
+			</header>
+			<?php
+
+            $dorsal=  $_GET["dorsal"];
+            $club= $_GET["club"];
+
+
+
+?>
+             <div class="content">
+			<h2> Número de dorsal: <?php echo $dorsal ?><7h2>
+			<h2> Club : <?php echo $club ?> </h2>
+
+
+				<form id="formulario" method="post" action="puntuacion4.php">
+						<fieldset>
+
+                            <input type="text" id="artisitico" name="artistico"> <br/>
+                            <input type="text" id="ejecucion" name="ejecucion"> <br/>
+                            <input type="text" id="dificultad" name="dificultad" <br/>;
+                            <input type="text" id="dorsal" name="dorsal" value="<?php echo $dorsal;?>">
+                            <input type="submit" value="Siguiente">
+					 </fieldset>
+					</form>
+
+			</div>
+
+		</article> <!-- /article -->
+
+	</section> <!-- / #main-content -->
+
+
+
+	<footer id="main-footer">
+		<p></p>
+	</footer> <!-- / #main-footer -->
+
+
+</body>
+</html>

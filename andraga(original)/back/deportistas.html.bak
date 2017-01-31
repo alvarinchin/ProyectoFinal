@@ -1,0 +1,64 @@
+<!DOCTYPE html> <html lang="es">
+	 <head> <meta charset="utf-8"> 
+	 	<title>Andraga
+fija</title>
+ 
+        <link rel="stylesheet" href="../style/andraga.css">
+</head>
+ 
+<body>
+	
+	<header id="main-header">
+		
+		<a id="logo-header" href="#">
+			<span class="site-name">Club Andraga.<span>
+			<span class="site-desc">Panel de Administración</span>
+		</a> <!-- / #logo-header -->
+ 
+		<nav>
+			<ul>
+				<li><a href="#">Participantes</a></li>
+				<li><a href="#">Inscripción</a></li>
+				<li><a href="#">Puntuación</a></li>
+				
+			</ul>
+		</nav><!-- / nav -->
+ 
+	</header><!-- / #main-header -->
+ 
+	
+	<section id="main-content">
+	
+		<article>
+			<header>
+				<h1>Panel de Administracion</h1>
+			</header>
+			
+			<img src="../img/andraga.jpg" alt="Andraga" />
+			
+			<div class="content">
+				<form id="formulario">
+						<fieldset>
+							nombre= <input name="nombre" id="nombre" type="text"/></br>
+							apellido 1= <input name="ape1" id="ape1" type="text"/></br>
+							apellido 2= <input name="ape2" id="ape2" type="text"/></br>
+							club : <select name="club" id="club">
+							</select>
+					 </fieldset>
+					</form>
+ 
+			</div>
+			
+		</article> <!-- /article -->
+	
+	</section> <!-- / #main-content -->
+ 
+	
+	
+	<footer id="main-footer">
+		<p></p>
+	</footer> <!-- / #main-footer -->
+ 
+	
+</body>
+</html>

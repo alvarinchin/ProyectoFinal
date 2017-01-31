@@ -1,0 +1,11 @@
+<html>
+<head>
+<form id="formulario">
+nombre= <input name="nombre" id="nombre" type="text"/>
+apellido 1= <input name="ape1" id="ape1" type="text"/>
+apellido 2= <input name="ape2" id="ape2" type="text"/>
+club : <select name="club" id="club">
+</select>
+</form>
+</head>
+</html>

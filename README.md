@@ -131,7 +131,7 @@ Por un lado importamos la libreria de AngularJS, como si bootstrap o jQuery se t
 
 Después en el input le decimos que lo recuperado de ahi va a ser un elementos del model, es decir, como decirle que el value de ese elemento se va a almacenar, o modificar en el valor guardado en el model de la aplicacion, en este caso no tenemos nada dentro del script, asi que por ahora no vamos a preocuparnos por eso, solo saber que es como si declararamos una variable con el nombre que aparece en la etiqueta "ng-model" y que si queremoa acceder a el va a ser a través de ese nombre, en nuestro ejemplo "texto".
 
-Por último para sacar el valor de lo almacenado en el model usamos la sintaxis "{{}}" con el nombre del model dentro de las llaves.  Esta sintaxis también admite algunas expresiones u operaciones sencillas pero no se puede usar como si fuera una etiqueta de <script>.
+Por último para sacar el valor de lo almacenado en el model usamos la sintaxis "{{}}" con el nombre del model dentro de las llaves.  Esta sintaxis también admite algunas expresiones u operaciones sencillas pero no se puede usar como si fuera una etiqueta de script.
 
 
 ng-init y ng-repeat( gloria bendita )

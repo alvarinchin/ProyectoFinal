@@ -91,3 +91,94 @@ Como habreís deducido al usar una shell es posible hacer scrpits y ejecutarlos 
     # si no ponemos parámetros usará los que vienen entre llaves. guardamos con extensión .sh y listo
 
     git pull ${1-"origin"} ${2-master}
+    
+   
+   
+   
+#Peleandonos con AngularJS#
+
+##¿Qué es AngularJS?##
+
+-Es una libreria para javascript ( de ahi el "JS") que su principal objetivo es el de desarrollar aplicaciones single-page, es decir que va todo en una misma pagina de html, aunque puede repartirse entre varias. La pricipal, o al menos la que mas me gusta es un concepto llamado Data-binding que significa enlace de datos. A grandes rasgos esto permite tener de una manera automatica sincronizados los datos del modelo y la vista ( guay eh?), aunque no lo creais esto es tremendamente brutal.
+
+
+##Estructura de una aplicacion AngularJS##
+
+En esencia sigue el esquema de MVC y de hecho los componentes estan nombrados de esa manera ya que la idea es mantener simepre separados esos tres componentes de una aplicación. Voy a poner algunos ejemplos de lo más basico, primero para ver que la potencia de esto es tremenda y ahorra una cantidad de codigo que ni os imaginais y segundo para que vayamos poco a poco cogiendo el ritmo de esto.
+
+
+	<code>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<scrip>
+	//vamos a comenzar con un ejercicio de clase muy sosillo, un tipico "hola mundo"
+	</script>
+
+	<div ng-app>
+
+	<input type="text" ng-model="texto">
+
+	<h1>{{texto}}</h1>
+
+	</div>
+
+	</code>
+
+La salida de esto es un input que al escribir cualquier cosa en el automaticamente sale escrito en la cabecera que hay debajo, ni eventos ni submits ni nada, dos lineas y arreando.
+
+Vamos a destriparlo para ir entendiendolo:
+
+Por un lado importamos la libreria de AngularJS, como si bootstrap o jQuery se tratase. Luego tenemos que decirle al compilador de Angular que vamos a poner una aplicacion dentro del codigo, eso se consigue con la etiqueta "ng-app", todas las etiquetas con funcionalidades en angular se llaman "directivas" y se forman con "ng-(nombre que sea)" incluso podemos crear nuestras propias etiquetas gracias a HTML5.
+
+Después en el input le decimos que lo recuperado de ahi va a ser un elementos del model, es decir, como decirle que el value de ese elemento se va a almacenar, o modificar en el valor guardado en el model de la aplicacion, en este caso no tenemos nada dentro del script, asi que por ahora no vamos a preocuparnos por eso, solo saber que es como si declararamos una variable con el nombre que aparece en la etiqueta "ng-model" y que si queremoa acceder a el va a ser a través de ese nombre, en nuestro ejemplo "texto".
+
+Por último para sacar el valor de lo almacenado en el model usamos la sintaxis "{{}}" con el nombre del model dentro de las llaves.  Esta sintaxis también admite algunas expresiones u operaciones sencillas pero no se puede usar como si fuera una etiqueta de <script>.
+
+
+ng-init y ng-repeat( gloria bendita )
+
+Tenemos además un par de directivas bastante útiles, estas son ng-init y ng-repeat. Aunque la primera es considerada una mala praxis en la mayoria de los casos, ya veremos como hacerlo bién, la de ng-repeat es una ayuda inestimable a la hora de realizar html repetitivo. La funcionalidad es similar al foreach de php pero con la comodidad de que no salimos de html en ningun momento, pudiendo incluso enlazar llagadas de Ajax a traves de estas miniaplicaciones.
+
+	<code>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<scrip>
+	//Creamos un array de elementos y los imprimimos en una lista no ordenada
+	</script>
+
+	<div ng-app>
+	<div ng-init="colores=['rojo','azul','verde']">
+
+	<ul>
+		<li ng-repeat="color in colores">{{color}}</li>
+	</ul>
+
+	</div>
+	</div>
+	</code>
+
+De nuevo arrancamos la aplicación y le decimos a angular que nos inicialice un array llamado colores, esta manera no es correcta, estamos meclando controlador con vista, pero por ahora nos vale para saber como funciona ng-repeat y ng-init.
+
+Dentro de la etiqueta "li" le decimos que nos la repita por cada elemento que aparezca en el array colores, como si fuera un for y ademas le decimos que como nombre ponga el valor de la variable color que es el elemento de colores.
+
+Es sencillo no?
+Ahora vamos a hacer con dos lineas un ejercicio de JavaScript que necesitaba unas pocas mas, vamos a verlo.
+
+	<code>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<scrip>
+	//Creamos un array de elementos y los imprimimos en un select
+	</script>
+
+	<div ng-app>
+	<div ng-init="colores=['red','blue','green']">
+
+	<select ng-model="colorElegido">
+		<option ng-repeat="color in colores" value="{{color}}" >{{color}}</option>
+	</select>
+		<div style="width:400px;height:400px;border:1px solid black;background-color:{{colorElegido}}"></div>
+
+
+	</div>
+	</div>
+	</code>
+
+aqui cambiamo el color de fondo de un div a traves de un desplegable con colores

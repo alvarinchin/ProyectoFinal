@@ -1,7 +1,7 @@
 # ProyectoFinal
 Proyecto final del grado en desarrollo de aplicaciones web
 
-##1-> CREAR EL REPOSITORIO LOCAL##
+##RECUPERAR EL REPOSITORIO##
 git funciona teniendo dos repositorios, el local y el remoto, el primero es el que tenemos en el ordenador y que sirve de control de    nuestro trabajo. Lo tendreos actualizado pero si no lo enviamos al remoto no tendremos acceso los demás.
 Vamos a ello.
 
@@ -36,7 +36,27 @@ Vamos a ello.
   + Si nos aparece el respositorio que acabamos de clonar perfecto, lo seleccionamos y siguiente, si no, lo añadimos manualmente
   + Ahora dejadlo en  __"Import existing project"__  y seleccionais el que hay dentro
   
+##CREAR REPOSITORIO NUEVO##
 
+Esto es un poco más complejo de lo que puede parecer, más que nada porque no se puede crear a través de eclipse, o yo no he encontrado la manera, asi que voy a explicar paso por paso a hacerlo a mano.
+
++ Creamos un repositorio en la red ( github seguramente), podemos añadir el readme.md ( vendría a ser un documento como este que se puede formatear), le ponemos nombre y lo creamos
+
++ Luego tendréis que copiar la URL del repositorio, aqui es donde mantendréis los datos almacenados y podréis bajaroslos o subir nuevas versiones
+
++ Ahora nos vamos al PC. Ahi debemos tener el [el git bash](https://git-for-windows.github.io/) instalado
+
++ Vamos al workspace, podemos tenerlo donde queramos pero aquí es más comodo sobre todo a la hora de trabajar.
+
++ Abrimos una ventana de comandos de git, un gitbash, pulsando con el boton derecho en el workspace y en el menú contextual "git BASH here" , y ejecutamos el siguiente comando `git clone (url del repositorio)`
++ Se descargará los datos y pondrá un aviso del estilo " estas descargando un repositorio vacío" , pero no pasa nada no tardaremos en llenarlo. 
++ Revisamos que en el workspace tenemos una nueva carpeta con el nombre del repositorio, pero vacía, al menos casi ya que solo tendrá los archivo de configuración de git que por defecto están ocultos(.git)
++ Abrimos eclipse, que sea el que vayais a usar en el proyecto, no la liemos. Y con el boton derecho "new project"
++ Cuando creamos el proyecto nos saldrá la ventana de elegir que tipo de proyecto y le damos que uno de php standar, en caso de java el dynamic web project, le damos a siguiente y rellenamos el nombre que va a tener. __Importante: DEBE LLAMARSE IGUAL QUE LA CARPETA QUE SE HA CREADO AL HACER EL CLONE DEL REPOSITORIO__. Esto hará que se "sobreescriba" y añada los archivos de configuración del proyecto a esa carpeta.
+
++ Finalizamos el resto de los menús y una vez terminado tendremos el proyecto listo para funcionar.
++ Recomendación importante: Antes de empezar a añadir clases y trabajar en el proyecto sería __extremadamente recomendable__ que se hiciera un primer "push" al repositorio indicando que es el commit 0 de la aplicación por si luego hubiera que volver atras.
++ Aunque creo que no es necesario decirlo este proceso se realiza solo una vez por proyecto, los siguientes que quieran trabajar en el deben estar añadidos como colaboradores en "github", en las preferencias del repositorio, y seguir los pasos de "Recuperar repositorio".
 
 ##Tu repositorio y tu: Cuidados de la nueva vida que has engendrado##
 

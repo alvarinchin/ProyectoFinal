@@ -76,7 +76,7 @@ echo "campeonatos";
                             Art&iacutesitico:<input type="text" id="artisitico" name="artistico"> <br/>
                             Ejecuci&oacuten:<input type="text" id="ejecucion" name="ejecucion"> <br/>
                             Dificultad:<input type="text" id="dificultad" name="dificultad"> <br/>
-                            Penalizaci&oacuten:  <input type="text" id="penalizacion" name="penalizacion" <br/>
+                            Penalizaci&oacuten:  <input type="text" id="penalizacion" name="penalizacion"> <br/>
                             <input type="hidden" id="dorsal" name="dorsal" value="<?php echo $dorsal?>">
                             <input type="hidden" id="tipoejericio" name="tipoejercicio" value="<?php echo $tipoejericio?>">
                              <input type="hidden" id="podium" name="podium" value="<?php echo $podium?>">

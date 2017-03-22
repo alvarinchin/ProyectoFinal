@@ -72,7 +72,7 @@ echo "campeonatos";
 
                             <input type="text" id="artisitico" name="artistico"> <br/>
                             <input type="text" id="ejecucion" name="ejecucion"> <br/>
-                            <input type="text" id="dificultad" name="dificultad" <br/>;
+                            <input type="text" id="dificultad" name="dificultad"> <br/>;
                             <input type="text" id="dorsal" name="dorsal" value="<?php echo $dorsal;?>">
                             <input type="submit" value="Siguiente">
 					 </fieldset>

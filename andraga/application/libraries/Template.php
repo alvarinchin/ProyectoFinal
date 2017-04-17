@@ -14,6 +14,12 @@ class Template {
 			$this->set('contents', $this->CI->load->view($view, $view_data, TRUE));			
 			return $this->CI->load->view($template, $this->template_data, $return);
 		}
+		function cargarVista( $view = '' , $view_data = array(), $return = FALSE)
+		{
+			$this->CI =& get_instance();
+			$this->set('contents', $this->CI->load->view($view, $view_data, TRUE));
+			return $this->CI->load->view("templates/Template_main", $this->template_data, $return);
+		}
 }
 
 /* End of file Template.php */

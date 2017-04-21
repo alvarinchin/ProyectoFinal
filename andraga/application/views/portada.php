@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<form action="<?= base_url()?>login" method="post">
+	<form action="<?= base_url()?>login/comprobarUsuario" method="post">
 	<div class="row">
 		<div class="col-xs-4"></div>
 		<div class="col-xs-4">

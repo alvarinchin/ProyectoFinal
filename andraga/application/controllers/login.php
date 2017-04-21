@@ -1,31 +1,39 @@
 <?php
+require_once 'vendor/autoload.php';
+use Firebase\JWT\JWT;
 
 class Login extends CI_Controller{
 	
-	private function comprobarUsuario(){
-		$nombre = (!empty($_POST['nombre'])?$_POST['nombre']:null);
-		$password = (!empty($_POST['password'])?$_POST['password']:null);
-		$enlace = $_POST['enlace'];
-		$check = false;
+	public function comprobarUsuario(){
+		$nombre = $_POST['nombre'];
+		$password = $_POST['password'];
+		//$enlace = $_POST['enlace'];
+		
 		$nombreF = "Pepe";
 		$passF = "Perico";
 		
-		$this->load->model ('login_model');
-		$usuario = $this->login_model->getUsuariosPorNombre($nombre);
+		//$this->load->model ('login_model');
+		//$usuario = $this->login_model->getUsuariosPorNombre($nombre);
 		
 		if ($nombreF == $nombre && $password == $passF){
 				//$usuario->nombre == $nombre && 
-				//$usuario->password == $password){
-			$check = true;
-		}
-		
-		if ($check == true){
-			echo ("He entrado ".$enlace);
+				//$usuario->password == $password){			
+			echo ("He entrado ");
 			//CREAR EL TOKEN
+			$tok = [				
+				"iat"=>time(),
+				"data" => ["id"=>1, "nombre"=>$nombre]
+			];
+			$clave_secreta = "pupu";
+			$jwt = JWT::encode($tok,$clave_secreta);
+			$data = JWT::decode($jwt, $clave_secreta, array("HS256"));
+			var_dump($data);
 			//REDIRIGIR AL ADMINISTRADOR O ENLACE
+			
+			
 		}
 		else {
-			echo ("No he entrado ".$enlace);
+			echo ("No he entrado ");
 			//REDIRIGIR A HOME O ERROR.
 		}
 		

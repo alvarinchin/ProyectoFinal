@@ -23,7 +23,7 @@ class jwtAuth {
                 
         // conexión a base para comprobar usuarios.
         //$check= usuariosmodel-> login ( $user, $password);
-        $check = false;
+        $check = true;
              
         if ($check== true){
 				//$usuario->nombre == $nombre && 
@@ -32,10 +32,10 @@ class jwtAuth {
 			//CREAR EL TOKEN
 			$tok = [				
 				"iat"=>time(),
-				"data" => ["id"=>1, "nombre"=>$usuario]
+				"data" => ["id"=>1, "nombre"=>$usuario,"rol"=>3]
 			];
 			
-			$jwt = JWT::encode($tok,$key);
+			$jwt = JWT::encode($tok,$key,"HS256");
 			$data = JWT::decode($jwt, $key, array("HS256"));
 			if( $codificado){
                             $res = $data;
@@ -50,9 +50,14 @@ class jwtAuth {
 		else {
 			echo ("No he entrado ");
 			//REDIRIGIR A HOME O ERROR.
+                        return null;
 		}
     }
     
+     public function descodificar($jwt){     
+         $key= $this->key;
+         return JWT::decode($jwt, $key, array("HS256"));
+     }
     
     
     

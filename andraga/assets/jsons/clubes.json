@@ -1,0 +1,26 @@
+[
+{
+       "codClub":0,
+       "nombre":"andraga",
+       "origen":"m",
+       "comunidad":"Madrid"
+   },
+   {
+       "codClub":1,
+       "nombre":"club 2",
+       "origen":"w",
+       "comunidad":"Palencia"
+   },
+   {
+       "codClub":2,
+       "nombre":"club 3",
+       "origen":"m",
+       "comunidad":"Valladolid"
+   },
+   {
+       "codClub":3,
+       "nombre":"club 4",
+       "origen":"f",
+       "comunidad":"Madrid"
+   }
+]

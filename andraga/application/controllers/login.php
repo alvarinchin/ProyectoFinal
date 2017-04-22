@@ -42,6 +42,8 @@ class Login extends CI_Controller{
                 //con ese metodo que está en libraries se hace lo mismo que arriba
                 //y es accesible desde cualquier parte de la aplicacion
              var_dump($this->jwtauth->login($nombre,$password));
+             
+            
 		
 	}
 }

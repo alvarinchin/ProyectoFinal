@@ -1,50 +1,48 @@
 <?php
-require_once 'vendor/autoload.php';
-use Firebase\JWT\JWT;
 
 class Login extends CI_Controller{
 	
+		
 	public function comprobarUsuario(){
-		$nombre = $_POST['nombre'];
-		$password = $_POST['password'];
-		//$enlace = $_POST['enlace'];
+		$login = (!empty ($_POST['login']) ? $_POST['login']:null);
+		//HASH DEL PASSWORD PARA COMPROBARLO
+		$password = (!empty ($_POST['password']) ? password_hash($_POST['password'], PASSWORD_BCRYPT):null);
+		$enlace = (!empty ($_POST['enlace']) ? true:false);
 		
-		$nombreF = "Pepe";
-		$passF = "Perico";
+		//var_dump($login." ".$password." ".$enlace.PHP_EOL); //DEBUG
+						
+		$this->load->model('login_model');
+		$usuario = $this->login_model->getUsuarioPorLogin($login);
 		
-		//$this->load->model ('login_model');
-		//$usuario = $this->login_model->getUsuariosPorNombre($nombre);
+		//var_dump ($usuario); //DEBUG
 		
-                //externalizado a una libreria
-                
-		/*if ($nombreF == $nombre && $password == $passF){
-				//$usuario->nombre == $nombre && 
-				//$usuario->password == $password){			
-			echo ("He entrado ");
-			//CREAR EL TOKEN
-			$tok = [				
-				"iat"=>time(),
-				"data" => ["id"=>1, "nombre"=>$nombre]
-			];
-			$clave_secreta = "pupu";
-			$jwt = JWT::encode($tok,$clave_secreta);
-			//$data = JWT::decode($jwt, $clave_secreta, array("HS256"));
-			var_dump($jwt);
-			//REDIRIGIR AL ADMINISTRADOR O ENLACE
-			
-			
-		}
-		else {
-			echo ("No he entrado ");
-			//REDIRIGIR A HOME O ERROR.
-		}*/
-                
-                //con ese metodo que estÃ¡ en libraries se hace lo mismo que arriba
-                //y es accesible desde cualquier parte de la aplicacion
-             var_dump($this->jwtauth->login($nombre,$password));
-             
-            
-		
+		//LOGIN CAMPOS VACÍOS
+         if ($login == null || $password == null){
+         	$datos = null;
+         	$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
+         	$datos ['destino'] = 'Pantalla de login';
+         	$this->template->cargarVista('errors/errorLogin', $datos);         	
+         }
+         
+        // echo (password_hash($usuario->password, PASSWORD_BCRYPT).PHP_EOL);     //DEBUG   
+         
+         //LOGIN CAMPOS LLENOS
+         /* PASSWORD_VERIFY PERMITE EVALUAR CONTRA LA PASS DE LA B.D. UN PASSWORD HASHEADO
+          * ARRIBA, SE HA ENCRIPTADO PARA COMPARARLO AQUÍ CON EL BRUTO DE B.D.
+          */
+         else if (!empty($usuario) && $usuario->login == $login && password_verify($usuario->password, $password)){       	
+         	 //LOGIN CORRECTO         	 
+         	 $usuario['enlace'] = $enlace;         	 
+         	 $jwt = $this->jwtauth->codificarToken($usuario,true);    	          	 
+         }
+         
+         else{
+         	//LOGIN INCORRECTO
+         	$datos = null;
+         	$datos ['mensaje'] = 'Login o Contraseña erróneos. Redirigiendo a página principal.';
+         	$datos ['destino'] = 'Pantalla de login';
+         	$this->template->cargarVista('errors/errorLogin', $datos);
+         }
 	}
 }
 

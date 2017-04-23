@@ -20,7 +20,7 @@ class Administracion extends CI_Controller {
         
         $zona="";
         $datos="";
-        $obj= $this->jwtauth->descodificar($token);
+        $obj= $this->jwtauth->decodificarToken($token);
         $rol= $obj->data->rol;
         
         

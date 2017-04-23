@@ -12,10 +12,11 @@ class jwtAuth {
 	
 	// HACER UN SINGLETON
 	public function __construct() {
-		$this->key = "elpaladinviril";
+            //Deja de cambiar la key que me lias las pruebas
+		$this->key = "pupu";
 	}
 	
-	//TODO parámetros del token
+	//TODO parï¿½metros del token
 	public function codificarToken($usuario) {
 		
 		$key = $this->key;		

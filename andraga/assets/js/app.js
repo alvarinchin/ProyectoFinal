@@ -7,8 +7,10 @@ app.controller('mainCtrl', function($scope) {
     
     });
 
-app.controller('clubCtrl', function($scope,$http) {
+app.controller('clubCtrl', function($scope,$http,$window) {
    
+    $scope.cargar();
+    
    $scope.club= {
        "codClub":0,
        "nombre":"",
@@ -16,9 +18,26 @@ app.controller('clubCtrl', function($scope,$http) {
        "comunidad":""
    }
    
+   $scope.cargar= function(){
    $http.get("http://localhost/ProyectoFinal/andraga/assets/jsons/clubes.json").then(function(response){
       $scope.clubes=response.data; 
    });
+   }
+   
+  
+   
+   $scope.insertar=function(nombre, origen, comunidad){
+       $http({
+           method : POST,
+           url : "http://localhost/ProyectoFinal/andraga/club/insertar"
+       }).then(function (response){
+           if(response.data["status"]== "ok"){
+               cargar();
+           }else{
+               $window.alert("fallo");
+           }
+       });
+   }
     
     
 });

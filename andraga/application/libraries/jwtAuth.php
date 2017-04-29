@@ -36,7 +36,13 @@ class jwtAuth {
     
      public function decodificarToken($jwt){     
          $key= $this->key;
-         return JWT::decode($jwt, $key, array('HS256'));
+         
+         if(is_object(JWT::decode($jwt, $key, array('HS256')))){
+             return JWT::decode($jwt, $key, array('HS256'));
+         }else{
+             return null;
+         }
+         
      }
     
     

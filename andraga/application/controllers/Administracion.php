@@ -26,15 +26,10 @@ class Administracion extends CI_Controller {
         
         if ($rol==2){
             $zona="juez";
-            
-            
-            
+        
         }else if ( $rol==3){
              $zona="administracion";
              
-             //cargamos todos los modelos que tenemos 
-            
-            
         }
         
         $this->template->cargarVista("administracion/".$zona,$datos,$rol); 

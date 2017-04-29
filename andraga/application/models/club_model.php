@@ -2,8 +2,8 @@
 
 class club_model extends CI_Model{
     
-    public function getTodos(){
-       return R::loadAll("club");
+    public function getAll(){
+       return R::findAll("club");
     }
     
      public function insert($nombre, $origen, $comunidad){
@@ -22,9 +22,11 @@ class club_model extends CI_Model{
        $club->origen = $origen;
        $club->comunidad= $comunidad;
        R::store("club"); 
+       return true;
        
     }
      public function delete($id){
        R::trash("club", $id);
+       return true;
      }
 }

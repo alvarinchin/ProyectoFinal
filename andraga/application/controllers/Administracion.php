@@ -5,7 +5,7 @@ class Administracion extends CI_Controller {
 	public function index() {
 		// <===============================XXXXXXXXXXXXXX================================>
 		
-		// 						HE CAMBIADO LA KEY A UNA MÁS MOLONA
+		// 						HE CAMBIADO LA KEY A UNA Mï¿½S MOLONA
 		
 		// <===============================XXXXXXXXXXXXX=================================>
 		/*
@@ -14,7 +14,7 @@ class Administracion extends CI_Controller {
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
-		session_start ();
+		/*session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
 			
@@ -42,10 +42,15 @@ class Administracion extends CI_Controller {
 		} 
 		else {
 			$datos = null;
-			$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
+			$datos ['mensaje'] = 'Login y Contraseï¿½a deben ser rellenados. Redirigiendo a pï¿½gina principal.';
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}
+		}*/
+            
+            /*
+             * bypass para poder hacer pruebas TODO
+             */
+            $this->template->cargarVista ( "administracion/" . "administracion", "", 3 );
 	}
 }
 

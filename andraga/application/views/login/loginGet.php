@@ -26,3 +26,13 @@
 </div>
 </div>
 </div>
+<script>
+	window.onload = function(){
+		document.getElementById("enlace").onclick = activo_Enlace;		
+	};
+
+	function activo_Enlace(){
+		document.getElementById("login").disabled = document.getElementById("enlace").checked;
+	}
+
+</script>

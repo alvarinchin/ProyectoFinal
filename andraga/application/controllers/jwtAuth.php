@@ -42,6 +42,32 @@ class jwtAuth {
          $key= $this->key;
          return JWT::decode($jwt, $key, array('HS256'));
      }
+     
+     public function comprobarToken(){
+     	
+     	$check = false;
+          
+     	if (isset ( $_SESSION ['tkn'] )) {
+     		
+     		$zona = "";
+     		$datos = "";
+     		
+     		$obj = $this->jwtauth->decodificarToken ( $_SESSION['tkn'] );
+     		$login = $obj->data->login;
+     		$password = password_hash($obj->data->password, PASSWORD_BCRYPT);
+     		$rol = $obj->data->rol;
+     		
+     	}
+     	
+     	$this->load->model ( 'login_model' );
+     	$usuario = $this->login_model->getUsuarioPorLogin ( $login );
+     	
+     	if (! empty ( $usuario ) && $usuario->login == $login &&  password_verify ($usuario->password, $password)) {
+     		$check = true;
+     	}
+     	
+     	return $check;
+     }
     
     
     

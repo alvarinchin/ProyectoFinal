@@ -14,7 +14,7 @@ class Administracion extends CI_Controller {
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
-		/*session_start ();
+		session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
 			
@@ -45,12 +45,9 @@ class Administracion extends CI_Controller {
 			$datos ['mensaje'] = 'Login y Contrase�a deben ser rellenados. Redirigiendo a p�gina principal.';
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}*/
+		}
             
-            /*
-             * bypass para poder hacer pruebas TODO
-             */
-            $this->template->cargarVista ( "administracion/" . "juez", "", 2 );
+           
 	}
 }
 

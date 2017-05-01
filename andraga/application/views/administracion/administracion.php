@@ -50,7 +50,7 @@
                         <label>Comunidad</label>
                         <input type="text" ng-model="comunidadE">
                     </div>
-                    <button type="button" ng-click="editar();" class="btn btn-info" data-toggle="collapse" data-target="#clubE">Modificar</button>
+                    <button type="button" ng-click="modificar();" class="btn btn-info" data-toggle="collapse" data-target="#clubE">Modificar</button>
                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#clubE" >Cancelar</button>
                     
                 </div>
@@ -61,7 +61,7 @@
         <!----------------------CLUBS-------------------------->
         <!----------------------CATEGORIA-------------------------->
         <div  class="col-md-3">
-            <div ng-controller="clubCtrl">
+            <div ng-controller="categoriaCtrl">
                 <h2>Categorías</h2>
                 
                 <h4 class="well" data-toggle="collapse" data-target="#catgN">Nueva Categoría</h4>
@@ -70,14 +70,18 @@
                         <label>nombre</label>
                         <input type="text" ng-model="nombre">
                     </div>
+                       <div class="form-group">
+                        <label>¿Campeonato autonomico?</label>
+                        <input type="checkbox" ng-model="autonom">
+                    </div>
                     <button type="button" ng-click="insertar();" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                 </div>
                 
                 <table class="table">
                     <tr  ng-repeat="categoria in categorias">
-                        <td>{{categoria.nombre}}</td>
+                        <td>{{categoria.nombre}}</td><td>¿Autonomico?<span ng-show="categoria.autonom=='true'" class="glyphicon glyphicon-ok"></span><span ng-show="categoria.autonom=='false'" class="glyphicon glyphicon-remove"></span></td>
                         <td><button class="btn btn-primary" ng-click="borrar(categoria)"><span class="glyphicon glyphicon-remove"></span></button></td>
-                        <td><button class="btn btn-primary" ng-click="datos(categoría)"data-toggle="collapse" data-target="#catgE"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                        <td><button class="btn btn-primary" ng-click="datos(categoria)"data-toggle="collapse" data-target="#catgE"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         
                     </tr>
                     
@@ -89,7 +93,11 @@
                         <label>nombre</label>
                         <input type="text" ng-model="nombreE">
                     </div>
-                    <button type="button" ng-click="editar();" class="btn btn-info" data-toggle="collapse" data-target="#catgE">Modificar</button>
+                      <div class="form-group">
+                        <label>¿Campeonato autonomico?</label>
+                        <input type="checkbox" ng-checked="checkE=='true'" ng-model="autonomE">
+                    </div>
+                    <button type="button" ng-click="modificar();" class="btn btn-info" data-toggle="collapse" data-target="#catgE">Modificar</button>
                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#catgE" >Cancelar</button>
                 </div>
                 
@@ -98,10 +106,10 @@
         <!----------------------CATEGORIA-------------------------->
         <!----------------------TIPO EJERCICIO--------------------->
         <div  class="col-md-3">
-            <div ng-controller="clubCtrl">
+            <div ng-controller="tipoCtrl">
                 <h2>Tipo de Ejercicio</h2>
                 
-                <h4 class="well" data-toggle="collapse" data-target="#tipoN">Nuevo Club</h4>
+                <h4 class="well" data-toggle="collapse" data-target="#tipoN">Nuevo Tipo de ejercicio</h4>
                 <div id="tipoN" class="collapse well">
                     <div class="form-group">
                         <label>Descripcion</label>
@@ -113,8 +121,8 @@
                 <table class="table">
                     <tr  ng-repeat="tipo in tipos">
                         <td>{{tipo.descripcion}}</td>
-                        <td><button class="btn btn-primary" ng-click="borrar(club)"><span class="glyphicon glyphicon-remove"></span></button></td>
-                        <td><button class="btn btn-primary" ng-click="datos(club)"data-toggle="collapse" data-target="#tipoE"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                        <td><button class="btn btn-primary" ng-click="borrar(tipo)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                        <td><button class="btn btn-primary" ng-click="datos(tipo)"data-toggle="collapse" data-target="#tipoE"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         
                     </tr>
                     
@@ -124,10 +132,10 @@
                     <h4>Modificar Tipo de Ejercicio</h4>
                     <div class="form-group">
                         <label>Descripción</label>
-                        <input type="text" ng-model="nombreE">
+                        <input type="text" ng-model="descripcionE">
                     </div>
                     
-                    <button type="button" ng-click="editar();" class="btn btn-info" data-toggle="collapse" data-target="#tipoE">Modificar</button>
+                    <button type="button" ng-click="modificar();" class="btn btn-info" data-toggle="collapse" data-target="#tipoE">Modificar</button>
                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#tipoE" >Cancelar</button>
                 </div>
                 
@@ -136,7 +144,7 @@
         <!----------------------TIPO EJERCICIO--------------------->
         <!----------------------ESPECIALIDAD----------------------->
         <div  class="col-md-3">
-            <div ng-controller="clubCtrl">
+            <div ng-controller="especCtrl">
                 <h2>Especialidades</h2>
                 
                 <h4 class="well" data-toggle="collapse" data-target="#espN">Nueva Especialidad</h4>
@@ -147,7 +155,7 @@
                     </div>
                     <div class="form-group">
                         <label>Número Componentes</label>
-                        <input type="text" ng-model="num">
+                        <input type="number" ng-model="num">
                     </div>
                     
                     <button type="button" ng-click="insertar();" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
@@ -156,9 +164,9 @@
                 <table class="table">
                     <tr  ng-repeat="especialidad in especialidades">
                         <td>{{especialidad.descripcion}}</td>
-                        <td>{{especialidad.num}}</td>
-                        <td><button class="btn btn-primary" ng-click="borrar(club)"><span class="glyphicon glyphicon-remove"></span></button></td>
-                        <td><button class="btn btn-primary" ng-click="datos(club)"data-toggle="collapse" data-target="#espE"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                        <td>Componentes: {{especialidad.num}}</td>
+                        <td><button class="btn btn-primary" ng-click="borrar(especialidad)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                        <td><button class="btn btn-primary" ng-click="datos(especialidad)"data-toggle="collapse" data-target="#espE"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         
                     </tr>
                     
@@ -168,14 +176,14 @@
                     <h4>Modificar Especialidad</h4>
                     <div class="form-group">
                         <label>Descripción</label>
-                        <input type="text" ng-model="nombreE">
+                        <input type="text" ng-model="descripcionE">
                     </div>
                     <div class="form-group">
                         <label>Numero componentes</label>
-                        <input type="text" ng-model="origenE">
+                        <input type="number" ng-model="numE">
                     </div>
                     
-                    <button type="button" ng-click="editar();" class="btn btn-info" data-toggle="collapse" data-target="#espE">Modificar</button>
+                    <button type="button" ng-click="modificar();" class="btn btn-info" data-toggle="collapse" data-target="#espE">Modificar</button>
                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#espE" >Cancelar</button>
                 </div>
             </div>

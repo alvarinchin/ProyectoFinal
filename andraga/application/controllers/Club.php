@@ -46,20 +46,18 @@ class Club extends CI_Controller{
      
     public function modificar (){
               if ( isset($_REQUEST["nombre"])){
-         if ( !empty($_REQUEST["nombre"]) && !empty($_REQUEST["origen"]) && !empty($_REQUEST["comunidad"]) ){
+         if ( !empty($_REQUEST["nombre"]) && !empty($_REQUEST["origen"]) && !empty($_REQUEST["comunidad"])&&!empty($_REQUEST["id"]) ){
              $campos=[];
              
             $campos["nombre"]=$this->utilphp->sanear($_REQUEST["nombre"]);
              $campos["origen"]= $this->utilphp->sanear($_REQUEST["origen"]);
              $campos["comunidad"]= $this->utilphp->sanear($_REQUEST["comunidad"]);
-              $campos["id"]= $this->utilphp->sanear($_REQUEST["id"]);
-             
-             $campos->id= $this->utilphp->sanear($_REQUEST["comunidad"]);
-             
-             $status=$this->adaptador_model->update("club",$campos,"nombre");
+             $id= $this->utilphp->sanear($_REQUEST["id"]);
+ 
+             $status=$this->adaptador_model->update("club",$id,$campos,"nombre");
             
             if($status){
-                echo json_encode(array("status"=>"ok","data"=>$_REQUEST));
+                echo json_encode(array("status"=>"ok","msg"=>"Entrada actualizada"));
                 }else{
                 echo json_encode(array("status"=>"error","msg"=>"Error al modificar un club, nombre repetido "));
             }

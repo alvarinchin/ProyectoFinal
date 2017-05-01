@@ -5,13 +5,8 @@
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
                         <li><a
-                               >Administrador</a>
+                               >Juez</a>
 			</li>
-			<li><a
-                                href="<?=base_url();?>/administracion">Administracion</a>
-			</li>
-
-
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">Gestor de competiciones<span
 					class="caret"></span>

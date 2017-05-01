@@ -38,9 +38,9 @@ class adaptador_model {
            return false;
        }
     }
-    public function update($nombreBean,$campos,$campoKey){
+    public function update($nombreBean,$id,$campos,$campoKey){
       if(!$this->existe($campos[$campoKey])){  
-       $bean=  R::load($nombreBean,$campos["id"]);
+       $bean=  R::load($nombreBean,$id);
        foreach ($campos as $nombreCampo => $value) {
        $bean[$nombreCampo]= $value;
        }

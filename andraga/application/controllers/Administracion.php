@@ -50,7 +50,7 @@ class Administracion extends CI_Controller {
             /*
              * bypass para poder hacer pruebas TODO
              */
-            $this->template->cargarVista ( "administracion/" . "administracion", "", 3 );
+            $this->template->cargarVista ( "administracion/" . "juez", "", 2 );
 	}
 }
 

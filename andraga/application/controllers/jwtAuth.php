@@ -6,70 +6,54 @@
  * and open the template in the editor.
  */
 use Firebase\JWT\JWT;
-class jwtAuth {
+
+class jwtAuth{
 	private $key;
 	
 	// HACER UN SINGLETON
 	public function __construct() {
 		$this->key = "elpaladinviril";
 	}
-	
-	public function codificarToken($usuario, $codificado = false) {
-		$key = $this->key;		
+	public function codificarToken($usuario) {
+		$key = $this->key;
 		$tok = [ 
 				"iat" => time (),
-				//"exp" => $permanencia,
-				// TODO TEMA DEL ROL
 				"data" => [ 
 						"login" => $usuario->login,
-						"enlace" => true
+						"password" => $usuario->password,
+						"rol" => $usuario->rol 
 				] 
 		];
 		
-		$jwt = JWT::encode ( $tok, $key, array(
-				'HS256' 
-		) );
-		if ($codificado) {
-			$res = $data;
-		} else {
-			$res = $jwt;
-		}
+		$jwt = JWT::encode ( $tok, $key );
 		
 		return $res;
 	}
-    
-     public function decodificarToken($jwt){     
-         $key= $this->key;
-         return JWT::decode($jwt, $key, array('HS256'));
-     }
-     
-     public function comprobarToken(){
-     	
-     	$check = false;
-          
-     	if (isset ( $_SESSION ['tkn'] )) {
-     		
-     		$zona = "";
-     		$datos = "";
-     		
-     		$obj = $this->jwtauth->decodificarToken ( $_SESSION['tkn'] );
-     		$login = $obj->data->login;
-     		$password = password_hash($obj->data->password, PASSWORD_BCRYPT);
-     		$rol = $obj->data->rol;
-     		
-     	}
-     	
-     	$this->load->model ( 'login_model' );
-     	$usuario = $this->login_model->getUsuarioPorLogin ( $login );
-     	
-     	if (! empty ( $usuario ) && $usuario->login == $login &&  password_verify ($usuario->password, $password)) {
-     		$check = true;
-     	}
-     	
-     	return $check;
-     }
-    
-    
-    
+	public function decodificarToken($jwt) {
+		$key = $this->key;
+		return JWT::decode ( $jwt, $key, array (
+				'HS256' 
+		) );
+	}
+	
+	public function comprobarToken($jwt, $usuario, $vista) {
+		
+		$zona = "";		
+		
+		if ($usuario->login == $jwt->data->login && password_verify ( $usuario->password, $jwt->data->password )) {
+			
+			if ($jwt->data->rol == 2) {
+				$zona = "juez";
+			} else if ($jwt->data->rol == 3) {
+				$zona = "administracion";
+			}
+			
+			$this->template->cargarVista ( $vista."/". $zona, $datos, $rol );
+		}
+		else {			
+			$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
+			$datos ['destino'] = 'Pantalla de login';
+			$this->template->cargarVista ( 'errors/errorLogin', $datos );
+		}
+	}
 }
-

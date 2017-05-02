@@ -11,54 +11,62 @@ class Login extends CI_Controller {
 		$this->load->model ( 'login_model' );
 		$usuario = $this->login_model->getUsuarioPorLogin ( $login );
 		
-				
-		// LOGIN CAMPOS VACÍOS Y ENLACE
+		// LOGIN CAMPOS VACÃOS Y ENLACE
 		if ($login == null) {
 			if ($password == null) {
 				$datos = null;
-				$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
+				$datos ['mensaje'] = 'Login y ContraseÃ±a deben ser rellenados. Redirigiendo a pÃ¡gina principal.';
 				$datos ['destino'] = 'Pantalla de login';
 				$this->template->cargarVista ( 'errors/errorLogin', $datos );
-			}
-			if (isset ( $password )) {
-				$usuario ['enlace'] = $enlace;
-				$usuario ['login'] = 'enlace';
-				$usuario ['password'] = $password;
-				$jwt = $this->jwauth->codificarToken ( $usuario );
-				session_start ();
-				$_SESSION ['tkn' + $_SESSION ['cnt']] = $jwt;
-				setcookie ( 'tkn', $jwt, time () + 86400000, null, null, true );
-				$datos = null;
-				$datos ['login'] = 'estimado espectador';				
-				$this->template->cargarVista ( 'login/loginPost', $datos );
+			}			
+			// SI ES ENLACE TRAE DOS CAMPOS ENLACE Y PASS
+			
+			else {
+				
+				$usuario = $this->login_model->getUsuarioPorLogin ( 'enlace' );
+				
+				if (isset ( $password ) && password_verify ( $usuario->password, $password )) {
+					
+					$jwt = $this->jwtauth->codificarToken ( $usuario );
+					session_start ();
+					$_SESSION ['tkn'] = $jwt;
+					// setcookie ( 'tkn', $jwt, time () + 86400000, null, null, true );
+					$datos = null;
+					$datos ['login'] = 'estimado espectador';
+					$this->template->cargarVista ( 'login/loginPost', $datos );
+				}
+				
+				else {
+					
+					$datos ['mensaje'] = 'ContraseÃ±a de invitado errÃ³nea. Redirigiendo a pÃ¡gina principal.';
+					$datos ['destino'] = 'Pantalla de login';
+					$this->template->cargarVista ( 'errors/errorLogin', $datos );
+				}
 			}
 		}		
-				
 		// LOGIN CAMPOS LLENOS
 		
 		/*
 		 * PASSWORD_VERIFY PERMITE EVALUAR CONTRA LA PASS DE LA B.D. UN PASSWORD HASHEADO
-		 * ARRIBA, SE HA ENCRIPTADO PARA COMPARARLO AQUÍ CON EL BRUTO DE B.D.
+		 * ARRIBA, SE HA ENCRIPTADO PARA COMPARARLO AQUï¿½ CON EL BRUTO DE B.D.
 		 */
 		else if (! empty ( $usuario ) && $usuario->login == $login && password_verify ( $usuario->password, $password )) {
 			
-			//LOGIN CORRECTO
+			// LOGIN CORRECTO
 			
-			$usuario ['enlace'] = $enlace;
-			$jwt = $this->jwtauth->codificarToken ( $usuario );			
+			$jwt = $this->jwtauth->codificarToken ( $usuario );
 			session_start ();
 			$_SESSION ['tkn'] = $jwt;
-			//setcookie ( 'tkn', $jwt, time () + 86400000, null, null, true ); //86.400.000  = 1 DÍA
+			// setcookie ( 'tkn', $jwt, time () + 86400000, null, null, true ); //86.400.000 = 1 Dï¿½A
 			$datos = null;
-			$datos ['login'] = $usuario -> login; 
+			$datos ['login'] = $usuario->login;
 			$this->template->cargarVista ( 'login/loginPost', $datos );
-		} 
-		else {
+		} else {
 			
 			// LOGIN INCORRECTO
 			
 			$datos = null;
-			$datos ['mensaje'] = 'Login o Contraseña erróneos. Redirigiendo a página principal.';
+			$datos ['mensaje'] = 'Login o ContraseÃ±a errÃ³neos. Redirigiendo a pÃ¡gina principal.';
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
 		}

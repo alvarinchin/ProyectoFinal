@@ -12,12 +12,12 @@
 <form action="<?= base_url() ?>login/comprobarUsuario" method="Post">
 	<label for="enlace">Pincha en la casilla para entrar como invitado</label>
 	<div class="checkbox">	
-  	<label><input type="checkbox" name="enlace" id="enlace" value="enlace">Enlace</label>
+  	<label><input type="checkbox" name="enlace" id="enlace">Enlace</label>
 	</div>
 	<br/>
 	<label for="login">Login</label>	
 	<input type="text" name="login" id="login" class="form-control">
-	<label for="password">Contraseña</label>
+	<label for="password">ContraseÃ±a</label>
 	<input type="password" name="password" id="password" class="form-control">
 	<br/>		
 	<input type="submit" class="btn btn-primary">

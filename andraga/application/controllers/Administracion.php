@@ -10,25 +10,8 @@ class Administracion extends CI_Controller {
 		 * 3 -> administrador
 		 */
 		session_start ();
-		
-		if (isset ( $_SESSION ['tkn'] )) {
-			
-			$jwt = $this->jwtauth->decodificarToken ( $_SESSION ['tkn'] );
-			
-			$this->load->model ( 'login_model' );
-			$usuario = $this->login_model->getUsuarioPorLogin ( $jwt->data->login );
-			$vista = 'administracion';
-			
-			$this->jwtauth->comprobarToken($jwt, $usuario, $vista);
-		} else {
-			$datos = null;
-			$datos ['mensaje'] = 'Se requiere un usuario registrado. Redirigiendo a página principal.';
-			$datos ['destino'] = 'Pantalla de login';
-			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}
-		
-		
-		 /* if (isset ( $_SESSION ['tkn'] )) {
+				
+		 if (isset ( $_SESSION ['tkn'] )) {
 		 
 		  $zona = "";
 		  $datos = "";
@@ -57,7 +40,7 @@ class Administracion extends CI_Controller {
 		  $datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
 		  $datos ['destino'] = 'Pantalla de login';
 		  $this->template->cargarVista ( 'errors/errorLogin', $datos );
-		  }*/
+		  }
 		 
 	}
 }

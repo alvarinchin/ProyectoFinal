@@ -8,13 +8,13 @@ use Firebase\JWT\JWT;
  * and open the template in the editor.
  */
 
-class jwtAuth {
+class jwtAuth{
 	private $key;
 		
 	public function __construct() {
 		
 		// Deja de cambiar la key que me lias las pruebas
-		// La he cambiado a una más molona :D
+		// La he cambiado a una mï¿½s molona :D
 		$this->key = base64_encode ( "pUpu_VegEtal32" );
 	}
 	public function codificarToken($usuario) {
@@ -24,8 +24,7 @@ class jwtAuth {
 				"data" => [ 
 						"login" => $usuario->login,
 						"password" => $usuario->password,
-						"rol" => $usuario->rol,
-						"enlace" => true 
+						"rol" => $usuario->rol						 
 				] 
 		];
 		$jwt = JWT::encode ( $tok, $key);
@@ -42,5 +41,6 @@ class jwtAuth {
 			return null;
 		}
 	}
+	
 }
 

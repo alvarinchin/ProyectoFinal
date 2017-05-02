@@ -28,7 +28,8 @@
 </div>
 <script>
 	window.onload = function(){
-		document.getElementById("enlace").onclick = activo_Enlace;		
+		document.getElementById("enlace").onclick = activo_Enlace;
+		document.getElementById("enlace").checked="";		
 	};
 
 	function activo_Enlace(){

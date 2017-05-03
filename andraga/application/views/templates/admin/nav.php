@@ -17,11 +17,11 @@
 					class="caret"></span>
 			</a>
 				<ul class="dropdown-menu">
-					<li class="dropdown-header">Lenguaje programación</li>
-					<li><a href="<?=base_url()?>lenguaje/crear">Crear</a></li>
-					<li><a href="<?=base_url()?>lenguaje/listar">Listar</a></li>
-					<li><a href="<?=base_url()?>lenguaje/modificar">Modificar</a></li>
-					<li><a href="<?=base_url()?>lenguaje/borrar">Borrar</a></li>
+					<li class="dropdown-header">Gestor de competiciones</li>
+					<li><a href="<?=base_url()?>competicion/crear">Crear</a></li>
+					<li><a href="<?=base_url()?>competicion/listar">Listar</a></li>
+					<li><a href="<?=base_url()?>competicion/modificar">Modificar</a></li>
+					<li><a href="<?=base_url()?>competicion/borrar">Borrar</a></li>
 
 
 					<!-- M�s beans y m�s acciones -->
@@ -33,11 +33,11 @@
 				data-toggle="dropdown" href="#"> Puntuaciones<span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu">
-					<li class="dropdown-header">Empleado</li>
-					<li><a href="<?=base_url()?>empleado/crear">Crear</a></li>
-					<li><a href="<?=base_url()?>empleado/listar">Listar</a></li>
-					<li><a href="<?=base_url()?>empleado/modificar">Modificar</a></li>
-					<li><a href="<?=base_url()?>empleado/borrar">Borrar</a></li>
+					<li class="dropdown-header">Puntuaciones</li>
+					<li><a href="<?=base_url()?>puntuaciones/crear">Crear</a></li>
+					<li><a href="<?=base_url()?>puntuaciones/listar">Listar</a></li>
+					<li><a href="<?=base_url()?>puntuaciones/modificar">Modificar</a></li>
+					<li><a href="<?=base_url()?>puntuaciones/borrar">Borrar</a></li>
 
 
 					<!-- M�s beans y m�s acciones -->

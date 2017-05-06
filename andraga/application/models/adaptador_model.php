@@ -37,7 +37,8 @@ class adaptador_model {
 		}
 	}
 	public function update($nombreBean, $id, $campos, $campoKey) {
-		if (! $this->existe ( $campos [$campoKey] )) {
+		// AÑADIDO $nombreBean a la invo del método "existe".
+		if (! $this->existe ( $campos [$campoKey], $nombreBean )) {
 			$bean = R::load ( $nombreBean, $id );
 			foreach ( $campos as $nombreCampo => $value ) {
 				$bean [$nombreCampo] = $value;

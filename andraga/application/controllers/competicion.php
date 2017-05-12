@@ -24,8 +24,8 @@ class Competicion extends CI_Controller {
 		}
 	}
 	public function crearOK() {
-		//$this->template->cargarVista ( 'competicion/crearOK' );
-		header ( 'Location:' . base_url () . 'deportista/crear' );
+		$this->template->cargarVista ( 'competicion/crearOK' );
+		//header ( 'Location:' . base_url () . 'deportista/crear' );
 	}
 	public function crearERROR() {
 		$this->template->cargarVista ( 'competicion/crearERROR' );

@@ -77,8 +77,8 @@ class Deportista_Model extends CI_Model {
 		
 		return $status;
 	}
-	public function getTodas() {
-		return R::findAll ( 'ciudad', 'order by nombre' );
+	public function getTodos() {
+		return R::findAll ( 'deportista', 'order by nombre' );
 	}
 	public function getCiudad($nombre) {
 		return R::findOne ( 'ciudad', 'nombre=?', [ 

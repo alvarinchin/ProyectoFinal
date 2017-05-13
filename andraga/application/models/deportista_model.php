@@ -5,18 +5,18 @@ class Deportista_Model extends CI_Model {
 				$nombre 
 		] );
 		return $deportista != null ? true : false;
-		$ape1 = R::findOne ( 'deportista', 'ape1 = ?', [
-				$ape1
+		$ape1 = R::findOne ( 'deportista', 'ape1 = ?', [ 
+				$ape1 
 		] );
 		return $ape1 != null ? true : false;
 		
-		$ape2 = R::findOne ( 'deportista', 'ape2 = ?', [
-				$ape2
+		$ape2 = R::findOne ( 'deportista', 'ape2 = ?', [ 
+				$ape2 
 		] );
 		return $ape2 != null ? true : false;
 		
-		$fecha = R::findOne ( 'deportista', 'fecha = ?', [
-				$fecha
+		$fecha = R::findOne ( 'deportista', 'fecha = ?', [ 
+				$fecha 
 		] );
 		return $fecha != null ? true : false;
 	}
@@ -42,13 +42,13 @@ class Deportista_Model extends CI_Model {
 		
 		return $lista;
 	}
-	public function borrar($idCiudad) {
+	public function borrar($idDeportista) {
 		$status = 0;
-		if (R::findOne ( 'ciudad', 'id=?', [ 
-				$idCiudad 
+		if (R::findOne ( 'deportista', 'id=?', [ 
+				$idDeportista 
 		] ) != - 1) {
-			$ciudad = R::load ( 'ciudad', $idCiudad );
-			R::trash ( $ciudad );
+			$deportista = R::load ( 'deportista', $idDeportista );
+			R::trash ( $deportista );
 			R::close ();
 		} else {
 			$status = - 1;
@@ -78,14 +78,14 @@ class Deportista_Model extends CI_Model {
 		return $status;
 	}
 	public function getTodos() {
-		return R::findAll ( 'deportista', 'order by nombre' );
+		return R::findAll ( 'deportista', 'order by ape1' );
 	}
 	public function getCiudad($nombre) {
 		return R::findOne ( 'ciudad', 'nombre=?', [ 
 				$nombre 
 		] );
 	}
-	public function getCiudadPorId($id) {
+	public function getDeportistaPorId($id) {
 		return R::load ( 'ciudad', $id );
 	}
 	public function buscar($nombre) {
@@ -94,6 +94,14 @@ class Deportista_Model extends CI_Model {
 		] );
 		R::close ();
 		return $ciudades;
+	}
+	public function editar($id_deportista, $nombre, $ape1, $ape2, $fecha) {
+		$deportista = R::load ( 'deportista', $id_deportista );
+		$deportista->nombre = $nombre;
+		$deportista->ape1 = $ape1;
+		$deportista->ape2 = $ape2;
+		$deportista->fecha = $fecha;
+		R::store ( $deportista );
 	}
 }
 

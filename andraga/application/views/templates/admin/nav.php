@@ -41,7 +41,18 @@
 				</ul></li>
 
 
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Usuarios<span class="caret"></span>
+			</a>
+				<ul class="dropdown-menu">
+					<li class="dropdown-header">Usuarios</li>
+					<li><a href="<?=base_url()?>usuario/indexGet">Gestionar usuarios</a></li>
+					
 
+
+					<!-- M�s beans y m�s acciones -->
+
+				</ul></li>
 
 
 

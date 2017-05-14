@@ -385,4 +385,97 @@ app.controller('especCtrl', function($scope,$http) {
     
 });
 
+app.controller('usuarioCtrl', function($scope,$http,$window) {
+	 
+    $scope.usuario= {
+        "id":0,
+        "login":"",
+        "password":"",
+        "rol":""
+    }
+    $scope.loginE="";
+    $scope.passwordE="";
+    $scope.rolE=""
+    $scope.idE=""
+    
+    $scope.campos=[
+        "login",
+        "password",
+        "rol"];
+    $scope.login;
+    $scope.password;
+    $scope.rol;
+   
+    $scope.cargar= function(){
+        $http.get(base_url+"/Usuario/listar").then(function(response){
+            console.log(response.data["status"]+" : "+response.data["msg"]);
+            $scope.usuarios=response.data["data"]; 
+            
+        });
+    }
+
+    $scope.cargar();
+    $scope.insertar=function(){
+        
+        config= {
+            method : "POST",
+            url : base_url+"/Usuario/crearPost",
+            params : {login : $scope.login ,  password : $scope.password ,rol : $scope.rol}
+        };
+       
+        $http(config).then(function (response){
+            console.log(response.data["status"]+" : "+response.data["msg"]);
+             
+            $scope.login="";
+            $scope.password="";
+            $scope.rol="";
+            $scope.cargar();
+        });
+    }
+    
+    $scope.datos=function(usuario){
+            $scope.loginE=usuario.login;
+            $scope.passwordE=usuario.password;
+            $scope.rolE=usuario.rol;
+            $scope.idE=usuario.id;
+    }
+    
+    
+     $scope.modificar=function(){
+        
+        config= {
+            method : "POST",
+            url : base_url+"/Usuario/modificarPost",
+            params : {login : $scope.loginE , id : $scope.idE ,  password : $scope.passwordE ,rol : $scope.rolE}
+        };
+       
+        $http(config).then(function (response){
+            console.log(response.data["status"]+" : "+response.data["msg"]);
+            $scope.idE=""; 
+            $scope.loginE="";
+            $scope.passwordE="";
+            $scope.rolE="";
+            $scope.cargar();
+        });
+    }
+    
+    $scope.borrar=function(usuario){
+  
+        config= {
+            method : "POST",
+            url : base_url+"/Usuario/borrarPost",
+            params : {id : usuario.id}
+        };
+       
+        $http(config).then(function (response){
+       
+            console.log(response.data["status"]+" : "+response.data["msg"]);
+        
+            $scope.cargar();
+        });
+    }
+    
+  
+});
+
 

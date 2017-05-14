@@ -7,13 +7,12 @@ class Usuario extends CI_Controller{
 		$this->load->model("adaptador_model");
 	}
 	
-	public function crearGet(){		
-		$this->template->cargarVista ("usuario/crearGet");		
+	public function indexGet(){		
+		$this->template->cargarVista ("usuario/usuario");		
 	}
 	
 	public function crearPost(){
-		
-		
+						
 		if (isset ($_POST['login']) && isset($_POST['password']) && isset ($_POST['rol'])){
 			
 			$login = $_POST['login'];

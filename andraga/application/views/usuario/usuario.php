@@ -3,8 +3,7 @@
     <div class="row">
         
         
-        <!----------------------CLUBS-------------------------->
-        <div  class="col-md-3">
+       <div  class="col-md-3">
             <div ng-controller="usuarioCtrl">
                 <h2>Usuarios</h2>
                 

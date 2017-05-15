@@ -46,7 +46,7 @@
 			</a>
 				<ul class="dropdown-menu">
 					<li class="dropdown-header">Usuarios</li>
-					<li><a href="<?=base_url()?>usuario/indexGet">Gestionar usuarios</a></li>
+					<li><a href="<?=base_url()?>usuario/index">Gestionar usuarios</a></li>
 					
 
 

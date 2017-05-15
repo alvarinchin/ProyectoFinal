@@ -44,11 +44,11 @@ class Usuario extends CI_Controller{
 	
 	public function crearPost(){
 						
-		if (isset ($_POST['login']) && isset($_POST['password']) && isset ($_POST['rol'])){
+		if (isset ($_REQUEST['login']) && isset($_REQUEST['password']) && isset ($_REQUEST['rol'])){
 			
-			$login = $_POST['login'];
-			$password = $_POST['password'];
-			$rol = $_POST['rol'];
+			$login = $_REQUEST['login'];
+			$password = $_REQUEST['password'];
+			$rol = $_REQUEST['rol'];
 			
 			if (!empty($login) && !empty($password) && !empty($rol)){
 				
@@ -59,7 +59,7 @@ class Usuario extends CI_Controller{
 				
 				$status = $this->adaptador_model->insert('usuario', $campos, "login"); 				
 				
-				echo $status;
+				//echo $status;
 				
 				if ($status){
 					echo json_encode(array("status"=>"ok","data"=>$_REQUEST,"msg"=>"Inserción correcta"));
@@ -91,10 +91,10 @@ class Usuario extends CI_Controller{
 	}
 	
 	public function borrarPost (){
-		if ( isset($_POST["id"])){
-			if ( !empty($_POST["id"])){
+		if ( isset($_REQUEST["id"])){
+			if ( !empty($_REQUEST["id"])){
 				
-				$status=$this->adaptador_model->delete("usuario",$_POST["id"]);
+				$status=$this->adaptador_model->delete("usuario",$_REQUEST["id"]);
 				
 				if($status){
 					echo json_encode(array("status"=>"ok","msg"=>"Usuario eliminado"));
@@ -114,14 +114,14 @@ class Usuario extends CI_Controller{
 	}
 	
 	public function modificarPost(){
-		if ( isset ($_POST['login']) && isset($_POST['password']) && isset ($_POST['rol']) && isset ($_POST['id'])){
+		if ( isset ($_REQUEST['login']) && isset($_REQUEST['password']) && isset ($_REQUEST['rol']) && isset ($_REQUEST['id'])){
 			
-			$login = ($_POST['login']);
-			$password = ($_POST['password']);
-			$rol = ($_POST['rol']);
-			$id = ($_POST['id']);
+			$login = ($_REQUEST['login']);
+			$password = ($_REQUEST['password']);
+			$rol = ($_REQUEST['rol']);
+			$id = ($_REQUEST['id']);
 			
-			if ( !empty($_POST['login']) && !empty($_POST['password']) && !empty ($_POST['rol']) && !empty ($_POST['id'])){
+			if ( !empty($_REQUEST['login']) && !empty($_REQUEST['password']) && !empty ($_REQUEST['rol']) && !empty ($_REQUEST['id'])){
 				
 				$campos=[];
 				$campos["login"]=$this->utilphp->sanear($login);

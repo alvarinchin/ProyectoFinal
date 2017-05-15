@@ -448,9 +448,12 @@ app.controller('usuarioCtrl', function($scope,$http,$window) {
             url : base_url+"/Usuario/modificarPost",
             params : {login : $scope.loginE , id : $scope.idE ,  password : $scope.passwordE ,rol : $scope.rolE}
         };
+        
+        
        
         $http(config).then(function (response){
             console.log(response.data["status"]+" : "+response.data["msg"]);
+        
             $scope.idE=""; 
             $scope.loginE="";
             $scope.passwordE="";

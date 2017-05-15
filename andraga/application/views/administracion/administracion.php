@@ -70,16 +70,13 @@
                         <label>nombre</label>
                         <input type="text" ng-model="nombre">
                     </div>
-                       <div class="form-group">
-                        <label>¿Campeonato autonomico?</label>
-                        <input type="checkbox" ng-model="autonom">
-                    </div>
+                      
                     <button type="button" ng-click="insertar();" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                 </div>
                 
                 <table class="table">
                     <tr  ng-repeat="categoria in categorias">
-                        <td>{{categoria.nombre}}</td><td>¿Autonomico?<span ng-show="categoria.autonom=='true'" class="glyphicon glyphicon-ok"></span><span ng-show="categoria.autonom=='false'" class="glyphicon glyphicon-remove"></span></td>
+                        <td>{{categoria.nombre}}</td>
                         <td><button class="btn btn-primary" ng-click="borrar(categoria)"><span class="glyphicon glyphicon-remove"></span></button></td>
                         <td><button class="btn btn-primary" ng-click="datos(categoria)"data-toggle="collapse" data-target="#catgE"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         
@@ -93,10 +90,7 @@
                         <label>nombre</label>
                         <input type="text" ng-model="nombreE">
                     </div>
-                      <div class="form-group">
-                        <label>¿Campeonato autonomico?</label>
-                        <input type="checkbox" ng-checked="checkE=='true'" ng-model="autonomE">
-                    </div>
+                      
                     <button type="button" ng-click="modificar();" class="btn btn-info" data-toggle="collapse" data-target="#catgE">Modificar</button>
                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#catgE" >Cancelar</button>
                 </div>
@@ -164,7 +158,7 @@
                 <table class="table">
                     <tr  ng-repeat="especialidad in especialidades">
                         <td>{{especialidad.descripcion}}</td>
-                        <td>Componentes: {{especialidad.num}}</td>
+                        <td>Num: {{especialidad.num}}</td>
                         <td><button class="btn btn-primary" ng-click="borrar(especialidad)"><span class="glyphicon glyphicon-remove"></span></button></td>
                         <td><button class="btn btn-primary" ng-click="datos(especialidad)"data-toggle="collapse" data-target="#espE"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         

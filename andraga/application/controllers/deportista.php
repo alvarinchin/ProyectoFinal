@@ -1,6 +1,10 @@
 <?php
 defined ( 'BASEPATH' ) or exit ( 'No direct script access allowed' );
 class Deportista extends CI_Controller {
+	function __construct() {
+		parent::__construct ();
+		$this->load->model ( "adaptador_model" );
+	}
 	public function index() {
 		$this->template->cargarVista ( 'deportista/crear' );
 	}
@@ -14,20 +18,32 @@ class Deportista extends CI_Controller {
 		$this->template->cargarVista ( 'deportista/crear', $datos );
 	}
 	public function crearPost() {
-		$nombre = isset ( $_POST ['nombre'] ) ? $_POST ['nombre'] : '';
-		$ape1 = isset ( $_POST ['ape1'] ) ? $_POST ['ape1'] : '';
-		$ape2 = isset ( $_POST ['ape2'] ) ? $_POST ['ape2'] : '';
-		$fecha = isset ( $_POST ['fecha'] ) ? $_POST ['fecha'] : '';
-		$this->load->model ( 'deportista_model' );
-		$status = $this->deportista_model->crear ( $nombre, $ape1, $ape2, $fecha );
+		$nombre = isset ( $_REQUEST ['nombre'] ) ? $_REQUEST ['nombre'] : '';
+		$ape1 = isset ( $_REQUEST ['ape1'] ) ? $_REQUEST ['ape1'] : '';
+		$ape2 = isset ( $_REQUEST ['ape2'] ) ? $_REQUEST ['ape2'] : '';
+		$fecha = isset ( $_REQUEST ['fecha'] ) ? $_REQUEST ['fecha'] : '';
+		$numerofederacion = isset ( $_REQUEST ['numerofederacion'] ) ? $_REQUEST ['numerofederacion'] : '';
+		$datos = [ 
+				"nombre" => $nombre,
+				"ape1" => $ape1,
+				"ape2" => $ape2,
+				"numerofederacion" => $numerofederacion,
+				"fecha" => $fecha 
+		];
 		
-		if ($status >= 0) {
-			$datos ['body'] ['deportistas'] = $this->deportista_model->getTodos ();
-			$this->template->cargarVista ( 'deportista/listarDeportista', $datos );
-			// header ( 'Location:' . base_url () . 'deportista/crear' );
+		$status = $this->adaptador_model->insert ( "deportista", $datos, "nombre" );
+		if ($status) {
+			echo json_encode ( array (
+					"status" => "ok",
+					"data" => $_REQUEST,
+					"msg" => "Inserción correcta" 
+			) );
 		} else {
-			// $this->template->cargarVista ( 'deportista/crear' );
-			header ( 'Location:' . base_url () . 'deportista/crearERROR' );
+			echo json_encode ( array (
+					"status" => "error",
+					
+					"msg" => "Error al insertar club nuevo, nombre repetido" 
+			) );
 		}
 	}
 	public function crearOK() {
@@ -36,43 +52,91 @@ class Deportista extends CI_Controller {
 	public function crearERROR() {
 		$this->template->cargarVista ( 'deportista/crearERROR' );
 	}
-	public function editar() {
-		$this->load->model ( 'deportista_model' );
-		$id_ciudad = $_POST ['id_deportista'];
-		$id_deportista ['body'] ['deportistas'] = $this->deportista_model->getDeportistaPorId ( $id_deportista );
-		$this->template->cargarVista ( 'deportista/crear', $datos );
-	}
-	public function editarPost() {
-		$nombre = isset ( $_POST ['nombre'] ) ? $_POST ['nombre'] : '';
-		$ape1 = isset ( $_POST ['ape1'] ) ? $_POST ['ape1'] : '';
-		$ape2 = isset ( $_POST ['ape2'] ) ? $_POST ['ape2'] : '';
-		$fecha = isset ( $_POST ['fecha'] ) ? $_POST ['fecha'] : '';
-		$id_deportista = isset ( $_POST ['id_deportista'] ) ? $_POST ['id_deportista'] : '';
+	public function modificarPost() {
+		echo json_encode ( array (
+				"status" => "ok",
+				
+				"msg" => "Modificación correcta"
+		) );
+		$nombre = isset ( $_REQUEST ['nombre'] ) ? $_REQUEST ['nombre'] : '';
+		$ape1 = isset ( $_REQUEST ['ape1'] ) ? $_REQUEST ['ape1'] : '';
+		$ape2 = isset ( $_REQUEST ['ape2'] ) ? $_REQUEST ['ape2'] : '';
+		$fecha = isset ( $_REQUEST ['fecha'] ) ? $_REQUEST ['fecha'] : '';
+		$id = isset ( $_REQUEST ['id'] ) ? $_REQUEST ['id'] : '';
+		$numerofederacion = isset ( $_REQUEST ['numerofederacion'] ) ? $_REQUEST ['numerofederacion'] : '';
+		$datos = [ 
+				"nombre" => $nombre,
+				"ape1" => $ape1,
+				"ape2" => $ape2,
+				"numerofederacion" => $numerofederacion,
+				"fecha" => $fecha 
+		];
 		
-		$this->load->model ( 'deportista_model' );
-		$this->deportista_model->editar ( $id_deportista, $nombre, $ape1, $ape2, $fecha );
+		//$status = $this->adaptador_model->update ( "deportista", $id, $datos, "nombre" );
+		if ($status) {
+			echo json_encode ( array (
+					"status" => "ok",
+					"data" => $_REQUEST,
+					"msg" => "Modificación correcta" 
+			) );
+		} else {
+			echo json_encode ( array (
+					"status" => "error",
+					"msg" => "Error al modificar deportista nuevo, nombre repetido" 
+			) );
+		}
+		echo json_encode ( array (
+					"status" => "mal",
+					"msg" => "Modificación correcta" 
+			) ); 
+	}
+	public function listar() {
 		
-		header ( 'Location:' . base_url ( 'deportista/crear' ) );
+		// $datos ['body'] ['deportistas'] = $this->deportista_model->getTodos ();
+		// $this->template->cargarVista ( 'deportista/listarDeportista', $datos );
+		$beans = $this->adaptador_model->getAll ( "deportista" );
+		if ($beans != null) {
+			// deben devolverse en un echo porque son cadenas de texto
+			echo json_encode ( array (
+					"status" => "ok",
+					"data" => $beans,
+					"msg" => "Datos cargados" 
+			) );
+		} else {
+			echo json_encode ( array (
+					"status" => "error",
+					"msg" => "error en BD" 
+			) );
+		}
 	}
-	public function listarAjaxPost() {
-		$this->load->model ( 'deportista_model' );
-		$datos ['body'] ['deportistas'] = $this->deportista_model->getTodos ();
-		$this->template->cargarVista ( 'deportista/listarDeportista', $datos );
-	}
-	public function borrarPost() {
-		$this->load->model ( 'deportista_model' );
-		$id_deportista = $_POST ['id_deportista'];
-		$this->deportista_model->borrar ( $id_deportista );
-		switch ($_POST ['v']) {
-			case 'filtrar' :
-				$datos ['body'] ['accion'] = 'borrar';
-				$datos ['body'] ['filtro'] = $_POST ['filtro'];
-				$datos ['head'] ['onload'] = 'filtrar()';
-				$this->filtrar ( $datos );
-				break;
-			case 'listarTodos' :
-				header ( 'Location:' . base_url () . 'deportista/crear' );
-				break;
+	public function borrar() {
+		if (isset ( $_REQUEST ["id"] )) {
+			if (! empty ( $_REQUEST ["id"] )) {
+				
+				$status = $this->adaptador_model->delete ( "deportista", $_REQUEST ["id"] );
+				
+				if ($status) {
+					echo json_encode ( array (
+							"status" => "ok",
+							"msg" => "datos eliminados" 
+					) );
+				} else {
+					echo json_encode ( array (
+							"status" => "error",
+							"msg" => "Error al borrar un deportista " 
+					) );
+				}
+			} else {
+				echo json_encode ( array (
+						"status" => "error",
+						"msg" => "Error algún dato está vacío" 
+				) );
+			}
+		} else {
+			echo json_encode ( array (
+					"status" => "error",
+					"msg" => "Error no han llegado los datos" 
+			) );
 		}
 	}
 }

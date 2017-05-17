@@ -1,83 +1,98 @@
-<script type="text/javascript"
-	src="<?=base_url()?>assets/js/serialize.js"></script>
-<script type="text/javascript">
 
-	function enviar(){
-		conector=new XMLHttpRequest();
-		var datosSerializados = serialize(document.getElementById('formularioCrear'));
-				
-		conector.open("POST",'<?=base_url()?>deportista/crearPost',true);
-		conector.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		conector.send(datosSerializados);
+<div class="container" ng-controller="deportistaCtrl">
+	<div class="col-xs-6">
+		<label>filtro</label> <input type="text" ng-model="filtrado"
+			class="form-control">
 
-		conector.onreadystatechange=function(){
-			if(conector.readyState==4 && conector.status==200){
-				
-				document.getElementById('resultados').innerHTML= conector.responseText;
-				}
-			}
+		<table class="table">
+			<tr ng-repeat="deportista in deportistas | filter:filtrado">
+				<td>{{deportista.nombre}}</td>
+				<td>{{deportista.ape1}}</td>
+				<td>{{deportista.ape2}}</td>
+				<td><button class="btn btn-primary" ng-click="borrar(deportista)">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button></td>
+				<td><button class="btn btn-primary" ng-click="datos(deportista)"
+						data-toggle="collapse" data-target="#deportistaE">
+						<span class="glyphicon glyphicon-pencil"></span>
+					</button></td>
+			</tr>
+		</table>
 
-		
-	}
-
-	function listar(){
-		conector=new XMLHttpRequest();
-		var datosSerializados = serialize(document.getElementById('formularioCrear'));
-				
-		conector.open("POST",'<?=base_url()?>deportista/listarAjaxPost',true);
-		conector.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		conector.send(null);
-
-		conector.onreadystatechange=function(){
-			if(conector.readyState==4 && conector.status==200){
-				
-				document.getElementById('resultados').innerHTML= conector.responseText;
-				}
-			}
-
-		}
-</script>
-<div class="container">
-	<form class="form" method="post" id="formularioCrear">
-	<?php foreach ($body['deportistas'] as $deportista): ?>
-		<div class="col-md-6">
-			<h4>Introduce los datos del nuevo deportista</h4>
-
+		<div id="deportistaE" class="collapse well">
+			<h4>Modificar deportista</h4>
 			<div class="form-group">
-				<label for="nombre">Nombre: </label> <input type="text" id="nombre"
-					name="nombre" placeholder="Nombre" value="<?= $deportista['nombre'] ?>" required>
-
+				<label>Nombre: </label> <input type="text" ng-model="nombreE">
 			</div>
 			<div class="form-group">
-				<label for="nombre">Primer apellido: </label> <input type="text"
-					id="nombre" name="ape1" placeholder="Primer apellido"  value="<?= $deportista['ape1'] ?>" required>
-
-			</div>
-
-			<div class="form-group">
-				<label for="nombre">Segundo apellido: </label> <input type="text"
-					id="nombre" name="ape2" placeholder="Segundo apellido"  value="<?= $deportista['ape2'] ?>" required>
-
-			</div>
-
-
-			<div class="form-group">
-				<label for="fecha">Fecha de nacimiento: </label> <input type="date"
-					id="fecha" name="fecha" placeholder="Fecha de nacimiento"  value="<?= $deportista['fecha'] ?>" required>
-
+				<label>Primer apellido: </label> <input type="text" ng-model="ape1E">
 			</div>
 			<div class="form-group">
-				<input type="button" value="Agregar" onclick="enviar()">
+				<label>Segundo apellido: </label> <input type="text"
+					ng-model="ape2E">
 			</div>
+			<div class="form-group">
+				<label>Fecha de nacimiento: </label> <input type="text"
+					ng-model="fechaE">
+			</div>
+			<div class="form-group">
+				<label>Número federación: </label> <input type="text"
+					ng-model="numerofederacionE">
+			</div>
+
+			<button type="button" ng-click="modificar();" class="btn btn-info"
+				data-toggle="collapse" data-target="#deportistaE">Modificar</button>
+			<button type="button" class="btn btn-danger" data-toggle="collapse"
+				data-target="#deportistaE">Cancelar</button>
 
 		</div>
-		<div class="col-md-6">
-			<label for="idDeportista">Deportistas</label>
-			<div id="resultados"></div>
+	</div>
+	<div class="col-xs-6">
 
+
+		<h4>Introduce los datos del nuevo deportista</h4>
+
+		<div class="form-group">
+			<label for="nombre">Nombre: </label> <input type="text" id="nombre"
+				name="nombre" placeholder="Nombre" ng-model="nombre" required>
 
 		</div>
-		<?php endforeach;?>
-	</form>
-	<script>listar();</script>
+		<div class="form-group">
+			<label for="nombre">Primer apellido: </label> <input type="text"
+				id="nombre" name="ape1" placeholder="Primer apellido"
+				ng-model="ape1" value="" required>
+
+		</div>
+
+		<div class="form-group">
+			<label for="nombre">Segundo apellido: </label> <input type="text"
+				id="nombre" name="ape2" placeholder="Segundo apellido"
+				ng-model="ape2" value="" required>
+
+		</div>
+
+		<div class="form-group">
+			<label for="fed">Numero federación: </label> <input type="text"
+				id="fed" name="numerofederacion" placeholder="número federación"
+				ng-model="numerofederacion" value="" required>
+
+		</div>
+
+
+		<div class="form-group">
+			<label for="fecha">Fecha de nacimiento: </label> <input type="date"
+				id="fecha" name="fecha" placeholder="Fecha de nacimiento"
+				ng-model="fecha" value="" required>
+
+		</div>
+		<div class="form-group">
+			<input type="button" class="btn btn-primary" value="Agregar"
+				ng-click="insertar()">
+		</div>
+
+
+
+
+	</div>
+
 </div>

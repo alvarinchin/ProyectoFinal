@@ -1,6 +1,6 @@
 <div class="container">
 	<h4>Introduce los datos de la nueva competición</h4>
-	<form class="form" action="<?=base_url()?>competicion/crearPost">
+	<form class="form" action="<?=base_url()?>competicion/crearPost" method="post">
 		<div class="form-group">
 			<label for="nombre">Nombre: </label> <input type="text"
 				id="nombre" name="nombre" placeholder="Nombre competición" required>

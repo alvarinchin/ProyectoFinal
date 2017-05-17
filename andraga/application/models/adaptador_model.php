@@ -28,8 +28,8 @@ class adaptador_model {
 		if (! $this->existe ( $campos [$campoKey], $nombreBean )) {
 			$bean = R::dispense ( $nombreBean );
 			foreach ( $campos as $nombreCampo => $value ) {
-				$bean[$nombreCampo]= $value;				
-			}			
+				$bean [$nombreCampo] = $value;
+			}
 			R::store ( $bean );
 			return true;
 		} else {
@@ -38,7 +38,7 @@ class adaptador_model {
 	}
 	public function update($nombreBean, $id, $campos, $campoKey) {
 		// AÑADIDO $nombreBean a la invo del método "existe".
-		if (! $this->existe ( $campos [$campoKey], $nombreBean )) {
+		if (! $this->existe ( $campos [$campoKey], $nombreBean, $id )) {
 			$bean = R::load ( $nombreBean, $id );
 			foreach ( $campos as $nombreCampo => $value ) {
 				$bean [$nombreCampo] = $value;
@@ -49,6 +49,7 @@ class adaptador_model {
 		} else {
 			return false;
 		}
+		return false;
 	}
 	public function delete($nombreBean, $id) {
 		R::trash ( $nombreBean, $id );
@@ -77,12 +78,18 @@ class adaptador_model {
 	 */
 	
 	// AÑADIDO 06/05/2017 -- JOSE
-	private function existe($nombre, $bean = "club") {
+	private function existe($nombre, $bean, $id = "") {
 		$sql = "nombre = '" . $nombre . "'";
 		if (empty ( R::find ( $bean, $sql ) )) {
 			return false;
 		} else {
-			return true;
+			if (R::find ( $bean, $sql ) . id == $id) {
+				return false;
+			} else {
+				return true;
+			}
+			
 		}
+		return true;
 	}
 }

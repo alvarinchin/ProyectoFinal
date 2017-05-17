@@ -20,13 +20,13 @@ class Competicion extends CI_Controller {
 			//$this->template->cargarVista ( 'competicion/crearOK' );
 			header ( 'Location:' . base_url () . 'deportista/crear' );
 		} else {
-			$this->template->cargarVista ( 'competicion/crearERROR' );
+			$this->crearERROR();
 		}
 	}
-	public function crearOK() {
+	/*public function crearOK() {
 		$this->template->cargarVista ( 'competicion/crearOK' );
 		//header ( 'Location:' . base_url () . 'deportista/crear' );
-	}
+	}*/
 	public function crearERROR() {
 		$this->template->cargarVista ( 'competicion/crearERROR' );
 	}

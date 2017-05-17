@@ -1,37 +1,23 @@
 <nav class="container navbar navbar-inverse">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="<?=base_url()?>">CRUD Empleados</a>
+		<a class="navbar-brand" href="<?=base_url()?>">ANDRAGA</a>
 	</div>
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
-			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> Ciudad<span class="caret"></span>
-			</a>
-				<ul class="dropdown-menu">
-					<li class="dropdown-header">Ciudad</li>
-					<li><a href="<?=base_url()?>ciudad/crear">Crear</a></li>
-					<li><a href="<?=base_url()?>ciudad/listar">Listar</a></li>
-					<li><a href="<?=base_url()?>ciudad/modificar">Modificar</a></li>
-					<li><a href="<?=base_url()?>ciudad/borrar">Borrar</a></li>
-
-
-
-
-					<!-- M�s beans y m�s acciones -->
-
-				</ul></li>
+			<li><a>Administrador</a></li>
+			<li><a href="<?=base_url();?>/administracion">Administracion</a></li>
 
 
 			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> Lenguaje programación<span
+				data-toggle="dropdown" href="#">Gestor de competiciones<span
 					class="caret"></span>
 			</a>
 				<ul class="dropdown-menu">
-					<li class="dropdown-header">Lenguaje programación</li>
-					<li><a href="<?=base_url()?>lenguaje/crear">Crear</a></li>
-					<li><a href="<?=base_url()?>lenguaje/listar">Listar</a></li>
-					<li><a href="<?=base_url()?>lenguaje/modificar">Modificar</a></li>
-					<li><a href="<?=base_url()?>lenguaje/borrar">Borrar</a></li>
+					<li class="dropdown-header">Gestor de competiciones</li>
+					<li><a href="<?=base_url()?>competicion/crear">Crear</a></li>
+					<li><a href="<?=base_url()?>competicion/listar">Listar</a></li>
+					<li><a href="<?=base_url()?>competicion/modificar">Modificar</a></li>
+					<li><a href="<?=base_url()?>competicion/borrar">Borrar</a></li>
 
 
 					<!-- M�s beans y m�s acciones -->
@@ -40,14 +26,14 @@
 
 
 			<li class="dropdown"><a class="dropdown-toggle"
-				data-toggle="dropdown" href="#"> Empleado<span class="caret"></span>
+				data-toggle="dropdown" href="#"> Puntuaciones<span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu">
-					<li class="dropdown-header">Empleado</li>
-					<li><a href="<?=base_url()?>empleado/crear">Crear</a></li>
-					<li><a href="<?=base_url()?>empleado/listar">Listar</a></li>
-					<li><a href="<?=base_url()?>empleado/modificar">Modificar</a></li>
-					<li><a href="<?=base_url()?>empleado/borrar">Borrar</a></li>
+					<li class="dropdown-header">Puntuaciones</li>
+					<li><a href="<?=base_url()?>puntuaciones/crear">Crear</a></li>
+					<li><a href="<?=base_url()?>puntuaciones/listar">Listar</a></li>
+					<li><a href="<?=base_url()?>puntuaciones/modificar">Modificar</a></li>
+					<li><a href="<?=base_url()?>puntuaciones/borrar">Borrar</a></li>
 
 
 					<!-- M�s beans y m�s acciones -->
@@ -55,7 +41,18 @@
 				</ul></li>
 
 
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Usuarios<span class="caret"></span>
+			</a>
+				<ul class="dropdown-menu">
+					<li class="dropdown-header">Usuarios</li>
+					<li><a href="<?=base_url()?>usuario/index">Gestionar usuarios</a></li>
+					
 
+
+					<!-- M�s beans y m�s acciones -->
+
+				</ul></li>
 
 
 

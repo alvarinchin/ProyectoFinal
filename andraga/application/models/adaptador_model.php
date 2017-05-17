@@ -25,7 +25,13 @@ class adaptador_model {
 	public function insert($nombreBean, $campos, $campoKey) {
 		
 		// AÑADIDO $nombreBean a la invo del método "existe".
-		if (! $this->existe ( $campos [$campoKey], $nombreBean )) {
+            
+           $camposK=[];
+           foreach ($campoKey as $key => $value) {
+               $camposK[$key]=$campos[$value];
+           }
+          
+		if (! $this->existe ( $camposK, $nombreBean )) {
 			$bean = R::dispense ( $nombreBean );
 			foreach ( $campos as $nombreCampo => $value ) {
 				$bean [$nombreCampo] = $value;
@@ -36,9 +42,15 @@ class adaptador_model {
 			return false;
 		}
 	}
+        
+        
 	public function update($nombreBean, $id, $campos, $campoKey) {
 		// AÑADIDO $nombreBean a la invo del método "existe".
-		if (! $this->existe ( $campos [$campoKey], $nombreBean, $id )) {
+             $camposK=[];
+           foreach ($campoKey as $key => $value) {
+               $camposK[$key]=$campos[$value];
+           }
+		if (! $this->existe ($camposK, $nombreBean, $id )) {
 			$bean = R::load ( $nombreBean, $id );
 			foreach ( $campos as $nombreCampo => $value ) {
 				$bean [$nombreCampo] = $value;
@@ -77,19 +89,37 @@ class adaptador_model {
 	 * }
 	 */
 	
-	// AÑADIDO 06/05/2017 -- JOSE
-	private function existe($nombre, $bean, $id = "") {
-		$sql = "nombre = '" . $nombre . "'";
+	/**
+         * 
+         * @param Array $nombres
+         * @param type $bean
+         * @param type $id
+         * @return boolean
+         */
+	private function existe($nombres, $bean, $id = "") {
+            
+            $res=false;
+            for ($x=0;$x<sizeof($nombres);$x++) {
+                	$sql = "nombre = '" . $nombres[$x] . "'";
+                        
 		if (empty ( R::find ( $bean, $sql ) )) {
-			return false;
+			$res= false;
+                       
+                        
 		} else {
-			if (R::find ( $bean, $sql ) . id == $id) {
-				return false;
+                   //$d+=  empty ( R::find ( $bean, $sql ));
+                    $d=R::find ( $bean, $sql );
+			if (R::find ( $bean, $sql )[1]["id"] === $id) {
+                            
+				$res= false;
 			} else {
-				return true;
+                            
+				$res= true;
 			}
 			
 		}
-		return true;
+            }
+	
+		return $res;
 	}
 }

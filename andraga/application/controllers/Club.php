@@ -12,18 +12,20 @@ class Club extends CI_Controller {
 				$campos ["origen"] = $this->utilphp->sanear ( $_REQUEST ["origen"] );
 				$campos ["comunidad"] = $this->utilphp->sanear ( $_REQUEST ["comunidad"] );
 				
-				$status = $this->adaptador_model->insert ( "club", $campos, "nombre" );
+				$status = $this->adaptador_model->insert ( "club", $campos, Array("nombre") );
 				
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",
 							"data" => $_REQUEST,
-							"msg" => "Inserción correcta" 
+							"msg" => "Inserción correcta",
+                                                        "debub"=>$status
 					) );
 				} else {
 					echo json_encode ( array (
 							"status" => "error",
-							"msg" => "Error al insertar club nuevo, nombre repetido" 
+							"msg" => "Error al insertar club nuevo, nombre repetido",
+                                            "debub"=>$status
 					) );
 				}
 			} else {
@@ -65,7 +67,7 @@ class Club extends CI_Controller {
 				$campos ["comunidad"] = $this->utilphp->sanear ( $_REQUEST ["comunidad"] );
 				$id = $this->utilphp->sanear ( $_REQUEST ["id"] );
 				
-				$status = $this->adaptador_model->update ( "club", $id, $campos, "nombre" );
+				$status = $this->adaptador_model->update ( "club", $id, $campos, ["nombre"] );
 				
 				if ($status) {
 					echo json_encode ( array (

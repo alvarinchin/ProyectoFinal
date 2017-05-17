@@ -531,7 +531,7 @@ app.controller('usuarioCtrl', function($scope, $http, $window) {
 });
 
 app.controller('deportistaCtrl', function($scope, $http, $window) {
-$scope.filtrado="";
+	$scope.filtrado = "";
 	$scope.deportista = {
 		"id" : 0,
 		"nombre" : "",
@@ -540,32 +540,31 @@ $scope.filtrado="";
 		"fecha" : "",
 		"numerofederacion" : ""
 	}
-	$scope.deportistas=[];	
+	$scope.deportistas = [];
 	$scope.nombreE = "";
 	$scope.ape1E = "";
 	$scope.ape2E = "";
 	$scope.fechaE = "";
 	$scope.idE = "";
-	$scope.numerofederacionE="";
+	$scope.numerofederacionE = "";
 
 	$scope.nombre = "";
 	$scope.ape1 = "";
 	$scope.ape2 = "";
 	$scope.fecha = "";
-	$scope.numerofederacion="";
+	$scope.numerofederacion = "";
 
 	$scope.cargar = function() {
 		$http.get(base_url + "/deportista/listar").then(
 				function(response) {
-					$scope.deportistas=[];
+					$scope.deportistas = [];
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
-					
-						for ( x in response.data["data"]){
-							$scope.deportistas.push(response.data["data"][x]);
-						}
-						
-	
+
+					for (x in response.data["data"]) {
+						$scope.deportistas.push(response.data["data"][x]);
+					}
+
 				});
 	}
 
@@ -595,7 +594,7 @@ $scope.filtrado="";
 					$scope.ape1 = "";
 					$scope.ape2 = "";
 					$scope.fecha = "";
-					$scope.numerofederacion="";
+					$scope.numerofederacion = "";
 					$scope.cargar();
 				});
 	}
@@ -613,14 +612,14 @@ $scope.filtrado="";
 
 		config = {
 			method : "POST",
-			url : base_url + "/Deportista/modificarPost",
+			url : base_url + "/deportista/modificarPost",
 			params : {
 				nombre : $scope.nombreE,
 				ape1 : $scope.ape1E,
 				ape2 : $scope.ape2E,
 				numerofederacion : $scope.numerofederacionE,
 				fecha : $scope.fechaE,
-				id: $scope.idE
+				id : $scope.idE
 			}
 		};
 
@@ -634,11 +633,11 @@ $scope.filtrado="";
 					$scope.ape2E = "";
 					$scope.fechaE = "";
 					$scope.idE = "";
-					$scope.numerofederacionE="";
+					$scope.numerofederacionE = "";
 					$scope.cargar();
 				});
 	}
-
+	
 	$scope.borrar = function(deportista) {
 
 		config = {
@@ -657,5 +656,5 @@ $scope.filtrado="";
 
 					$scope.cargar();
 				});
-	}		
+	}
 });

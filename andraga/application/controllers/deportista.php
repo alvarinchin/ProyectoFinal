@@ -69,10 +69,11 @@ class Deportista extends CI_Controller {
 				"ape1" => $ape1,
 				"ape2" => $ape2,
 				"numerofederacion" => $numerofederacion,
-				"fecha" => $fecha 
+				"fecha" => $fecha,
+				"id" => $id
 		];
 		
-		//$status = $this->adaptador_model->update ( "deportista", $id, $datos, "nombre" );
+		$status = $this->adaptador_model->update ( "deportista", $id, $datos, "id" );
 		if ($status) {
 			echo json_encode ( array (
 					"status" => "ok",

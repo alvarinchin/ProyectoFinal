@@ -31,7 +31,7 @@ class Deportista extends CI_Controller {
 				"fecha" => $fecha 
 		];
 		
-		$status = $this->adaptador_model->insert ( "deportista", $datos, array("nombre","ape1","ape2"));
+		$status = $this->adaptador_model->insert ( "deportista", $datos, Array("numerofederacion"));
 		if ($status) {
 			echo json_encode ( array (
 					"status" => "ok",
@@ -42,7 +42,7 @@ class Deportista extends CI_Controller {
 			echo json_encode ( array (
 					"status" => "error",
 					
-					"msg" => "Error al insertar club nuevo, nombre repetido" 
+					"msg" => "Error al insertar deportista nuevo, número de federación repetido" 
 			) );
 		}
 	}

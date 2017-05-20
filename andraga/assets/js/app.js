@@ -658,3 +658,109 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 				});
 	}
 });
+
+
+app.controller('competicionCtrl', function($scope, $http, $window) {
+	$scope.filtrado = "";
+	$scope.competicion = {
+		"id" : 0,
+		"nombre" : "",
+		"fecha" : ""
+	}
+	$scope.competiciones = [];
+	$scope.nombreE = "";
+	$scope.fechaE = "";
+	$scope.idE = "";
+
+	$scope.nombre = "";
+	$scope.fecha = "";
+
+	$scope.cargar = function() {
+		$http.get(base_url + "/competicion/listar").then(
+				function(response) {
+					$scope.competiciones = [];
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					for (x in response.data["data"]) {
+						$scope.competiciones.push(response.data["data"][x]);
+					}
+
+				});
+	}
+
+	$scope.cargar();
+
+	$scope.insertar = function() {
+
+		config = {
+			method : "POST",
+			url : base_url + "/competicion/crearPost",
+			params : {
+				nombre : $scope.nombre,
+				fecha : $scope.fecha
+			}
+		};
+
+		$http(config).then(
+				function(response) {
+					console.log(response.data["data"]);
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					$scope.nombre = "";
+					$scope.fecha = "";
+					$scope.cargar();
+				});
+	}
+
+	$scope.datos = function(usuario) {
+		$scope.nombreE = usuario.nombre;
+		$scope.fechaE = usuario.fecha;
+		$scope.idE = usuario.id;
+	}
+
+	$scope.modificar = function() {
+
+		config = {
+			method : "POST",
+			url : base_url + "/competicion/modificarPost",
+			params : {
+				nombre : $scope.nombreE,
+				fecha : $scope.fechaE,
+				id : $scope.idE
+			}
+		};
+
+		$http(config).then(
+				function(response) {
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					$scope.nombreE = "";
+					$scope.fechaE = "";
+					$scope.idE = "";
+					$scope.cargar();
+				});
+	}
+	
+	$scope.borrar = function(competicion) {
+
+		config = {
+			method : "POST",
+			url : base_url + "/competicion/borrar",
+			params : {
+				id : competicion.id
+			}
+		};
+
+		$http(config).then(
+				function(response) {
+
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					$scope.cargar();
+				});
+	}
+});

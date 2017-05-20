@@ -73,7 +73,7 @@
 					Categoría</h4>
 				<div id="catgN" class="collapse well">
 					<div class="form-group">
-						<label>nombre</label> <input type="text" ng-model="nombre">
+						<label>Nombre</label> <input type="text" ng-model="nombre">
 					</div>
 
 					<button type="button" ng-click="insertar();"
@@ -100,7 +100,7 @@
 				<div id="catgE" class="collapse well">
 					<h4>Modificar Categoría</h4>
 					<div class="form-group">
-						<label>nombre</label> <input type="text" ng-model="nombreE">
+						<label>Nombre</label> <input type="text" ng-model="nombreE">
 					</div>
 
 					<button type="button" ng-click="modificar();" class="btn btn-info"
@@ -222,23 +222,20 @@
 		<!----------------------ESPECIALIDAD----------------------->
 
 	</div>
-        <div class="row">
-            <!----------------------DEPORTISTAS-------------------------->
+	<div class="row">
+		<!----------------------COMPETICIONES-------------------------->
 		<div class="col-md-6">
-			<div ng-controller="clubCtrl">
-				<h2>Clubes</h2>
+			<div ng-controller="competicionCtrl">
+				<h2>Competiciones</h2>
 
-				<h4 class="well" data-toggle="collapse" data-target="#clubN">Nuevo
-					Club</h4>
-				<div id="clubN" class="collapse well">
+				<h4 class="well" data-toggle="collapse" data-target="#competicionN">Nueva
+					Competición</h4>
+				<div id="competicionN" class="collapse well">
 					<div class="form-group">
-						<label>nombre</label> <input type="text" ng-model="nombre">
+						<label>Nombre</label> <input type="text" ng-model="nombre">
 					</div>
 					<div class="form-group">
-						<label>Origen</label> <input type="text" ng-model="origen">
-					</div>
-					<div class="form-group">
-						<label>Comunidad</label> <input type="text" ng-model="comunidad">
+						<label>Fecha</label> <input type="date" ng-model="fecha">
 					</div>
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
@@ -247,13 +244,13 @@
 				</div>
 
 				<table class="table">
-					<tr ng-repeat="club in clubes">
-						<td>{{club.nombre}}</td>
-						<td><button class="btn btn-primary" ng-click="borrar(club)">
+					<tr ng-repeat="competicion in competiciones">
+						<td>{{competicion.nombre}}</td>
+						<td><button class="btn btn-primary" ng-click="borrar(competicion)">
 								<span class="glyphicon glyphicon-remove"></span>
 							</button></td>
-						<td><button class="btn btn-primary" ng-click="datos(club)"
-								data-toggle="collapse" data-target="#clubE">
+						<td><button class="btn btn-primary" ng-click="datos(competicion)"
+								data-toggle="collapse" data-target="#competicionE">
 								<span class="glyphicon glyphicon-pencil"></span>
 							</button></td>
 
@@ -261,81 +258,18 @@
 
 				</table>
 
-				<div id="clubE" class="collapse well">
-					<h4>Modificar Club</h4>
+				<div id="competicionE" class="collapse well">
+					<h4>Modificar Competición</h4>
 					<div class="form-group">
-						<label>nombre</label> <input type="text" ng-model="nombreE">
+						<label>Nombre</label> <input type="text" ng-model="nombreE">
 					</div>
 					<div class="form-group">
-						<label>Origen</label> <input type="text" ng-model="origenE">
-					</div>
-					<div class="form-group">
-						<label>Comunidad</label> <input type="text" ng-model="comunidadE">
+						<label>Fecha</label> <input type="text" ng-model="fechaE">
 					</div>
 					<button type="button" ng-click="modificar();" class="btn btn-info"
-						data-toggle="collapse" data-target="#clubE">Modificar</button>
+						data-toggle="collapse" data-target="#competicionE">Modificar</button>
 					<button type="button" class="btn btn-danger" data-toggle="collapse"
-						data-target="#clubE">Cancelar</button>
-
-				</div>
-
-			</div>
-		</div>
-
-		<!----------------------DEPORTISTAS-------------------------->
-                <!----------------------COMPETICIONES-------------------------->
-		<div class="col-md-6">
-			<div ng-controller="clubCtrl">
-				<h2>Clubes</h2>
-
-				<h4 class="well" data-toggle="collapse" data-target="#clubN">Nuevo
-					Club</h4>
-				<div id="clubN" class="collapse well">
-					<div class="form-group">
-						<label>nombre</label> <input type="text" ng-model="nombre">
-					</div>
-					<div class="form-group">
-						<label>Origen</label> <input type="text" ng-model="origen">
-					</div>
-					<div class="form-group">
-						<label>Comunidad</label> <input type="text" ng-model="comunidad">
-					</div>
-					<button type="button" ng-click="insertar();"
-						class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span>
-					</button>
-				</div>
-
-				<table class="table">
-					<tr ng-repeat="club in clubes">
-						<td>{{club.nombre}}</td>
-						<td><button class="btn btn-primary" ng-click="borrar(club)">
-								<span class="glyphicon glyphicon-remove"></span>
-							</button></td>
-						<td><button class="btn btn-primary" ng-click="datos(club)"
-								data-toggle="collapse" data-target="#clubE">
-								<span class="glyphicon glyphicon-pencil"></span>
-							</button></td>
-
-					</tr>
-
-				</table>
-
-				<div id="clubE" class="collapse well">
-					<h4>Modificar Club</h4>
-					<div class="form-group">
-						<label>nombre</label> <input type="text" ng-model="nombreE">
-					</div>
-					<div class="form-group">
-						<label>Origen</label> <input type="text" ng-model="origenE">
-					</div>
-					<div class="form-group">
-						<label>Comunidad</label> <input type="text" ng-model="comunidadE">
-					</div>
-					<button type="button" ng-click="modificar();" class="btn btn-info"
-						data-toggle="collapse" data-target="#clubE">Modificar</button>
-					<button type="button" class="btn btn-danger" data-toggle="collapse"
-						data-target="#clubE">Cancelar</button>
+						data-target="#competicionE">Cancelar</button>
 
 				</div>
 
@@ -343,7 +277,104 @@
 		</div>
 
 		<!----------------------COMPETICIONES-------------------------->
-            
-        </div>
+		<!----------------------DEPORTISTAS-------------------------->
+		<div class="col-md-6">
+			<div ng-controller="deportistaCtrl">
+				<h2>Deportistas</h2>
+
+				<h4 class="well" data-toggle="collapse" data-target="#deportistaN">Nuevo
+					Deportista</h4>
+				<div id="deportistaN" class="collapse well">
+					<div class="form-group">
+						<label>Nombre</label> <input type="text" ng-model="nombre"
+							placeholder="Nombre">
+					</div>
+					<div class="form-group">
+						<label for="ape1">Primer apellido: </label> <input type="text"
+							id="ape1" name="ape1" placeholder="Primer apellido"
+							ng-model="ape1" value="" required>
+
+					</div>
+
+					<div class="form-group">
+						<label for="ape2">Segundo apellido: </label> <input type="text"
+							id="ape2" name="ape2" placeholder="Segundo apellido"
+							ng-model="ape2" value="" required>
+
+					</div>
+
+					<div class="form-group">
+						<label for="fed">Numero federación: </label> <input type="text"
+							id="fed" name="numerofederacion" placeholder="número federación"
+							ng-model="numerofederacion" value="" required>
+
+					</div>
+
+					<div class="form-group">
+						<label for="fecha">Fecha de nacimiento: </label> <input
+							type="text" id="fecha" name="fecha"
+							placeholder="Fecha de nacimiento" ng-model="fecha" value=""
+							required>
+
+					</div>
+					<button type="button" ng-click="insertar();"
+						class="btn btn-success">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+
+				<table class="table">
+					<tr ng-repeat="deportista in deportistas">
+						<td>{{deportista.nombre}}</td>
+						<td>{{deportista.ape1}}</td>
+						<td>{{deportista.ape2}}</td>
+						<td><button class="btn btn-primary" ng-click="borrar(deportista)">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button></td>
+						<td><button class="btn btn-primary" ng-click="datos(deportista)"
+								data-toggle="collapse" data-target="#deportistaE">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button></td>
+
+					</tr>
+
+				</table>
+
+				<div id="deportistaE" class="collapse well">
+					<h4>Modificar Deportista</h4>
+					<div class="form-group">
+						<label>Nombre</label> <input type="text" ng-model="nombreE">
+					</div>
+					<div class="form-group">
+						<label>Primer apellido: </label> <input type="text"
+							ng-model="ape1E">
+					</div>
+					<div class="form-group">
+						<label>Segundo apellido: </label> <input type="text"
+							ng-model="ape2E">
+					</div>
+					<div class="form-group">
+						<label>Fecha de nacimiento: </label> <input type="text"
+							ng-model="fechaE" id="fechaNac">
+					</div>
+					<div class="form-group">
+						<label>Número federación: </label> <input type="text"
+							ng-model="numerofederacionE">
+					</div>
+
+					<button type="button" ng-click="modificar();" class="btn btn-info"
+						data-toggle="collapse" data-target="#deportistaE">Modificar</button>
+					<button type="button" class="btn btn-danger" data-toggle="collapse"
+						data-target="#deportistaE">Cancelar</button>
+
+				</div>
+
+			</div>
+		</div>
+
+		<!----------------------DEPORTISTAS-------------------------->
+
+
+	</div>
 </div>
 

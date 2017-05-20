@@ -31,7 +31,7 @@ class Deportista extends CI_Controller {
 				"fecha" => $fecha 
 		];
 		
-		$status = $this->adaptador_model->insert ( "deportista", $datos, "nombre" );
+		$status = $this->adaptador_model->insert ( "deportista", $datos, array("nombre","ape1","ape2"));
 		if ($status) {
 			echo json_encode ( array (
 					"status" => "ok",

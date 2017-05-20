@@ -24,7 +24,7 @@ class Categoria extends CI_Controller{
             $campos=[];
              $campos["nombre"]=$this->utilphp->sanear($_REQUEST["nombre"]);
              
-             $status=$this->adaptador_model->insert("categoria",$campos,"nombre");
+             $status=$this->adaptador_model->insert("categoria",$campos,array("nombre"));
             
             if($status){
                 echo json_encode(array("status"=>"ok","data"=>$_REQUEST,"msg"=>"Inserción correcta"));
@@ -61,7 +61,7 @@ class Categoria extends CI_Controller{
              
              $id= $this->utilphp->sanear($_REQUEST["id"]);
  
-             $status=$this->adaptador_model->update("categoria",$id,$campos,"nombre");
+             $status=$this->adaptador_model->update("categoria",$id,$campos,array("nombre"));
             
             if($status){
                 echo json_encode(array("status"=>"ok","msg"=>"Entrada actualizada"));

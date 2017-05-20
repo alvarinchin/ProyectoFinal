@@ -25,7 +25,7 @@ class Tipoejercicio extends CI_Controller{
              $campos["descripcion"]=$this->utilphp->sanear($_REQUEST["descripcion"]);
              
              
-             $status=$this->adaptador_model->insert("tipoejercicio",$campos,"descripcion");
+             $status=$this->adaptador_model->insert("tipoejercicio",$campos,array("descripcion"));
             
             if($status){
                 echo json_encode(array("status"=>"ok","data"=>$_REQUEST,"msg"=>"Inserción correcta"));
@@ -62,7 +62,7 @@ class Tipoejercicio extends CI_Controller{
             
              $id= $this->utilphp->sanear($_REQUEST["id"]);
  
-             $status=$this->adaptador_model->update("tipoejercicio",$id,$campos,"descripcion");
+             $status=$this->adaptador_model->update("tipoejercicio",$id,$campos,array("descripcion"));
             
             if($status){
                 echo json_encode(array("status"=>"ok","msg"=>"Entrada actualizada"));

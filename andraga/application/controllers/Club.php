@@ -14,6 +14,7 @@ class Club extends CI_Controller {
 				
 				$status = $this->adaptador_model->insert ( "club", $campos, Array("nombre") );
 				
+                              
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",
@@ -67,8 +68,9 @@ class Club extends CI_Controller {
 				$campos ["comunidad"] = $this->utilphp->sanear ( $_REQUEST ["comunidad"] );
 				$id = $this->utilphp->sanear ( $_REQUEST ["id"] );
 				
-				$status = $this->adaptador_model->update ( "club", $id, $campos, ["nombre"] );
-				
+				$status = $this->adaptador_model->update ( "club", $id, $campos, array("nombre") );
+				/*var_dump($status);
+                                return false; DEBUG*/
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",

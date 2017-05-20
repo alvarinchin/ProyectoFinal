@@ -26,7 +26,7 @@ class Especialidad extends CI_Controller {
              $campos["num"]= $this->utilphp->sanear($_REQUEST["num"]);
         
              
-             $status=$this->adaptador_model->insert("especialidad",$campos,"descipcion");
+             $status=$this->adaptador_model->insert("especialidad",$campos,array("descipcion"));
             
             if($status){
                 echo json_encode(array("status"=>"ok","data"=>$_REQUEST,"msg"=>"Inserción correcta"));
@@ -64,7 +64,7 @@ class Especialidad extends CI_Controller {
              
              $id= $this->utilphp->sanear($_REQUEST["id"]);
  
-             $status=$this->adaptador_model->update("especialidad",$id,$campos,"descripcion");
+             $status=$this->adaptador_model->update("especialidad",$id,$campos,array("descipcion"));
             
             if($status){
                 echo json_encode(array("status"=>"ok","msg"=>"Entrada actualizada"));

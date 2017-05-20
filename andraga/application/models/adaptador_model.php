@@ -25,16 +25,16 @@ class adaptador_model {
 	public function insert($nombreBean, $campos, $campoKey) {
 		
 		// AÑADIDO $nombreBean a la invo del método "existe".
-		$camposK = [ ];
-		foreach ( $campoKey as $key => $value ) {
-			$camposK [$key] = $campos [$value];
-		}
-		
-		if (! $this->existe ( $camposK, $nombreBean )) {
-			$bean = R::dispense ( $nombreBean );
+            
+          
+                
+		$bean = R::dispense ( $nombreBean );
 			foreach ( $campos as $nombreCampo => $value ) {
 				$bean [$nombreCampo] = $value;
 			}
+                       
+		if (! $this->existe ( $campoKey, $nombreBean,"",$bean )) {
+			
 			R::store ( $bean );
 			return true;
 		} else {
@@ -43,15 +43,13 @@ class adaptador_model {
 	}
 	public function update($nombreBean, $id, $campos, $campoKey) {
 		// AÑADIDO $nombreBean a la invo del método "existe".
-		$camposK = [ ];
-		foreach ( $campoKey as $key => $value ) {
-			$camposK [$key] = $campos [$value];
-		}
-		if (! $this->existe ( $camposK, $nombreBean, $id )) {
-			$bean = R::load ( $nombreBean, $id );
+		$bean = R::load ( $nombreBean, $id );
+               
 			foreach ( $campos as $nombreCampo => $value ) {
 				$bean [$nombreCampo] = $value;
 			}
+			
+		if (! $this->existe ( $campoKey, $nombreBean, $id,$bean )) {
 			
 			R::store ( $bean );
 			return true;
@@ -93,26 +91,29 @@ class adaptador_model {
 	 * @param type $id        	
 	 * @return boolean
 	 */
-	private function existe($nombres, $bean, $id = "") {
+	private function existe($nombres, $nombreBean, $id = "",$bean) {
+            
 		$res = false;
 		for($x = 0; $x < sizeof ( $nombres ); $x ++) {
-			$sql = "nombre = '" . $nombres [$x] . "'";
+			$sql = $nombres [$x] ."= '".$bean[$nombres [$x]]."'";
 			
-			if (empty ( R::find ( $bean, $sql ) )) {
-				$res = false;
+			if (empty ( R::find ( $nombreBean, $sql ) )) {
+                            //no existe ese bean en la base de datos
+				$res =false;
 			} else {
-				// $d+= empty ( R::find ( $bean, $sql ));
-				$d = R::find ( $bean, $sql );
-				if (R::find ( $bean, $sql ) [1] ["id"] === $id) {
-					
+				//existe ese bean en la base de datos con campo clave similar
+                                
+				if ($bean["id"]==R::findOne( $nombreBean, $sql)["id"]) {
+				//el bean es el mismo que tengo en la base id iguales	
 					$res = false;
 				} else {
-					
+				//el nean no es el mismo que traigo	
 					$res = true;
 				}
 			}
 		}
 		
 		return $res;
+                
 	}
 }

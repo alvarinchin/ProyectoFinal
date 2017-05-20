@@ -222,5 +222,128 @@
 		<!----------------------ESPECIALIDAD----------------------->
 
 	</div>
+        <div class="row">
+            <!----------------------DEPORTISTAS-------------------------->
+		<div class="col-md-6">
+			<div ng-controller="clubCtrl">
+				<h2>Clubes</h2>
+
+				<h4 class="well" data-toggle="collapse" data-target="#clubN">Nuevo
+					Club</h4>
+				<div id="clubN" class="collapse well">
+					<div class="form-group">
+						<label>nombre</label> <input type="text" ng-model="nombre">
+					</div>
+					<div class="form-group">
+						<label>Origen</label> <input type="text" ng-model="origen">
+					</div>
+					<div class="form-group">
+						<label>Comunidad</label> <input type="text" ng-model="comunidad">
+					</div>
+					<button type="button" ng-click="insertar();"
+						class="btn btn-success">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+
+				<table class="table">
+					<tr ng-repeat="club in clubes">
+						<td>{{club.nombre}}</td>
+						<td><button class="btn btn-primary" ng-click="borrar(club)">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button></td>
+						<td><button class="btn btn-primary" ng-click="datos(club)"
+								data-toggle="collapse" data-target="#clubE">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button></td>
+
+					</tr>
+
+				</table>
+
+				<div id="clubE" class="collapse well">
+					<h4>Modificar Club</h4>
+					<div class="form-group">
+						<label>nombre</label> <input type="text" ng-model="nombreE">
+					</div>
+					<div class="form-group">
+						<label>Origen</label> <input type="text" ng-model="origenE">
+					</div>
+					<div class="form-group">
+						<label>Comunidad</label> <input type="text" ng-model="comunidadE">
+					</div>
+					<button type="button" ng-click="modificar();" class="btn btn-info"
+						data-toggle="collapse" data-target="#clubE">Modificar</button>
+					<button type="button" class="btn btn-danger" data-toggle="collapse"
+						data-target="#clubE">Cancelar</button>
+
+				</div>
+
+			</div>
+		</div>
+
+		<!----------------------DEPORTISTAS-------------------------->
+                <!----------------------COMPETICIONES-------------------------->
+		<div class="col-md-6">
+			<div ng-controller="clubCtrl">
+				<h2>Clubes</h2>
+
+				<h4 class="well" data-toggle="collapse" data-target="#clubN">Nuevo
+					Club</h4>
+				<div id="clubN" class="collapse well">
+					<div class="form-group">
+						<label>nombre</label> <input type="text" ng-model="nombre">
+					</div>
+					<div class="form-group">
+						<label>Origen</label> <input type="text" ng-model="origen">
+					</div>
+					<div class="form-group">
+						<label>Comunidad</label> <input type="text" ng-model="comunidad">
+					</div>
+					<button type="button" ng-click="insertar();"
+						class="btn btn-success">
+						<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+
+				<table class="table">
+					<tr ng-repeat="club in clubes">
+						<td>{{club.nombre}}</td>
+						<td><button class="btn btn-primary" ng-click="borrar(club)">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button></td>
+						<td><button class="btn btn-primary" ng-click="datos(club)"
+								data-toggle="collapse" data-target="#clubE">
+								<span class="glyphicon glyphicon-pencil"></span>
+							</button></td>
+
+					</tr>
+
+				</table>
+
+				<div id="clubE" class="collapse well">
+					<h4>Modificar Club</h4>
+					<div class="form-group">
+						<label>nombre</label> <input type="text" ng-model="nombreE">
+					</div>
+					<div class="form-group">
+						<label>Origen</label> <input type="text" ng-model="origenE">
+					</div>
+					<div class="form-group">
+						<label>Comunidad</label> <input type="text" ng-model="comunidadE">
+					</div>
+					<button type="button" ng-click="modificar();" class="btn btn-info"
+						data-toggle="collapse" data-target="#clubE">Modificar</button>
+					<button type="button" class="btn btn-danger" data-toggle="collapse"
+						data-target="#clubE">Cancelar</button>
+
+				</div>
+
+			</div>
+		</div>
+
+		<!----------------------COMPETICIONES-------------------------->
+            
+        </div>
 </div>
 

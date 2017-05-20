@@ -5,6 +5,13 @@
 			class="form-control">
 
 		<table class="table">
+			<tr>
+				<th>Nombre</th>
+				<th>Primer apellido</th>
+				<th>Segundo apellido</th>
+				<th>Borrar</th>
+				<th>Modificar</th>
+			</tr>
 			<tr ng-repeat="deportista in deportistas | filter:filtrado">
 				<td>{{deportista.nombre}}</td>
 				<td>{{deportista.ape1}}</td>
@@ -33,7 +40,7 @@
 			</div>
 			<div class="form-group">
 				<label>Fecha de nacimiento: </label> <input type="text"
-					ng-model="fechaE">
+					ng-model="fechaE" id="fechaNac">
 			</div>
 			<div class="form-group">
 				<label>Número federación: </label> <input type="text"
@@ -58,16 +65,16 @@
 
 		</div>
 		<div class="form-group">
-			<label for="nombre">Primer apellido: </label> <input type="text"
-				id="nombre" name="ape1" placeholder="Primer apellido"
-				ng-model="ape1" value="" required>
+			<label for="ape1">Primer apellido: </label> <input type="text"
+				id="ape1" name="ape1" placeholder="Primer apellido" ng-model="ape1"
+				value="" required>
 
 		</div>
 
 		<div class="form-group">
-			<label for="nombre">Segundo apellido: </label> <input type="text"
-				id="nombre" name="ape2" placeholder="Segundo apellido"
-				ng-model="ape2" value="" required>
+			<label for="ape2">Segundo apellido: </label> <input type="text"
+				id="ape2" name="ape2" placeholder="Segundo apellido" ng-model="ape2"
+				value="" required>
 
 		</div>
 
@@ -77,7 +84,6 @@
 				ng-model="numerofederacion" value="" required>
 
 		</div>
-
 
 		<div class="form-group">
 			<label for="fecha">Fecha de nacimiento: </label> <input type="date"

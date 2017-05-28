@@ -28,6 +28,7 @@
 				</div>
 
 				<table class="table">
+                                    <tr><th>Nombre</th></tr>
 					<tr ng-repeat="club in clubes">
 						<td>{{club.nombre}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(club)">
@@ -83,6 +84,7 @@
 				</div>
 
 				<table class="table">
+                                   <tr><th>Nombre</th></tr>
 					<tr ng-repeat="categoria in categorias">
 						<td>{{categoria.nombre}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(categoria)">
@@ -131,6 +133,7 @@
 				</div>
 
 				<table class="table">
+                                    <tr><th>Descripción</th></tr>
 					<tr ng-repeat="tipo in tipos">
 						<td>{{tipo.descripcion}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(tipo)">
@@ -185,6 +188,7 @@
 				</div>
 
 				<table class="table">
+                                    <tr><th>Nombre</th><th>Número</th></tr>
 					<tr ng-repeat="especialidad in especialidades">
 						<td>{{especialidad.descripcion}}</td>
 						<td>Num: {{especialidad.num}}</td>
@@ -244,8 +248,9 @@
 				</div>
 
 				<table class="table">
+                                    <tr><th>Nombre</th><th>Fecha</th></tr>
 					<tr ng-repeat="competicion in competiciones">
-						<td>{{competicion.nombre}}</td>
+						<td>{{competicion.nombre}}</td><td>{{competicion.fecha}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(competicion)">
 								<span class="glyphicon glyphicon-remove"></span>
 							</button></td>
@@ -324,6 +329,7 @@
 				</div>
 
 				<table class="table">
+                                    <tr><th>Nombre</th><th>Apellido 1</th><th>Apellido 2</th></tr>
 					<tr ng-repeat="deportista in deportistas">
 						<td>{{deportista.nombre}}</td>
 						<td>{{deportista.ape1}}</td>

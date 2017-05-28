@@ -28,12 +28,12 @@ class Administracion extends CI_Controller {
 		if (! empty ( $usuario ) && $usuario->login == $login && password_verify ( $usuario->password, $password )) {
 			
 			if ($rol == 2) {
-				$zona = "juez";
+				$zona = "juez/welcome";
 			} else if ($rol == 3) {
-				$zona = "administracion";
+				$zona = "administracion/welcome";
 			}
 			
-			$this->template->cargarVista ( "administracion/" . $zona, $datos, $rol );
+			$this->template->cargarVista ( $zona, $datos, $rol );
 		} else {
 			$datos = null;
 			$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';

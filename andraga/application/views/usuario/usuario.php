@@ -25,8 +25,9 @@
                 </div>
                 
                 <table class="table">
+                    <tr><th>Login</th><th>Rol</th></tr>
                     <tr  ng-repeat="usuario in usuarios">
-                        <td>{{usuario.login}}</td>
+                        <td>{{usuario.login}}</td><td>{{usuario.rol}}</td>
                         <td><button class="btn btn-primary" ng-click="borrar(usuario)"><span class="glyphicon glyphicon-remove"></span></button></td>
                         <td><button class="btn btn-primary" ng-click="datos(usuario)"data-toggle="collapse" data-target="#usuarioE"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         

@@ -5,7 +5,7 @@
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
 			<li><a>Administrador</a></li>
-			<li><a href="<?=base_url();?>/administracion">Administracion</a></li>
+			<li><a href="<?=base_url();?>administrador">Administracion</a></li>
 	
 
 			<li class="dropdown"><a class="dropdown-toggle"

@@ -12,7 +12,7 @@ app.controller('mainCtrl', function($scope) {
     }
 });
 app.controller('inscripcionesCtrl', function($scope, $http) {
-   
+    
     $scope.cargar = function() {
         $http.get(base_url + "/club/listar").then(
                 function(response) {
@@ -58,6 +58,37 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
             
         });
         
+        $scope.enviar=function(){
+            
+            
+            
+            
+            
+            
+            $scope.ids={
+                idClub:$scope.club,
+                idDeportistas: $scope.deportistasSelect.toString(),
+                idCompeticion:$scope.competicion,
+                idEspecialidad:$scope.especialidad,
+                idCategoria:$scope.categoria
+            };
+            
+            
+            
+            console.log($scope.ids);
+            
+            var config={
+                method:"POST",
+                url: base_url+"/inscripcion/insertar",
+                params:$scope.ids
+            }
+            $http(config).then(function(response){
+                console.log(response.data["status"] + " : "
+                        + response.data["msg"]);
+                $scope.inscripciones=response.data;
+            });
+            
+        }
         
         
         

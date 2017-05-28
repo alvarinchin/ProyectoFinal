@@ -6,10 +6,10 @@
         <!--        clubs-->
         
         <div class="col-md-2">
-            <div class=" form-group">
+            <div class="form-group">
                 <label>Club</label>
-                <select size="10" class="form-control">
-                    <option ng-repeat="obj in clubes">{{obj.nombre}}</option>
+                <select size="10" class="form-control" ng-model="club">
+                    <option ng-repeat="obj in clubes" value="{{obj.id}}">{{obj.nombre}}</option>
                 </select>
             </div>
         </div>
@@ -19,8 +19,8 @@
             <div class="form-group">
                 <label>Deportistas</label>
                 <input class="form-control" type="text" ng-model="filtro" placeholder="filtro">
-                <select multiple size="8" class="form-control">
-                    <option ng-repeat="obj in deportistas |filter:filtro">{{obj.ape1}} {{obj.ape2}}, {{obj.nombre}}</option>
+                <select multiple size="8" class="form-control" ng-model="deportistasSelect">
+                    <option ng-repeat="obj in deportistas |filter:filtro" value="{{obj.id}}" >{{obj.ape1}} {{obj.ape2}}, {{obj.nombre}}</option>
                 </select>
             </div>
         </div>
@@ -28,8 +28,8 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>Competición</label>
-                <select  size="10" class="form-control">
-                    <option ng-repeat="obj in competiciones">{{obj.nombre}}</option>
+                <select  size="10" class="form-control" ng-model="competicion">
+                    <option ng-repeat="obj in competiciones" value="{{obj.id}}">{{obj.nombre}}</option>
                 </select>
             </div>   
         </div>
@@ -37,8 +37,8 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>Especialidad</label>
-                <select  size="10" class="form-control">
-                    <option ng-repeat="obj in especialidades">{{obj.descripcion}} : {{obj.num}} </option>
+                <select  size="10" class="form-control" ng-model="especialidad">
+                    <option ng-repeat="obj in especialidades" value="{{obj.id}}" >{{obj.descripcion}} : {{obj.num}} </option>
                 </select>
             </div>
         </div>
@@ -46,15 +46,15 @@
         <div class="col-md-2">
             <div class="form-group">
                 <label>Categoría</label>
-                <select  size="10" class="form-control">
-                    <option ng-repeat="obj in categorias">{{obj.nombre}}</option>
+                <select  size="10" class="form-control" ng-model="categoria">
+                    <option ng-repeat="obj in categorias" value="{{obj.id}}">{{obj.nombre}}</option>
                 </select>
             </div>
         </div>
         <!--        botones-->
         <div class="col-md-1">
             <div class="form-group">
-                <input class="btn btn-primary" type="button" value="Enviar">
+                <input class="btn btn-primary" type="button" value="Enviar" ng-click="enviar()">
                 <input class="btn btn-primary" type="button" value="cancelar">
                 
             </div>
@@ -88,8 +88,5 @@
             <select>
             </select>
         </div>
-    </div>
-        
-        
-        
+    </div>      
 </div>

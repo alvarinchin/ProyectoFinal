@@ -9,7 +9,10 @@ class Administracion extends CI_Controller {
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
-		session_start ();
+		
+		$this->redirigeTrasCheck('welcome');												
+				
+		/*session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
 			
@@ -39,7 +42,58 @@ class Administracion extends CI_Controller {
 			$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}
+		}*/
 	}
+	
+	public function comprobarCookie($nombreCookie){
+		
+		if (isset($_COOKIE[$nombreCookie])){
+						
+			$obj = $this->jwtauth->decodificarToken ( $_COOKIE [$nombreCookie] );
+			$login = $obj->data->login;
+			$password = password_hash ( $obj->data->password, PASSWORD_BCRYPT );
+			$rol = $obj->data->rol;
+			
+			$this->load->model ( 'login_model' );
+			$usuario = $this->login_model->getUsuarioPorLogin ( $login );
+		}
+				
+		if (! empty ( $usuario ) && $usuario->login == $login && password_verify ( $usuario->password, $password )) {
+			
+			return $rol;
+			
+		} else {
+			
+			return -1;			
+		}
+		
+	}
+	
+	public function redirigeTrasCheck($ruta, $datos='', $raiz = false){
+		
+		$rol = $this->comprobarCookie('tkn');
+		$zona= '';
+				
+		if ($rol==-1){
+			$datos = [];
+			$datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
+			$datos ['destino'] = 'Pantalla de Login';
+			$this->template->cargarVista ( 'errors/errorLogin', $datos );			
+		}
+		else if($raiz) {
+			$zona = $ruta;
+			$this->template->cargarVista ( $zona, $datos, $rol );
+		}
+		else if ($rol == 2) {
+			$zona = "juez/".$ruta;
+			$this->template->cargarVista ( $zona, $datos, $rol );
+		}
+		else if ($rol == 3) {
+			$zona = "administracion/".$ruta;
+			$this->template->cargarVista ( $zona, $datos, $rol );
+		}		
+		
+	}
+	
 }
 

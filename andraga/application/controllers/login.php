@@ -28,9 +28,9 @@ class Login extends CI_Controller {
 				if (isset ( $password ) && password_verify ( $usuario->password, $password )) {
 					
 					$jwt = $this->jwtauth->codificarToken ( $usuario );
-					session_start ();
-					$_SESSION ['tkn'] = $jwt;
-					// setcookie ( 'tkn', $jwt, time () + 86400000, null, null, true );
+					//session_start ();
+					//$_SESSION ['tkn'] = $jwt;
+					setcookie ( 'tkn', $jwt, time()+3600*24*30, '/');
 					$datos = null;
 					$datos ['login'] = 'estimado espectador';
 					$this->template->cargarVista ( 'login/loginPost', $datos );
@@ -55,9 +55,9 @@ class Login extends CI_Controller {
 			// LOGIN CORRECTO
 			
 			$jwt = $this->jwtauth->codificarToken ( $usuario );
-			session_start ();
-			$_SESSION ['tkn'] = $jwt;
-			// setcookie ( 'tkn', $jwt, time () + 86400000, null, null, true ); //86.400.000 = 1 D�A
+			//session_start ();
+			//$_SESSION ['tkn'] = $jwt;
+			setcookie ( 'tkn', $jwt, time()+3600*24*30, '/'); //86.400.000 = 1 D�A
 			$datos = null;
 			$datos ['login'] = $usuario->login;
 			$this->template->cargarVista ( 'login/loginPost', $datos );

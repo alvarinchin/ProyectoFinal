@@ -11,6 +11,9 @@
  *
  * @author alvaro
  */
+
+include_once 'Administracion.php';
+
 class administrador extends CI_Controller{
     public function index(){
         /*
@@ -19,7 +22,10 @@ class administrador extends CI_Controller{
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
-		session_start ();
+    	
+    	$this->Administracion->redirigeTrasCheck('welcome');
+    	
+		/*session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
 			
@@ -51,7 +57,7 @@ class administrador extends CI_Controller{
 			$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}
+		}*/
 	}
 
   

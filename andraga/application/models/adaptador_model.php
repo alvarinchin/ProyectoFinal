@@ -12,6 +12,13 @@
  * @author alvaro
  */
 class adaptador_model {
+    
+    
+    
+    public function getOne($nombreBean,$id) {
+		return R::load ( $nombreBean,$id );
+	}
+        
 	public function getAll($nombreBean) {
 		return R::findAll ( $nombreBean );
 	}

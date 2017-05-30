@@ -22,10 +22,11 @@ class administrador extends CI_Controller{
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
+        //new Administracion;
     	
-    	$this->Administracion->redirigeTrasCheck('welcome');
+    	//$this->Administracion->redirigeTrasCheck('welcome');
     	
-		/*session_start ();
+		session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
 			
@@ -57,7 +58,7 @@ class administrador extends CI_Controller{
 			$datos ['mensaje'] = 'Login y Contraseña deben ser rellenados. Redirigiendo a página principal.';
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}*/
+		}
 	}
 
   

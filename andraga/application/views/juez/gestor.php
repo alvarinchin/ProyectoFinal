@@ -54,6 +54,8 @@
         <!--        botones-->
         <div class="col-md-1">
             <div class="form-group">
+                <label>Dorsal</label>
+                <input class="form-control" type="text" ng-model="dorsal"><br><br>
                 <input class="btn btn-primary" type="button" value="Enviar" ng-click="enviar()">
                 <input class="btn btn-primary" type="button" value="cancelar">
                 
@@ -65,7 +67,7 @@
             <div class="form-group">
                 <label>inscripciones</label>
                 <select  size="10" class="form-control">
-                    <option ng-repeat="obj in inscripciones">{{obj.nombre}}</option>
+                    <option ng-repeat="insc in inscripciones">{{insc.dorsal}}</p></option>
                 </select>
             </div>
         </div>
@@ -73,6 +75,7 @@
             
         <div class="col-md-1">
             <div class="form-group">
+               
                 <input class="btn btn-primary" type="button" value="Enviar">
                 <input class="btn btn-primary" type="button" value="cancelar">
                         

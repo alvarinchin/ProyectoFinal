@@ -14,12 +14,19 @@
 class Gestion extends CI_Controller{
     
     public function index(){
+        
+       // $datos="";
+        //$this->template->cargarVista ( "juez/gestor", $datos, 2 );
+        
+        
+        //BYPASS-----------------------------------------
          /*
 		 * roles:
 		 * 1 -> enlace
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
+        
 		session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {

@@ -19,7 +19,7 @@
             <div class="form-group">
                 <label>Deportistas</label>
                 <input class="form-control" type="text" ng-model="filtro" placeholder="filtro">
-                <select multiple size="8" class="form-control" ng-model="deportistasSelect">
+                <select size="8" class="form-control" ng-model="deportistasSelect">
                     <option ng-repeat="obj in deportistas |filter:filtro" value="{{obj.id}}" >{{obj.ape1}} {{obj.ape2}}, {{obj.nombre}}</option>
                 </select>
             </div>

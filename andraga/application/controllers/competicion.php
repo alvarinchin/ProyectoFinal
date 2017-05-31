@@ -14,8 +14,8 @@ class Competicion extends CI_Controller {
 		$this->template->cargarVista ( 'competicion/crear' );
 	}
 	public function crearPost() {
-		$nombre = isset ( $_POST ['nombre'] ) ? $_POST ['nombre'] : '';
-		$fecha = isset ( $_POST ['fecha'] ) ? $_POST ['fecha'] : '';
+		$nombre = isset ( $_REQUEST ['nombre'] ) ? $_REQUEST ['nombre'] : '';
+		$fecha = isset ( $_REQUEST ['fecha'] ) ? $_REQUEST ['fecha'] : '';
 		$datos = [ 
 				"nombre" => $nombre,
 				"fecha" => $fecha 

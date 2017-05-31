@@ -35,15 +35,16 @@ class inscripcion_model {
 				$campos ["club"] =$club;        
 				$campos ["competicion"] = $competicion;
                                 $campos ["especialidad"] = $especialidad;
-                                $campos ["categoria"] = $categoria;
+                               // $campos ["categoria"] = $categoria;
                                 $campos ["dorsal"] = $dorsal;
-                            
+                                
             
-         
-			foreach ($deportistas as $key => $value)  {
-                            $campos->ownDeportistaList[]=$value;
-                            R::store ( $campos );
-                        }
+      
+			
+                            $campos->ownCategoriaList[]=$categoria;
+                          
+                        
+                          R::store ( $campos );
                      //  return $campos;
 		if (! $this->existe ( "dorsal", "inscripcion","",$campos )) {
 		

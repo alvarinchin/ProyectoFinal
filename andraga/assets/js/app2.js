@@ -62,7 +62,7 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
             
             $scope.ids={
                 idClub:$scope.club,
-                idDeportistas: $scope.deportistasSelect.toString(),
+                idDeportistas: $scope.deportistasSelect,
                 idCompeticion:$scope.competicion,
                 idEspecialidad:$scope.especialidad,
                 idCategoria:$scope.categoria,

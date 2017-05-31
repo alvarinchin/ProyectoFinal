@@ -9,7 +9,8 @@ class Administracion extends JwtController {
 		 * 1 -> enlace
 		 * 2 -> juez
 		 * 3 -> administrador
-		 */		
+		 */
+		//añadido
 		$this->redirigeTrasCheck('','Welcome',false);		
 		/*session_start ();
 		

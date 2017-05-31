@@ -18,12 +18,14 @@ class inscripcion extends CI_Controller {
                                 $categoria = $this->adaptador_model->getOne("categoria",$this->utilphp->sanear ( $_REQUEST ["idCategoria"]) );
 				//$campos ["dorsal"]= strtoupper(substr($campos["Club"]["nombre"],0,2)).rand(1, 90);
 				$dorsal = $this->utilphp->sanear ( $_REQUEST ["dorsal"]) ;
-                               //  $deportistas=$this->cargarDeportistas($this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
-                                $deportistas=$this->adaptador_model->getOne("deportista",$this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
+                                $deportistas=$this->cargarDeportistas($this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
+                                //$deportistas=$this->adaptador_model->getOne("deportista",$this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
                                 $this->load->model("inscripcion_model");
+                              
                 $status = $this->inscripcion_model->insert ($club,$competicion,$categoria,$especialidad,$deportistas,$dorsal);
-                                    
-                              return var_dump($status);
+                                   
+                           
+                             
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",
@@ -67,16 +69,24 @@ class inscripcion extends CI_Controller {
             
             
         public function listar() {
+            $campos=["club","categoria","especialidad","competicion","dorsal","ownDeportistaList"];
+            $res=[];
 		$inscripciones = $this->adaptador_model->getAll ( "inscripcion" );
-                foreach ($inscripciones as $key => $value) {
-                    echo $value["deportistas_id"];                    
+                foreach ($inscripciones as $k => $inscripcion) {
+                    $fila=[];
+                    $ins=$this->adaptador_model->getOne("inscripcion",$inscripcion->id);
+                    foreach ($campos as $ke => $campo) {
+                        $fila[$campo]=$ins->$campo;
+                    }
+                    $res[$k]=$fila;
                 }
-                    
-		if ($inscripciones != null) {
+             
+                                   
+		if ($res != null) {
 			// deben devolverse en un echo porque son cadenas de texto
 			echo json_encode ( array (
 					"status" => "ok",
-					"data" => $inscripciones,
+					"data" => $res,
 					"msg" => "Datos cargados" 
 			) );
 		} else {

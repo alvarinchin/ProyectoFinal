@@ -18,9 +18,7 @@ class Gestion extends JwtController{
     
     public function index(){
        
-       $datos="";
-        $this->template->cargarVista ( "juez/gestor", $datos, 2 );
-        
+      
         
         //BYPASS-----------------------------------------
          /*

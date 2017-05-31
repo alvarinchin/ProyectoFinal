@@ -31,23 +31,26 @@ class inscripcion_model {
 	 */
 	public function insert($club,$competicion,$categoria,$especialidad,$deportistas,$dorsal) {
 		
-		$campos = R::dispense("inscripcion");
-				$campos ["club"] =$club;        
-				$campos ["competicion"] = $competicion;
-                                $campos ["especialidad"] = $especialidad;
-                                $campos ["categoria"] = $categoria;
-                                $campos ["dorsal"] = $dorsal;
-                                
-            
-      
-			
-                            $campos->ownDeportistaList[]=$deportistas;
-                          
+		$inscripcion = R::dispense("inscripcion");
+                
+				$inscripcion->club=$club;        
+				$inscripcion ->competicion = $competicion;
+                                $inscripcion->especialidad = $especialidad;
+                                $inscripcion ->categoria = $categoria;
+                                $inscripcion ->dorsal = $dorsal;
+             
+                                foreach ($deportistas as $key => $value) {
+                                     $inscripcion->ownDeportistaList[]=$value;
+                                }
+                           
+                            
+                           
                         
-                          R::store ( $campos );
+                        
+                         
                      //  return $campos;
-		if (! $this->existe ( "dorsal", "inscripcion","",$campos )) {
-		
+		if (! $this->existe ( "dorsal", "inscripcion","",$inscripcion )) {
+		 R::store ( $inscripcion );
 			return true;
 		} else {
 			return false;

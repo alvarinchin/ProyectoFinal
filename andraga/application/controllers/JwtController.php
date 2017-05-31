@@ -21,7 +21,7 @@ class JwtController extends CI_Controller{
 	}
 	
 	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin){
-		echo ($this->rol);
+		//echo ($this->rol);
 		$this->zona= '';
 	
 		if ($this->rol==-1){

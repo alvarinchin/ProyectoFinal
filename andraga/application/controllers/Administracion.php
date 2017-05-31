@@ -1,7 +1,8 @@
 <?php
 require_once 'vendor/autoload.php';
-use Firebase\JWT\JWT;
-class Administracion extends CI_Controller {
+require_once 'JwtController.php';
+
+class Administracion extends JwtController {
 	public function index() {
 		/*
 		 * roles:
@@ -9,9 +10,8 @@ class Administracion extends CI_Controller {
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
-		
-		$this->redirigeTrasCheck('welcome');												
-				
+		//añadido
+		$this->redirigeTrasCheck('','gestor','welcome');		
 		/*session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
@@ -45,55 +45,6 @@ class Administracion extends CI_Controller {
 		}*/
 	}
 	
-	public function comprobarCookie($nombreCookie){
-		
-		if (isset($_COOKIE[$nombreCookie])){
-						
-			$obj = $this->jwtauth->decodificarToken ( $_COOKIE [$nombreCookie] );
-			$login = $obj->data->login;
-			$password = password_hash ( $obj->data->password, PASSWORD_BCRYPT );
-			$rol = $obj->data->rol;
 			
-			$this->load->model ( 'login_model' );
-			$usuario = $this->login_model->getUsuarioPorLogin ( $login );
-		}
-				
-		if (! empty ( $usuario ) && $usuario->login == $login && password_verify ( $usuario->password, $password )) {
-			
-			return $rol;
-			
-		} else {
-			
-			return -1;			
-		}
-		
-	}
-	
-	public function redirigeTrasCheck($ruta, $datos='', $raiz = false){
-		
-		$rol = $this->comprobarCookie('tkn');
-		$zona= '';
-				
-		if ($rol==-1){
-			$datos = [];
-			$datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
-			$datos ['destino'] = 'Pantalla de Login';
-			$this->template->cargarVista ( 'errors/errorLogin', $datos );			
-		}
-		else if($raiz) {
-			$zona = $ruta;
-			$this->template->cargarVista ( $zona, $datos, $rol );
-		}
-		else if ($rol == 2) {
-			$zona = "juez/".$ruta;
-			$this->template->cargarVista ( $zona, $datos, $rol );
-		}
-		else if ($rol == 3) {
-			$zona = "administracion/".$ruta;
-			$this->template->cargarVista ( $zona, $datos, $rol );
-		}		
-		
-	}
-	
 }
 

@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'vendor/autoload.php';
+require_once 'JwtController.php';
 
-class Welcome extends CI_Controller {
+class Welcome extends JwtController {
 
 	/**
 	 * Index Page for this controller.
@@ -19,7 +21,13 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		$this->template->cargarVista('login/loginGet');
+		if (isset ($_COOKIE['tkn'])){
+			$this->redirigeTrasCheck('','gestor','welcome');
+		}
+		else {
+			$this->template->cargarVista('login/loginGet');
+		}		
+		//$this->template->cargarVista('login/loginGet');
 		//$this->load->view('templates/pruebaTemplate');
 	}
 }

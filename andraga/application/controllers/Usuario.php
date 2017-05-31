@@ -2,7 +2,7 @@
 
 include_once 'Administracion.php';
 
-class Usuario extends CI_Controller{
+class Usuario extends JwtController{
 	
 	public function __construct() {
 		parent::__construct();
@@ -17,7 +17,7 @@ class Usuario extends CI_Controller{
 			 * 3 -> administrador
 			 */
 		
-		$this->Administracion->redirigeTrasCheck('usuario/', true);
+		$this->redirigeTrasCheck('','gestor','usuario');
 			
 			/*session_start ();
 			

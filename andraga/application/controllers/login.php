@@ -30,7 +30,7 @@ class Login extends CI_Controller {
 					$jwt = $this->jwtauth->codificarToken ( $usuario );
 					//session_start ();
 					//$_SESSION ['tkn'] = $jwt;
-					setcookie ( 'tkn', $jwt, time()+3600*24*30, '/');
+					setcookie ( 'tkn', $jwt, time()+3600*24, '/');
 					$datos = null;
 					$datos ['login'] = 'estimado espectador';
 					$this->template->cargarVista ( 'login/loginPost', $datos );
@@ -57,7 +57,7 @@ class Login extends CI_Controller {
 			$jwt = $this->jwtauth->codificarToken ( $usuario );
 			//session_start ();
 			//$_SESSION ['tkn'] = $jwt;
-			setcookie ( 'tkn', $jwt, time()+3600*24*30, '/'); //86.400.000 = 1 D�A
+			setcookie ( 'tkn', $jwt, time()+3600*24, '/'); //86.400.000 = 1 D�A
 			$datos = null;
 			$datos ['login'] = $usuario->login;
 			$this->template->cargarVista ( 'login/loginPost', $datos );
@@ -70,6 +70,33 @@ class Login extends CI_Controller {
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
 		}
+	}
+	
+	public function redirigeTrasCheck($ruta, $datos='', $raiz = false, $cookie){
+	
+		$this->load->model('jwtModel');
+		$rol = $this->jwtModel->comprobarCookie($cookie);
+		$zona= '';
+	
+		if ($rol==-1){
+			$datos = [];
+			$datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
+			$datos ['destino'] = 'Pantalla de Login';
+			$this->template->cargarVista ( 'errors/errorLogin', $datos );
+		}
+		else if($raiz) {
+			$zona = $ruta;
+			$this->template->cargarVista ( $zona, $datos, $rol );
+		}
+		else if ($rol == 2) {
+			$zona = "juez/".$ruta;
+			$this->template->cargarVista ( $zona, $datos, $rol );
+		}
+		else if ($rol == 3) {
+			$zona = "administracion/".$ruta;
+			$this->template->cargarVista ( $zona, $datos, $rol );
+		}
+	
 	}
 }
 

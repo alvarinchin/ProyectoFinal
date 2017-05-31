@@ -35,13 +35,13 @@ class inscripcion_model {
 				$campos ["club"] =$club;        
 				$campos ["competicion"] = $competicion;
                                 $campos ["especialidad"] = $especialidad;
-                               // $campos ["categoria"] = $categoria;
+                                $campos ["categoria"] = $categoria;
                                 $campos ["dorsal"] = $dorsal;
                                 
             
       
 			
-                            $campos->ownCategoriaList[]=$categoria;
+                            $campos->ownDeportistaList[]=$deportistas;
                           
                         
                           R::store ( $campos );

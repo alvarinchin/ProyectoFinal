@@ -11,7 +11,7 @@ class JwtController extends CI_Controller{
 	
 	public function __construct(){	
 		parent::__construct ();		
-		$this->cookie = $_COOKIE['tkn'];
+		$this->cookie = isset($_COOKIE['tkn'])?$_COOKIE['tkn']:null;
 		$this->datos = '';		
 		$this->ruta = '';
 		$this->raiz = '';
@@ -20,7 +20,7 @@ class JwtController extends CI_Controller{
 		
 	}
 	
-	public function redirigeTrasCheck($datos = '', $rutaJuez,$rutaAdmin){
+	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin){
 		echo ($this->rol);
 		$this->zona= '';
 	
@@ -34,8 +34,7 @@ class JwtController extends CI_Controller{
 			$this->zona = "juez/".$rutaJuez;	
 		}
 		else if ($this->rol == 3) {
-			$this->zona = "administracion/".$rutaAdmin;
-	
+			$this->zona = "administracion/".$rutaAdmin;	
 		}		
 		$this->template->cargarVista ( $this->zona, $this->datos, $this->rol );		
 	}

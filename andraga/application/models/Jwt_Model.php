@@ -7,8 +7,7 @@ class Jwt_Model extends CI_Model{
 	public function comprobarCookie($cookie){
 	
 		if (isset($cookie)){
-			
-			//$this->load->library('jwtauth');
+						
 			$obj = $this->jwtauth->decodificarToken ( $cookie );
 			$login = $obj->data->login;
 			$password = password_hash ( $obj->data->password, PASSWORD_BCRYPT );

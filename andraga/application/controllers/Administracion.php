@@ -11,7 +11,7 @@ class Administracion extends JwtController {
 		 * 3 -> administrador
 		 */
 		//añadido
-		$this->redirigeTrasCheck('','Welcome',false);		
+		$this->redirigeTrasCheck('','gestor','welcome');		
 		/*session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {

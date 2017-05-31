@@ -12,7 +12,6 @@
  * @author alvaro
  */
 
-include_once 'Administracion.php';
 
 class administrador extends JwtController{
     public function index(){
@@ -26,7 +25,7 @@ class administrador extends JwtController{
     	
     	//$this->Administracion->redirigeTrasCheck('welcome');
     	
-    	$this->redirigeTrasCheck('','Welcome','administracion');
+    	$this->redirigeTrasCheck('','gestor','administracion');
 	}
 
   

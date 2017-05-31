@@ -14,9 +14,9 @@
 class Gestion extends CI_Controller{
     
     public function index(){
-        
-       // $datos="";
-        //$this->template->cargarVista ( "juez/gestor", $datos, 2 );
+       
+       $datos="";
+        $this->template->cargarVista ( "juez/gestor", $datos, 2 );
         
         
         //BYPASS-----------------------------------------
@@ -26,7 +26,7 @@ class Gestion extends CI_Controller{
 		 * 2 -> juez
 		 * 3 -> administrador
 		 */
-        
+        /*
 		session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
@@ -60,7 +60,7 @@ class Gestion extends CI_Controller{
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
 		}
-	}
+	*/}
 
   
 }

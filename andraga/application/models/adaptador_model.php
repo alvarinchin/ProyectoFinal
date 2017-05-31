@@ -43,7 +43,8 @@ class adaptador_model {
 		if (! $this->existe ( $campoKey, $nombreBean,"",$bean )) {
 			
 			R::store ( $bean );
-			return true;
+			
+                        return true;
 		} else {
 			return false;
 		}

@@ -7,27 +7,22 @@ class inscripcion extends CI_Controller {
 		parent::__construct ();
 		$this->load->model ( "adaptador_model" );
 	}
-        
+            
         public function insertar(){
             if (isset ( $_REQUEST ["idClub"] )) {
 			if (! empty ( $_REQUEST ["idClub"] ) && ! empty ( $_REQUEST ["idDeportistas"] ) && ! empty ( $_REQUEST ["idCompeticion"] )&& ! empty ( $_REQUEST ["idCategoria"] ) && ! empty ( $_REQUEST ["idEspecialidad"] )&& ! empty ( $_REQUEST ["dorsal"] )) {
-				$campos = [ ];
-				$campos ["club"] = $this->adaptador_model->getOne("club",$this->utilphp->sanear ( $_REQUEST ["idClub"] ));
 				
-				$campos ["competicion"] = $this->adaptador_model->getOne("competicion",$this->utilphp->sanear ( $_REQUEST ["idCompeticion"]) );
-                                $campos ["especialidad"] = $this->adaptador_model->getOne("especialidad",$this->utilphp->sanear ( $_REQUEST ["idEspecialidad"] ));
-                                $campos ["categoria"] = $this->adaptador_model->getOne("especialidad",$this->utilphp->sanear ( $_REQUEST ["idCategoria"]) );
+				$club = $this->adaptador_model->getOne("club",$this->utilphp->sanear ( $_REQUEST ["idClub"] ));      
+				$competicion = $this->adaptador_model->getOne("competicion",$this->utilphp->sanear ( $_REQUEST ["idCompeticion"]) );
+                                $especialidad = $this->adaptador_model->getOne("especialidad",$this->utilphp->sanear ( $_REQUEST ["idEspecialidad"] ));
+                                $categoria = $this->adaptador_model->getOne("categoria",$this->utilphp->sanear ( $_REQUEST ["idCategoria"]) );
 				//$campos ["dorsal"]= strtoupper(substr($campos["Club"]["nombre"],0,2)).rand(1, 90);
-				$campos ["dorsal"] = $this->utilphp->sanear ( $_REQUEST ["dorsal"]) ;
-                                $campos ["deportistas"]=$this->cargarDeportistas($this->utilphp->sanear ( $_REQUEST ["idDeportistas"]));
-                               
-                                
-                                
-                                
-                                
-                                $status = $this->adaptador_model->insert ( "inscripcion", $campos, Array("dorsal") );
-				
-                              
+				$dorsal = $this->utilphp->sanear ( $_REQUEST ["dorsal"]) ;
+                                 $deportistas=$this->cargarDeportistas($this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
+                             $this->load->model("inscripcion_model");
+                $status = $this->inscripcion_model->insert ($club,$competicion,$categoria,$especialidad,$deportistas,$dorsal);
+                                    
+                              return var_dump($status);
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",
@@ -54,8 +49,8 @@ class inscripcion extends CI_Controller {
 					"msg" => "Error no han llegado los datos" 
 			) );
 		}
-            
-            
+                    
+                    
         }
         private function cargarDeportistas($ids){
             $deportistas=[];
@@ -63,16 +58,19 @@ class inscripcion extends CI_Controller {
             foreach ($ids as $key => $value) {
                 
                 $deportistas[$key]=$this->adaptador_model->getOne("deportista",$value);
-                
+                    
             }
-            
+                
             return $deportistas;
         }
-
-
+            
+            
         public function listar() {
 		$inscripciones = $this->adaptador_model->getAll ( "inscripcion" );
-                
+                foreach ($inscripciones as $key => $value) {
+                    echo $value["deportistas_id"];                    
+                }
+                    
 		if ($inscripciones != null) {
 			// deben devolverse en un echo porque son cadenas de texto
 			echo json_encode ( array (
@@ -90,9 +88,9 @@ class inscripcion extends CI_Controller {
     public function borrar() {
 		if (isset ( $_REQUEST ["id"] )) {
 			if (! empty ( $_REQUEST ["id"] )) {
-				
+                            
 				$status = $this->adaptador_model->delete ( "inscripcion", $this->utilphp->sanear($_REQUEST ["id"]) );
-				
+                                    
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",
@@ -117,5 +115,5 @@ class inscripcion extends CI_Controller {
 			) );
 		}
 	}
-    
+            
 }

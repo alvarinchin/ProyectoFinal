@@ -23,9 +23,10 @@ class administrador extends CI_Controller{
 		 * 3 -> administrador
 		 */
         //new Administracion;
-    	
+        $datos="";
+    	$this->template->cargarVista ( "administracion/administracion", $datos, 3 );
     	//$this->Administracion->redirigeTrasCheck('welcome');
-    	
+    	/*
 		session_start ();
 		
 		if (isset ( $_SESSION ['tkn'] )) {
@@ -59,7 +60,7 @@ class administrador extends CI_Controller{
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
 		}
-	}
+*/	}
 
   
 }

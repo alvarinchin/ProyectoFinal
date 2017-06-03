@@ -17,33 +17,37 @@ class Deportista extends CI_Controller {
 		
 		$this->template->cargarVista ( 'deportista/crear', $datos );
 	}
-	public function crearPost() {
-		$nombre = isset ( $_REQUEST ['nombre'] ) ? $_REQUEST ['nombre'] : '';
-		$ape1 = isset ( $_REQUEST ['ape1'] ) ? $_REQUEST ['ape1'] : '';
-		$ape2 = isset ( $_REQUEST ['ape2'] ) ? $_REQUEST ['ape2'] : '';
-		$fecha = isset ( $_REQUEST ['fecha'] ) ? $_REQUEST ['fecha'] : '';
-		$numerofederacion = isset ( $_REQUEST ['numerofederacion'] ) ? $_REQUEST ['numerofederacion'] : '';
-		$datos = [ 
-				"nombre" => $nombre,
-				"ape1" => $ape1,
-				"ape2" => $ape2,
-				"numerofederacion" => $numerofederacion,
-				"fecha" => $fecha 
-		];
-		
-		$status = $this->adaptador_model->insert ( "deportista", $datos, Array("numerofederacion"));
-		if ($status) {
-			echo json_encode ( array (
-					"status" => "ok",
-					"data" => $_REQUEST,
-					"msg" => "Inserción correcta" 
-			) );
-		} else {
-			echo json_encode ( array (
-					"status" => "error",
-					
-					"msg" => "Error al insertar deportista nuevo, número de federación repetido" 
-			) );
+	public function insertar() {
+		if (isset ( $_REQUEST ["nombre"] )) {
+			if (! empty ( $_REQUEST ["nombre"] ) && ! empty ( $_REQUEST ["ape1"] ) && ! empty ( $_REQUEST ["ape2"] ) && ! empty ( $_REQUEST ["fecha"] ) && ! empty ( $_REQUEST ["numerofederacion"] )) {
+				$campos = [ ];
+				$campos ["nombre"] = $this->utilphp->sanear ( $_REQUEST ["nombre"] );
+				$campos ["ape1"] = $this->utilphp->sanear ( $_REQUEST ["ape1"] );
+				$campos ["ape2"] = $this->utilphp->sanear ( $_REQUEST ["ape2"] );
+				$campos ["fecha"] = $this->utilphp->sanear ( $_REQUEST ["fecha"] );
+				$campos ["numerofederacion"] = $this->utilphp->sanear ( $_REQUEST ["numerofederacion"] );
+				
+				$status = $this->adaptador_model->insert ( "deportista", $campos, Array (
+						"numerofederacion" 
+				) );
+				if ($status) {
+					echo json_encode ( array (
+							"status" => "ok",
+							"data" => $_REQUEST,
+							"msg" => "Inserción correcta" 
+					) );
+				} else {
+					echo json_encode ( array (
+							"status" => "error",
+							"msg" => "Error al insertar deportista nuevo, número de federación repetido" 
+					) );
+				}
+			} else {
+				echo json_encode ( array (
+						"status" => "error",
+						"msg" => "Error no han llegado los datos" 
+				) );
+			}
 		}
 	}
 	public function crearOK() {
@@ -52,44 +56,36 @@ class Deportista extends CI_Controller {
 	public function crearERROR() {
 		$this->template->cargarVista ( 'deportista/crearERROR' );
 	}
-	public function modificarPost() {
-		echo json_encode ( array (
-				"status" => "ok",
+	public function modificar() {
+		if (isset ( $_REQUEST ["nombre"] )) {
+			if (! empty ( $_REQUEST ["nombre"] ) && ! empty ( $_REQUEST ["ape1"] ) && ! empty ( $_REQUEST ["ape2"] ) && ! empty ( $_REQUEST ["fecha"] ) && ! empty ( $_REQUEST ["numerofederacion"] ) && ! empty ( $_REQUEST ["id"] )) {
+				$campos = [ ];
+				$campos ["nombre"] = $this->utilphp->sanear ( $_REQUEST ["nombre"] );
+				$campos ["ape1"] = $this->utilphp->sanear ( $_REQUEST ["ape1"] );
+				$campos ["ape2"] = $this->utilphp->sanear ( $_REQUEST ["ape2"] );
+				$campos ["fecha"] = $this->utilphp->sanear ( $_REQUEST ["fecha"] );
+				$campos ["numerofederacion"] = $this->utilphp->sanear ( $_REQUEST ["numerofederacion"] );
+				$id = $this->utilphp->sanear ( $_REQUEST ["id"] );
 				
-				"msg" => "Modificación correcta"
-		) );
-		$nombre = isset ( $_REQUEST ['nombre'] ) ? $_REQUEST ['nombre'] : '';
-		$ape1 = isset ( $_REQUEST ['ape1'] ) ? $_REQUEST ['ape1'] : '';
-		$ape2 = isset ( $_REQUEST ['ape2'] ) ? $_REQUEST ['ape2'] : '';
-		$fecha = isset ( $_REQUEST ['fecha'] ) ? $_REQUEST ['fecha'] : '';
-		$id = isset ( $_REQUEST ['id'] ) ? $_REQUEST ['id'] : '';
-		$numerofederacion = isset ( $_REQUEST ['numerofederacion'] ) ? $_REQUEST ['numerofederacion'] : '';
-		$datos = [ 
-				"nombre" => $nombre,
-				"ape1" => $ape1,
-				"ape2" => $ape2,
-				"numerofederacion" => $numerofederacion,
-				"fecha" => $fecha,
-				"id" => $id
-		];
-		
-		$status = $this->adaptador_model->update ( "deportista", $id, $datos, "id" );
-		if ($status) {
-			echo json_encode ( array (
-					"status" => "ok",
-					"data" => $_REQUEST,
-					"msg" => "Modificación correcta" 
-			) );
+				$status = $this->adaptador_model->update ( "deportista", $id, $campos, "id" );
+				if ($status) {
+					echo json_encode ( array (
+							"status" => "ok",
+							"msg" => "Modificación correcta" 
+					) );
+				} else {
+					echo json_encode ( array (
+							"status" => "error",
+							"msg" => "Error al modificar deportista nuevo, número de federación repetido" 
+					) );
+				}
+			}
 		} else {
 			echo json_encode ( array (
 					"status" => "error",
-					"msg" => "Error al modificar deportista nuevo, nombre repetido" 
+					"msg" => "Error no han llegado los datos" 
 			) );
 		}
-		echo json_encode ( array (
-					"status" => "mal",
-					"msg" => "Modificación correcta" 
-			) ); 
 	}
 	public function listar() {
 		

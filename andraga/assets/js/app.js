@@ -574,7 +574,7 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 
 		config = {
 			method : "POST",
-			url : base_url + "/Deportista/crearPost",
+			url : base_url + "/deportista/insertar",
 			params : {
 				nombre : $scope.nombre,
 				ape1 : $scope.ape1,
@@ -612,7 +612,7 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 
 		config = {
 			method : "POST",
-			url : base_url + "/deportista/modificarPost",
+			url : base_url + "/deportista/modificar",
 			params : {
 				nombre : $scope.nombreE,
 				ape1 : $scope.ape1E,
@@ -637,7 +637,7 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 					$scope.cargar();
 				});
 	}
-	
+
 	$scope.borrar = function(deportista) {
 
 		config = {
@@ -658,7 +658,6 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 				});
 	}
 });
-
 
 app.controller('competicionCtrl', function($scope, $http, $window) {
 	$scope.filtrado = "";
@@ -695,7 +694,7 @@ app.controller('competicionCtrl', function($scope, $http, $window) {
 
 		config = {
 			method : "POST",
-			url : base_url + "/competicion/crearPost",
+			url : base_url + "/competicion/insertar",
 			params : {
 				nombre : $scope.nombre,
 				fecha : $scope.fecha
@@ -724,7 +723,7 @@ app.controller('competicionCtrl', function($scope, $http, $window) {
 
 		config = {
 			method : "POST",
-			url : base_url + "/competicion/modificarPost",
+			url : base_url + "/competicion/modificar",
 			params : {
 				nombre : $scope.nombreE,
 				fecha : $scope.fechaE,
@@ -743,7 +742,7 @@ app.controller('competicionCtrl', function($scope, $http, $window) {
 					$scope.cargar();
 				});
 	}
-	
+
 	$scope.borrar = function(competicion) {
 
 		config = {

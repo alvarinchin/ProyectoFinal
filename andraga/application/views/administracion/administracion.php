@@ -1,4 +1,3 @@
-
 <div class="container">
 	<h1>ADMINISTRACIÓN</h1>
 	<div class="row">
@@ -28,7 +27,9 @@
 				</div>
 
 				<table class="table">
-                                    <tr><th>Nombre</th></tr>
+					<tr>
+						<th>Nombre</th>
+					</tr>
 					<tr ng-repeat="club in clubes">
 						<td>{{club.nombre}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(club)">
@@ -84,7 +85,9 @@
 				</div>
 
 				<table class="table">
-                                   <tr><th>Nombre</th></tr>
+					<tr>
+						<th>Nombre</th>
+					</tr>
 					<tr ng-repeat="categoria in categorias">
 						<td>{{categoria.nombre}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(categoria)">
@@ -133,7 +136,9 @@
 				</div>
 
 				<table class="table">
-                                    <tr><th>Descripción</th></tr>
+					<tr>
+						<th>Descripción</th>
+					</tr>
 					<tr ng-repeat="tipo in tipos">
 						<td>{{tipo.descripcion}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(tipo)">
@@ -188,7 +193,10 @@
 				</div>
 
 				<table class="table">
-                                    <tr><th>Nombre</th><th>Número</th></tr>
+					<tr>
+						<th>Nombre</th>
+						<th>Número</th>
+					</tr>
 					<tr ng-repeat="especialidad in especialidades">
 						<td>{{especialidad.descripcion}}</td>
 						<td>Num: {{especialidad.num}}</td>
@@ -248,9 +256,13 @@
 				</div>
 
 				<table class="table">
-                                    <tr><th>Nombre</th><th>Fecha</th></tr>
+					<tr>
+						<th>Nombre</th>
+						<th>Fecha</th>
+					</tr>
 					<tr ng-repeat="competicion in competiciones">
-						<td>{{competicion.nombre}}</td><td>{{competicion.fecha}}</td>
+						<td>{{competicion.nombre}}</td>
+						<td>{{competicion.fecha}}</td>
 						<td><button class="btn btn-primary" ng-click="borrar(competicion)">
 								<span class="glyphicon glyphicon-remove"></span>
 							</button></td>
@@ -269,7 +281,10 @@
 						<label>Nombre</label> <input type="text" ng-model="nombreE">
 					</div>
 					<div class="form-group">
-						<label>Fecha</label> <input type="text" ng-model="fechaE">
+						<label>Fecha</label> 
+						<!-- <ng-datepicker ng-model="fechaE"></ng-datepicker> -->
+						 <input type="text" id="calendario"	ng-model="fechaE"> 
+							
 					</div>
 					<button type="button" ng-click="modificar();" class="btn btn-info"
 						data-toggle="collapse" data-target="#competicionE">Modificar</button>
@@ -317,7 +332,7 @@
 
 					<div class="form-group">
 						<label for="fecha">Fecha de nacimiento: </label> <input
-							type="text" id="fecha" name="fecha"
+							type="date" id="fecha" name="fecha"
 							placeholder="Fecha de nacimiento" ng-model="fecha" value=""
 							required>
 
@@ -329,7 +344,11 @@
 				</div>
 
 				<table class="table">
-                                    <tr><th>Nombre</th><th>Apellido 1</th><th>Apellido 2</th></tr>
+					<tr>
+						<th>Nombre</th>
+						<th>Apellido 1</th>
+						<th>Apellido 2</th>
+					</tr>
 					<tr ng-repeat="deportista in deportistas">
 						<td>{{deportista.nombre}}</td>
 						<td>{{deportista.ape1}}</td>
@@ -360,7 +379,7 @@
 							ng-model="ape2E">
 					</div>
 					<div class="form-group">
-						<label>Fecha de nacimiento: </label> <input type="text"
+						<label>Fecha de nacimiento: </label> <input type="date"
 							ng-model="fechaE" id="fechaNac">
 					</div>
 					<div class="form-group">

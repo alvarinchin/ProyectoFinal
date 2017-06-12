@@ -67,7 +67,7 @@
             <div class="form-group">
             
                 <table class="table">
-                    <th>Club</th><th>Competición</th><th>Competición</th><th>Especialidad</th><th>Categoria</th><th>Dorsal</th>
+                    <th>Club</th><th>Deportista</th><th>Competición</th><th>Especialidad</th><th>Categoria</th><th>Dorsal</th>
                     <tr ng-repeat="insc in inscripciones"><td>{{insc.club.nombre}}</td><td><p ng-repeat="dep in insc.ownDeportistaList">{{dep.ape1}} {{dep.ape2}}, {{dep.nombre}}</p></td><td> {{insc.competicion.nombre}} </td><td>{{insc.especialidad.descripcion}}</td><td> {{insc.categoria.nombre}} </td><td>{{insc.dorsal}}</td></tr>
                 </table>
             </div>

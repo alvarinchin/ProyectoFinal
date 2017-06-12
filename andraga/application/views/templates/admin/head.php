@@ -15,6 +15,10 @@
 <link href="<?=base_url()?>/assets/jqueryui/jquery-ui.min.css"
 	rel="stylesheet">
 
+<link href="<?=base_url()?>/assets/css/datepicker.css"
+	rel="stylesheet">	
+<script src="<?=base_url()?>/assets/js/datepicker.js"></script>
+
 <title>Gestor Competiciones</title>
 </head>
 <body>

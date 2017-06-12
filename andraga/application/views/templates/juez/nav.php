@@ -13,7 +13,7 @@
 		
 		</ul>
 
-		<!-- <ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right">
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li class="dropdown"><a class="dropdown-toggle"
@@ -22,25 +22,25 @@
 						<ul class="dropdown-menu">
 							<li class="dropdown-header">Juez</li>
 							<li>
-								<div ng-controller="accesoCtrl">
+								<form class="form" action="<?= base_url()?>acceso/logout"
+									method="post" id="formulario">
 									<div class="form-group">
-										<button type="button" ng-click="insertar();"
-											class="btn btn-default">Logout</button>
+										<input class="form-control" type="submit" value="Logout">
 									</div>
-								</div>
+								</form>
 							</li>
--->
+
 							<!-- M�s beans y m�s acciones -->
 
-					<!--	</ul></li>
+						</ul></li>
 
 				</ul>
 
 
 
 			</div>
-		</ul>-->
- 
+		</ul>
+
 
 	</div>
 </nav>

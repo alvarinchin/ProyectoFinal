@@ -12,7 +12,7 @@
 					Club</h4>
 				<div id="clubN" class="collapse well">
 					<div class="form-group">
-						<label>nombre</label> <input type="text" ng-model="nombre">
+						<label>Nombre</label> <input type="text" ng-model="nombre">
 					</div>
 					<div class="form-group">
 						<label>Origen</label> <input type="text" ng-model="origen">

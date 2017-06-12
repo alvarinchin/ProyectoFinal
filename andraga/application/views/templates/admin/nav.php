@@ -38,7 +38,7 @@
 						<ul class="dropdown-menu">
 							<li class="dropdown-header">Administrador</li>
 							<li>
-								<form class="form" action="<?= base_url()?>empleado/logout"
+								<form class="form" action="<?= base_url()?>acceso/logout"
 									method="post" id="formulario">
 									<div class="form-group">
 										<input class="form-control" type="submit" value="Logout">

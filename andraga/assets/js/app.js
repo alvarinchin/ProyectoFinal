@@ -763,6 +763,8 @@ app.controller('competicionCtrl', function($scope, $http, $window) {
 				});
 	}
 });
+
+
 /*
 app.config(function($mdDateLocaleProvider) {
 

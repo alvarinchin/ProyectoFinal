@@ -57,10 +57,9 @@
 		<div class="col-md-1">
 			<div class="form-group">
 				<label>Dorsal</label> <input class="form-control" type="text"
-					ng-model="dorsal"><br>
-				<br> <input class="btn btn-primary" type="button" value="Enviar"
-					ng-click="enviar()"> <input class="btn btn-primary" type="button"
-					value="cancelar">
+					ng-model="dorsal"><br> <br> <input class="btn btn-primary"
+					type="button" value="Enviar" ng-click="enviar()"> <input
+					class="btn btn-primary" type="button" value="Cancelar">
 
 			</div>
 		</div>
@@ -110,9 +109,34 @@
 	<div class="row" ng-controller="rotacionCtrl">
 		<h3>Rotaciones</h3>
 		<!--        inscripciones-->
-		<div class="col-md-2">
-			<select>
-			</select>
+
+		<div class="col-md-11">
+			<div class="form-group">
+
+				<table class="table">
+					<tr>
+						<th>Deportista</th>
+						<th>Especialidad</th>
+						<th>Categoria</th>
+						<th>Dorsal</th>
+						<th>¿Borrar?</th>
+					</tr>
+					<tr ng-repeat="rot in rotaciones">
+
+						<td><p ng-repeat="dep in rot.ownDeportistaList">{{dep.ape1}}
+								{{dep.ape2}}, {{dep.nombre}}</p></td>
+						<td>{{rot.especialidad.descripcion}}</td>
+						<td>{{rot.categoria.nombre}}</td>
+						<td>{{rot.dorsal}}</td>
+						<td><button class="btn btn-remove" ng-click="borrar(rot)">
+								<span class="glyphicon glyphicon-remove"></span>
+							</button></td>
+					</tr>
+				</table>
+			</div>
 		</div>
+		<select>
+		</select>
 	</div>
+
 </div>

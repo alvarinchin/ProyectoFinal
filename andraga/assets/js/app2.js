@@ -98,5 +98,107 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 });
 
 app.controller('rotacionCtrl', function($scope, $http) {
-    
+	$scope.filtrado = "";
+	$scope.rotacion = {
+		"id" : 0,
+		"categoria" : "",
+		"especialidad" : "",
+		"dorsal" : ""
+	}
+	$scope.rotaciones = [];
+	$scope.categoriaE = "";
+	$scope.especialidadE = "";
+	$scope.idE = "";
+
+	$scope.categoria = "";
+	$scope.especialidad = "";
+
+	$scope.cargar = function() {
+		$http.get(base_url + "/rotacion/listar").then(
+				function(response) {
+					$scope.rotaciones = [];
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					for (x in response.data["data"]) {
+						$scope.rotaciones.push(response.data["data"][x]);
+					}
+
+				});
+	}
+
+	$scope.cargar();
+
+	$scope.insertar = function() {
+
+		config = {
+			method : "POST",
+			url : base_url + "/rotacion/insertar",
+			params : {
+				categoria : $scope.categoria,
+				especialidad : $scope.especialidad
+			}
+		};
+
+		$http(config).then(
+				function(response) {
+					console.log(response.data["data"]);
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					$scope.categoria = "";
+					$scope.especialidad = "";
+					$scope.cargar();
+				});
+	}
+
+	$scope.datos = function(usuario) {
+		$scope.categoriaE = usuario.categoria;
+		$scope.especialidadE = usuario.especialidad;
+		$scope.idE = usuario.id;
+	}
+
+	$scope.modificar = function() {
+
+		config = {
+			method : "POST",
+			url : base_url + "/rotacion/modificar",
+			params : {
+				categoria : $scope.categoriaE,
+				especialidad : $scope.especialidadE,
+				id : $scope.idE
+			}
+		};
+
+		$http(config).then(
+				function(response) {
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					$scope.categoriaE = "";
+					$scope.especialidadE = "";
+					$scope.idE = "";
+					$scope.cargar();
+				});
+	}
+
+	$scope.borrar = function(rotacion) {
+
+		config = {
+			method : "POST",
+			url : base_url + "/rotacion/borrar",
+			params : {
+				id : rotacion.id
+			}
+		};
+
+		$http(config).then(
+				function(response) {
+
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					$scope.cargar();
+				});
+	}
 });

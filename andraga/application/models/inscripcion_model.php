@@ -13,8 +13,6 @@
  */
 class inscripcion_model {
     
-    
-    
     public function getOne($nombreBean,$id) {
 		return R::load ( $nombreBean,$id );
 	}

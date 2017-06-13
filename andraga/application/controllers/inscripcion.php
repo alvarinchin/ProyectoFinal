@@ -110,7 +110,7 @@ class inscripcion extends CI_Controller {
 				} else {
 					echo json_encode ( array (
 							"status" => "error",
-							"msg" => "Error al borrar un club " 
+							"msg" => "Error al borrar una inscripcion " 
 					) );
 				}
 			} else {

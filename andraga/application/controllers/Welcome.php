@@ -21,8 +21,8 @@ class Welcome extends JwtController {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
-		if (isset ($_COOKIE['tkn'])){
-			$this->redirigeTrasCheck('','gestor','welcome');
+		if (isset ($_COOKIE['tkn'])){			
+			$this->redirigeTrasCheck('','gestor','welcome', 'gestor');
 		}
 		else {
 			$this->template->cargarVista('login/loginGet');

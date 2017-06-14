@@ -33,6 +33,7 @@ class Login extends CI_Controller {
 					setcookie ( 'tkn', $jwt, time()+3600*24, '/');
 					$datos = null;
 					$datos ['login'] = 'estimado espectador';
+					$datos ['rol'] = 'enlace';
 					$this->template->cargarVista ( 'login/loginPost', $datos );
 				}
 				
@@ -60,6 +61,7 @@ class Login extends CI_Controller {
 			setcookie ( 'tkn', $jwt, time()+3600*24, '/'); //86.400.000 = 1 D�A
 			$datos = null;
 			$datos ['login'] = $usuario->login;
+			$datos ['rol'] = $usuario->rol;
 			$this->template->cargarVista ( 'login/loginPost', $datos );
 		} else {
 			
@@ -70,34 +72,8 @@ class Login extends CI_Controller {
 			$datos ['destino'] = 'Pantalla de login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
 		}
-	}
+	}	
 	
-	public function redirigeTrasCheck($ruta, $datos='', $raiz = false, $cookie){
-	
-		$this->load->model('jwtModel');
-		$rol = $this->jwtModel->comprobarCookie($cookie);
-		$zona= '';
-	
-		if ($rol==-1){
-			$datos = [];
-			$datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
-			$datos ['destino'] = 'Pantalla de Login';
-			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}
-		else if($raiz) {
-			$zona = $ruta;
-			$this->template->cargarVista ( $zona, $datos, $rol );
-		}
-		else if ($rol == 2) {
-			$zona = "juez/".$ruta;
-			$this->template->cargarVista ( $zona, $datos, $rol );
-		}
-		else if ($rol == 3) {
-			$zona = "administracion/".$ruta;
-			$this->template->cargarVista ( $zona, $datos, $rol );
-		}
-	
-	}
 }
 
 ?>

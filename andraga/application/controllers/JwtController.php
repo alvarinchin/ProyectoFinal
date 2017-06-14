@@ -7,7 +7,7 @@ class JwtController extends CI_Controller{
 	private $rol;
 	private $zona;
 	private $raiz;
-	
+	private $granted;
 	
 	public function __construct(){	
 		parent::__construct ();		
@@ -17,10 +17,15 @@ class JwtController extends CI_Controller{
 		$this->raiz = '';
 		$this->load->model('jwt_model');
 		$this->rol = $this->jwt_model->comprobarCookie($this->cookie);
-		
+		if (isset($this->cookie)){
+			$this->granted = true;
+		}
+		else {
+			$this->granted = false;
+		}
 	}
 	
-	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin){
+	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin, $rutaEnlace=''){
 		//echo ($this->rol);
 		$this->zona= '';
 	
@@ -29,7 +34,10 @@ class JwtController extends CI_Controller{
 			$this->datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
 			$this->datos ['destino'] = 'Pantalla de Login';
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
-		}		
+		}
+		else if ($this->rol ==1){
+			$this->zona = "juez/".$rutaJuez; //HAY QUE CAMBIARLO POR EL ENLACE.
+		}
 		else if ($this->rol == 2) {
 			$this->zona = "juez/".$rutaJuez;	
 		}
@@ -37,10 +45,6 @@ class JwtController extends CI_Controller{
 			$this->zona = "administracion/".$rutaAdmin;	
 		}		
 		$this->template->cargarVista ( $this->zona, $this->datos, $this->rol );		
-	}
-
-	
-	
-	
+	}	
 	
 }

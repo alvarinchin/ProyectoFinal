@@ -1,10 +1,10 @@
 <?php
 require_once 'vendor/autoload.php';
 use Firebase\JWT\JWT;
-class inscripcion extends CI_Controller {
+class inscripcion extends JwtController {
 	public function __construct() {
 		parent::__construct ();
-		$this->load->model ( "adaptador_model" );
+		$this->load->model ( "adaptador_model" );	
 	}
 	public function insertar() {
 		if (isset ( $_REQUEST ["idClub"] )) {

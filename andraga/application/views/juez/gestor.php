@@ -114,29 +114,41 @@
 			<div class="form-group">
 
 				<table class="table">
-					<tr>
-						<th>Deportista</th>
-						<th>Especialidad</th>
-						<th>Categoria</th>
-						<th>Dorsal</th>
-						<th>¿Borrar?</th>
-					</tr>
-					<tr ng-repeat="rot in rotaciones">
-
-						<td><p ng-repeat="dep in rot.ownDeportistaList">{{dep.ape1}}
-								{{dep.ape2}}, {{dep.nombre}}</p></td>
-						<td>{{rot.especialidad.descripcion}}</td>
-						<td>{{rot.categoria.nombre}}</td>
-						<td>{{rot.dorsal}}</td>
-						<td><button class="btn btn-remove" ng-click="borrar(rot)">
-								<span class="glyphicon glyphicon-remove"></span>
-							</button></td>
-					</tr>
+					<thead>
+						<tr>
+							<th>Orden</th>
+							<th>Deportista</th>
+							<th>Especialidad</th>
+							<th>Categoria</th>
+							<th>Dorsal</th>
+							<th>¿Borrar?</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="rot in rotaciones">
+							<td>{{rot.id}}</td>
+							<td><p ng-repeat="dep in rot.ownDeportistaList">{{dep.ape1}}
+									{{dep.ape2}}, {{dep.nombre}}</p></td>
+							<td>{{rot.especialidad.descripcion}}</td>
+							<td>{{rot.categoria.nombre}}</td>
+							<td>{{rot.dorsal}}</td>
+							<td><button class="btn btn-remove" ng-click="borrar(rot)">
+									<span class="glyphicon glyphicon-remove"></span>
+								</button></td>
+						</tr>
+					</tbody>
 				</table>
 			</div>
 		</div>
 		<select>
 		</select>
 	</div>
-
+	<script type="text/javascript">
+$( "table tbody" ).sortable( {
+	update: function( event, ui ) {
+    $(this).children().each(function(index) {
+			$(this).find('td').first().html(index + 1)
+    });
+  }
+});</script>
 </div>

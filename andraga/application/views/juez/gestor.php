@@ -56,10 +56,8 @@
 		<!--        botones-->
 		<div class="col-md-1">
 			<div class="form-group">
-				<label>Dorsal</label> <input class="form-control" type="text"
-					ng-model="dorsal"><br> <br> <input class="btn btn-primary"
-					type="button" value="Enviar" ng-click="enviar()"> <input
-					class="btn btn-primary" type="button" value="Cancelar">
+				<br> <br> <input class="btn btn-primary" type="button"
+					value="Crear inscripción" ng-click="enviar()">
 
 			</div>
 		</div>
@@ -67,39 +65,45 @@
 		<!--        inscripciones-->
 		<div class="col-md-11">
 			<div class="form-group">
-
-				<table class="table">
-					<tr>
-						<th>Club</th>
-						<th>Deportista</th>
-						<th>Competición</th>
-						<th>Especialidad</th>
-						<th>Categoria</th>
-						<th>Dorsal</th>
-						<th>¿Borrar?</th>
-					</tr>
-					<tr ng-repeat="insc in inscripciones">
-						<td>{{insc.club.nombre}}</td>
-						<td><p ng-repeat="dep in insc.ownDeportistaList">{{dep.ape1}}
-								{{dep.ape2}}, {{dep.nombre}}</p></td>
-						<td>{{insc.competicion.nombre}}</td>
-						<td>{{insc.especialidad.descripcion}}</td>
-						<td>{{insc.categoria.nombre}}</td>
-						<td>{{insc.dorsal}}</td>
-						<td><button class="btn btn-remove" ng-click="borrar(insc)">
-								<span class="glyphicon glyphicon-remove"></span>
-							</button></td>
-					</tr>
-				</table>
+				<form name="form">
+					<table class="table">
+						<tr>
+							<th>Club</th>
+							<th>Deportista</th>
+							<th>Competición</th>
+							<th>Especialidad</th>
+							<th>Categoria</th>
+							<th>Dorsal</th>
+							<th>Seleccionar/Deseleccionar todo <input type="checkbox"
+								name="seleccionar" id="idSeleccion"></th>
+						</tr>
+						<tr ng-repeat="insc in inscripciones">
+							<td>{{insc.club.nombre}}</td>
+							<td><p ng-repeat="dep in insc.ownDeportistaList">{{dep.ape1}}
+									{{dep.ape2}}, {{dep.nombre}}</p></td>
+							<td>{{insc.competicion.nombre}}</td>
+							<td>{{insc.especialidad.descripcion}}</td>
+							<td>{{insc.categoria.nombre}}</td>
+							<td>{{insc.dorsal}}</td>
+							<td><input type="checkbox" value="{{insc.id}}" name="inscSel[]"></span>
+							</td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
 		<!-- botones -->
-
+		<button class="btn btn-remove" ng-click="borrar(insc)">
+			<span class="glyphicon glyphicon-remove">
+		
+		</button>
 		<div class="col-md-1">
 			<div class="form-group">
-
-				<input class="btn btn-primary" type="button" value="Enviar"> <input
-					class="btn btn-primary" type="button" value="cancelar">
+			
+				<button type="button" class="btn btn-primary"
+					onclick="deseleccionar_todo()">Crear rotación</button>
+				<button type="button" class="btn btn-primary"
+					onclick="seleccionar_todo()">Borrar</button>
 
 			</div>
 
@@ -126,7 +130,7 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat="rot in rotaciones">
-							<td>{{rot.id}}</td>
+							<td>{{rot.orden}}</td>
 							<td><p ng-repeat="dep in rot.ownDeportistaList">{{dep.ape1}}
 									{{dep.ape2}}, {{dep.nombre}}</p></td>
 							<td>{{rot.especialidad.descripcion}}</td>
@@ -140,15 +144,36 @@
 				</table>
 			</div>
 		</div>
-		<select>
-		</select>
 	</div>
+
+
 	<script type="text/javascript">
-$( "table tbody" ).sortable( {
-	update: function( event, ui ) {
-    $(this).children().each(function(index) {
-			$(this).find('td').first().html(index + 1)
-    });
-  }
-});</script>
+		window.onload=function(){
+		document.getElementById('idSeleccion').onchange=funcionSeleccionar;
+	}
+
+	function funcionSeleccionar(){
+		if(document.getElementById('idSeleccion').checked==true){
+			 for (i=0;i<document.form.elements.length;i++)
+			      if(document.form.elements[i].type == "checkbox")
+			         document.form.elements[i].checked=1
+		}else if(document.getElementById('idSeleccion').checked==false){
+			for (i=0;i<document.form.elements.length;i++)
+			      if(document.form.elements[i].type == "checkbox")
+			         document.form.elements[i].checked=0
+		}
+
+
+	}
+
+	$( "table tbody" ).sortable( {
+		update: function( event, ui ) {
+	    $(this).children().each(function(index) {
+				$(this).find('td').first().html(index + 1)
+	    });
+	  }
+	});
+
+</script>
+
 </div>

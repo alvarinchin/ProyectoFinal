@@ -1,7 +1,9 @@
 <?php
+
+require_once 'JwtController.php';
 require_once 'vendor/autoload.php';
 use Firebase\JWT\JWT;
-class rotacion extends CI_Controller {
+class rotacion extends JwtController {
 	public function __construct() {
 		parent::__construct ();
 		$this->load->model ( "adaptador_model" );

@@ -20,7 +20,7 @@ class JwtController extends CI_Controller{
 		
 	}
 	
-	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin){
+	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin,$rutaEnlace="welcome"){
 		//echo ($this->rol);
 		$this->zona= '';
 	
@@ -35,7 +35,10 @@ class JwtController extends CI_Controller{
 		}
 		else if ($this->rol == 3) {
 			$this->zona = "administracion/".$rutaAdmin;	
-		}		
+		}
+                else if ($this->rol == 1) {
+			$this->zona = "enlace/".$rutaEnlace;	
+		}
 		$this->template->cargarVista ( $this->zona, $this->datos, $this->rol );		
 	}
 

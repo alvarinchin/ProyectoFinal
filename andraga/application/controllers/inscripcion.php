@@ -121,6 +121,7 @@ class inscripcion extends CI_Controller {
 			foreach ( $campos as $ke => $campo ) {
 				$fila [$campo] = $ins->$campo;
 			}
+                        $fila ["id"] = $inscripcion->id;
 			$res [$k] = $fila;
 		}
 		
@@ -142,11 +143,9 @@ class inscripcion extends CI_Controller {
 		if (isset ( $_REQUEST ["inscSel"] )) {
 			if (! empty ( $_REQUEST ["inscSel"] )) {
 				
-				$idInscripciones = $_REQUEST['inscSel'];
 				
-				foreach ( $idInscripciones as $ins ) {
 					
-					$status = $this->adaptador_model->delete ( "inscripcion", $this->utilphp->sanear ( $ins ) );
+					$status = $this->adaptador_model->delete ( "inscripcion", $this->utilphp->sanear ( $_REQUEST ["inscSel"] )  );
 					
 					if ($status) {
 						echo json_encode ( array (
@@ -159,7 +158,7 @@ class inscripcion extends CI_Controller {
 								"msg" => "Error al borrar una inscripcion " 
 						) );
 					}
-				}
+				
 			} else {
 				echo json_encode ( array (
 						"status" => "error",

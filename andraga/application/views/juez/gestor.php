@@ -1,6 +1,6 @@
-<div class="container">
+
 	<h2>Gestor de competiciones</h2>
-	<form name="form">
+	
 		<div class="row" ng-controller="inscripcionesCtrl">
 			<h3>Inscripciones</h3>
 			<!--        clubs-->
@@ -63,9 +63,10 @@
 			</div>
 
 			<!--        inscripciones-->
+                      
 			<div class="col-md-11">
 				<div class="form-group">
-
+                                   
 					<table class="table">
 						<tr>
 							<th>Club</th>
@@ -77,6 +78,7 @@
 							<th>Seleccionar/Deseleccionar todo <input type="checkbox"
 								name="seleccionar" id="idSeleccion"></th>
 						</tr>
+                                                 <form name="myForm">
 						<tr ng-repeat="insc in inscripciones">
 							<td>{{insc.club.nombre}}</td>
 							<td><p ng-repeat="dep in insc.ownDeportistaList">{{dep.ape1}}
@@ -85,10 +87,12 @@
 							<td>{{insc.especialidad.descripcion}}</td>
 							<td>{{insc.categoria.nombre}}</td>
 							<td>{{insc.dorsal}}</td>
-							<td><input type="checkbox" value="{{insc.id}}" name="inscripcion{{$index}}">
+							<td name="fila"><input type="checkbox" value="{{insc.id}}" name="inscripcion">
 							</td>
 						</tr>
+                                                 </form>
 					</table>
+                                    
 
 				</div>
 			</div>
@@ -103,14 +107,14 @@
 						onclick="deseleccionar_todo()">Crear rotación</button>
 					<br />
 					<br /> <input type="button" class="btn btn-primary"
-						ng-click="borrar();" value="Borrar">
+						ng-click="borrarSeleccionados();" value="Borrar">
 
 				</div>
 
 			</div>
 
 		</div>
-	</form>
+	
 	<div class="row" ng-controller="rotacionCtrl">
 		<h3>Rotaciones</h3>
 		<!--        inscripciones-->
@@ -137,7 +141,7 @@
 							<td>{{rot.especialidad.descripcion}}</td>
 							<td>{{rot.categoria.nombre}}</td>
 							<td>{{rot.dorsal}}</td>
-							<td><button class="btn btn-remove" ng-click="borrar(rot)">
+							<td><button class="btn btn-remove" ng-click="borrar(rot.id);">
 									<span class="glyphicon glyphicon-remove"></span>
 								</button></td>
 						</tr>
@@ -149,24 +153,6 @@
 
 
 	<script type="text/javascript">
-		window.onload=function(){
-		document.getElementById('idSeleccion').onchange=funcionSeleccionar;
-	}
-
-	function funcionSeleccionar(){
-		if(document.getElementById('idSeleccion').checked==true){
-			 for (i=0;i<document.form.elements.length;i++)
-			      if(document.form.elements[i].type == "checkbox")
-			         document.form.elements[i].checked=1
-		}else if(document.getElementById('idSeleccion').checked==false){
-			for (i=0;i<document.form.elements.length;i++)
-			      if(document.form.elements[i].type == "checkbox")
-			         document.form.elements[i].checked=0
-		}
-
-
-	}
-
 	$( "table tbody" ).sortable( {
 		update: function( event, ui ) {
 	    $(this).children().each(function(index) {
@@ -176,19 +162,6 @@
 	});
 
 </script>
-	<script type="text/javascript"
-		src="<?=base_url()?>assets/js/serialize.js"></script>
-	<script type="text/javascript">
+	
+	
 
-	function borrar(){		
-		conector=new XMLHttpRequest();
-		var datosSerializados = serialize(document.getElementById('form'));
-				
-		conector.open("POST",'<?=base_url()?>inscripcion/borrar',true);
-		conector.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		conector.send(datosSerializados);
-
-	}
-</script>
-
-</div>

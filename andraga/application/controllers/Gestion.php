@@ -29,7 +29,7 @@ class Gestion extends JwtController{
 		 */
 
         
-    	$this->redirigeTrasCheck('','gestor','welcome');
+    	$this->redirigeTrasCheck('','gestor','welcome','welcome');
 
 
     }

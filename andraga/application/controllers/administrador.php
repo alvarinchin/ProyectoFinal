@@ -17,7 +17,7 @@ class administrador extends JwtController{
     public function index(){
        
 
-    	$this->redirigeTrasCheck('','gestor','administracion');
+    	$this->redirigeTrasCheck('','gestor','administracion','welcome');
 	}
 
   

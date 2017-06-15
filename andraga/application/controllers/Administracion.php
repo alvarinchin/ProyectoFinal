@@ -12,7 +12,7 @@ class Administracion extends JwtController {
 		 */
 		//añadido
 
-		$this->redirigeTrasCheck('','gestor','welcome','welcome');		
+		$this->redirigeTrasCheck('','welcome','welcome','welcome');		
 
 		/*session_start ();
 		

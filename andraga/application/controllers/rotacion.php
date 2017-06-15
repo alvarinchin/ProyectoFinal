@@ -25,6 +25,7 @@ class rotacion extends JwtController {
 				"especialidad",
 				"dorsal",
 				"ownDeportistaList"
+                                
 		];
 		$res = [ ];
 		$rotaciones = $this->adaptador_model->getAll ( "rotacion" );
@@ -34,6 +35,7 @@ class rotacion extends JwtController {
 			foreach ( $campos as $ke => $campo ) {
 				$fila [$campo] = $ins->$campo;
 			}
+                        $fila ["id"]=$rotacion->id;
 			$res [$k] = $fila;
 		}
 		

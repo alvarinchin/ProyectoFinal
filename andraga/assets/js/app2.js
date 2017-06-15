@@ -91,37 +91,56 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 				});
 
 	}
+        $scope.borrar=function(id){
+            var config={
+                url:base_url+"/rotacion/borrar",
+                method:"post",
+                params:{id:id}
+            }
+            $http(config).then(function(response){
+                $scope.cargar();
+            })
+            
+        }
+        
+         $scope.borrarInscripciones=function(id){
+             console.log(id);
+            var config={
+                url:base_url+"/inscripcion/borrar",
+                method:"post",
+                params:{inscSel:id}
+            }
+            $http(config).then(function(response){
+                console.log(response.data["msg"]);
+                $scope.cargar();
+                 $scope.cargarInscripciones();
+            })
+            
+        }
 
-	$scope.borrar = function() {
-		
-		for (elem in form) {
-			if (/^inscripcion\d$/.test(elem) && form[elem].checked == true) {
-				
+	$scope.borrarSeleccionados = function() {
+		var checks = document.getElementsByName("inscripcion");
+                var selects=[];
+		for (elem in checks) {
+                    //console.log(checks[elem]);
+                    //console.log(document.myForm[elem].innerHTML);
+			if (checks[elem].checked == true) {
+				selects.push(checks[elem].value);
+                               
+                                
 			}
 		}
-
-		
-		
-		
-		
-		
-		config = {
-			method : "POST",
-			url : base_url + "/inscripcion/borrar",
-			params : {
-				inscSel : $scope.inscripciones
-			}
-		};
-		// alert(JSON.stringify($scope.inscripciones));
-		$http(config).then(
-				function(response) {
-
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
-	}
+                
+               if(confirm("¿Desea borrar "+selects.length+" elemento(s)?")){
+                  for(id in selects){
+                      //console.log("borrado "+selects[id])
+                       $scope.borrarInscripciones(selects[id]);
+                  }
+               
+               }
+            }
+            
+           
 
 	$scope.cargarInscripciones();
 	$scope.cargar();
@@ -212,13 +231,13 @@ app.controller('rotacionCtrl', function($scope, $http) {
 				});
 	}
 
-	$scope.borrar = function(rotacion) {
-
+	$scope.borrar = function(id) {
+console.log(id);
 		config = {
 			method : "POST",
 			url : base_url + "/rotacion/borrar",
 			params : {
-				id : rotacion.id
+				id : id
 			}
 		};
 

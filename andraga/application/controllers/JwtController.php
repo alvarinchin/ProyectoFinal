@@ -25,7 +25,7 @@ class JwtController extends CI_Controller{
 		}
 	}
 
-	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin,$rutaEnlace="welcome"){
+	public function redirigeTrasCheck($datos = '', $rutaJuez, $rutaAdmin,$rutaEnlace){
 
 		//echo ($this->rol);
 		$this->zona= '';
@@ -37,7 +37,7 @@ class JwtController extends CI_Controller{
 			$this->template->cargarVista ( 'errors/errorLogin', $datos );
 		}
 		else if ($this->rol ==1){
-			$this->zona = "juez/".$rutaJuez; //HAY QUE CAMBIARLO POR EL ENLACE.
+			$this->zona = "enlace/".$rutaEnlace; //HAY QUE CAMBIARLO POR EL ENLACE.
 		}
 		else if ($this->rol == 2) {
 			$this->zona = "juez/".$rutaJuez;	
@@ -45,9 +45,7 @@ class JwtController extends CI_Controller{
 		else if ($this->rol == 3) {
 			$this->zona = "administracion/".$rutaAdmin;	
 		}
-                else if ($this->rol == 1) {
-			$this->zona = "enlace/".$rutaEnlace;	
-		}
+               
 		$this->template->cargarVista ( $this->zona, $this->datos, $this->rol );		
 	}	
 	

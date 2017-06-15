@@ -93,7 +93,18 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 	}
 
 	$scope.borrar = function() {
+		
+		for (elem in form) {
+			if (/^inscripcion\d$/.test(elem) && form[elem].checked == true) {
+				
+			}
+		}
 
+		
+		
+		
+		
+		
 		config = {
 			method : "POST",
 			url : base_url + "/inscripcion/borrar",
@@ -101,7 +112,7 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 				inscSel : $scope.inscripciones
 			}
 		};
-		alert(JSON.stringify($scope.inscripciones));
+		// alert(JSON.stringify($scope.inscripciones));
 		$http(config).then(
 				function(response) {
 
@@ -111,13 +122,6 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 					$scope.cargar();
 				});
 	}
-
-	$scope.eliminartodo = function() {
-		var oldnodes = $scope.inscripciones;
-
-		$scope.inscripciones = [];
-		$scope.cargar();
-	};
 
 	$scope.cargarInscripciones();
 	$scope.cargar();

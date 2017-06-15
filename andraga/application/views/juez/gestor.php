@@ -85,7 +85,7 @@
 							<td>{{insc.especialidad.descripcion}}</td>
 							<td>{{insc.categoria.nombre}}</td>
 							<td>{{insc.dorsal}}</td>
-							<td><input type="checkbox" value="{{insc.inscripcion_id}}" name="inscSel[]"></span>
+							<td><input type="checkbox" value="{{insc.id}}" name="inscripcion{{$index}}">
 							</td>
 						</tr>
 					</table>
@@ -103,7 +103,7 @@
 						onclick="deseleccionar_todo()">Crear rotación</button>
 					<br />
 					<br /> <input type="button" class="btn btn-primary"
-						onclick="borrar()" value="Borrar">
+						ng-click="borrar();" value="Borrar">
 
 				</div>
 

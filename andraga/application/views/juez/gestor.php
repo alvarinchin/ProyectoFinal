@@ -103,7 +103,7 @@
 						onclick="deseleccionar_todo()">Crear rotación</button>
 					<br />
 					<br /> <input type="button" class="btn btn-primary"
-						ng-click="borrar()" value="Borrar">
+						onclick="borrar()" value="Borrar">
 
 				</div>
 

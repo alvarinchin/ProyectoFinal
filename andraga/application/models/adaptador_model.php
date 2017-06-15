@@ -70,6 +70,13 @@ class adaptador_model {
 		R::trash ( $nombreBean, $id );
 		return true;
 	}
+	
+	public function count($nombreBean) {
+		R::count ( $nombreBean );
+		return true;
+	}
+	
+	
 	/**
 	 *
 	 * @param String $nombre        	

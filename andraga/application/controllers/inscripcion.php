@@ -22,13 +22,12 @@ class inscripcion extends CI_Controller {
 				try {
 					$this->load->model ( "inscripcion_model" );
 					$numBeansInscripcion = $this->adaptador_model->count ( "inscripcion" );
-					
 				} catch ( Exception $e ) {
 				}
 				if ($numBeansInscripcion != 0) {
 					$dorsal = $numBeansInscripcion + 1;
 					$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $dorsal );
-				}else{
+				} else {
 					$this->load->model ( "inscripcion_model" );
 					// $numBeansInscripcion = $this->adaptador_model->count ( "inscripcion" );
 					$dorsal = 1;
@@ -40,13 +39,12 @@ class inscripcion extends CI_Controller {
 							"status" => "ok",
 							"data" => $_REQUEST,
 							"msg" => "Inserción correcta",
-							"debub" => $status
+							"debub" => $status 
 					) );
 					
 					try {
 						$this->load->model ( "rotacion_model" );
 						$numBeansRotacion = $this->adaptador_model->count ( "rotacion" );
-						
 					} catch ( Exception $e ) {
 					}
 					
@@ -54,13 +52,12 @@ class inscripcion extends CI_Controller {
 						$dorsalRot = $numBeansRotacion + 1;
 						$orden = $numBeansRotacion + 1;
 						$status = $this->rotacion_model->insert ( $categoria, $especialidad, $deportistas, $dorsalRot, $orden );
-					}else{
+					} else {
 						$this->load->model ( "rotacion_model" );
 						// $numBeansRotacion = $this->adaptador_model->count ( "rotacion" );
 						$dorsalRot = 1;
 						$orden = 1;
 						$status = $this->rotacion_model->insert ( $categoria, $especialidad, $deportistas, $dorsalRot, $orden );
-						
 					}
 					
 					if ($status) {
@@ -68,32 +65,32 @@ class inscripcion extends CI_Controller {
 								"status" => "ok",
 								"data" => $_REQUEST,
 								"msg" => "Inserción correcta",
-								"debub" => $status
+								"debub" => $status 
 						) );
 					} else {
 						echo json_encode ( array (
 								"status" => "error",
 								"msg" => "Error al insertar rotación nueva, nombre repetido",
-								"debub" => $status
+								"debub" => $status 
 						) );
 					}
 				} else {
 					echo json_encode ( array (
 							"status" => "error",
 							"msg" => "Error al insertar incripcion nueva, dorsal repetido",
-							"debub" => $status
+							"debub" => $status 
 					) );
 				}
 			} else {
 				echo json_encode ( array (
 						"status" => "error",
-						"msg" => "Error algún dato está vacío"
+						"msg" => "Error algún dato está vacío" 
 				) );
 			}
 		} else {
 			echo json_encode ( array (
 					"status" => "error",
-					"msg" => "Error no han llegado los datos"
+					"msg" => "Error no han llegado los datos" 
 			) );
 		}
 	}
@@ -108,13 +105,13 @@ class inscripcion extends CI_Controller {
 		return $deportistas;
 	}
 	public function listar() {
-		$campos = [
+		$campos = [ 
 				"club",
 				"categoria",
 				"especialidad",
 				"competicion",
 				"dorsal",
-				"ownDeportistaList"
+				"ownDeportistaList" 
 		];
 		$res = [ ];
 		$inscripciones = $this->adaptador_model->getAll ( "inscripcion" );
@@ -132,42 +129,47 @@ class inscripcion extends CI_Controller {
 			echo json_encode ( array (
 					"status" => "ok",
 					"data" => $res,
-					"msg" => "Datos cargados"
+					"msg" => "Datos cargados" 
 			) );
 		} else {
 			echo json_encode ( array (
 					"status" => "error",
-					"msg" => "error en BD"
+					"msg" => "error en BD" 
 			) );
 		}
 	}
 	public function borrar() {
-		if (isset ( $_REQUEST ["id"] )) {
-			if (! empty ( $_REQUEST ["id"] )) {
+		if (isset ( $_REQUEST ["inscSel"] )) {
+			if (! empty ( $_REQUEST ["inscSel"] )) {
 				
-				$status = $this->adaptador_model->delete ( "inscripcion", $this->utilphp->sanear ( $_REQUEST ["id"] ) );
+				$idInscripciones = $_REQUEST['inscSel'];
 				
-				if ($status) {
-					echo json_encode ( array (
-							"status" => "ok",
-							"msg" => "datos eliminados"
-					) );
-				} else {
-					echo json_encode ( array (
-							"status" => "error",
-							"msg" => "Error al borrar una inscripcion "
-					) );
+				foreach ( $idInscripciones as $ins ) {
+					
+					$status = $this->adaptador_model->delete ( "inscripcion", $this->utilphp->sanear ( $ins ) );
+					
+					if ($status) {
+						echo json_encode ( array (
+								"status" => "ok",
+								"msg" => "datos eliminados" 
+						) );
+					} else {
+						echo json_encode ( array (
+								"status" => "error",
+								"msg" => "Error al borrar una inscripcion " 
+						) );
+					}
 				}
 			} else {
 				echo json_encode ( array (
 						"status" => "error",
-						"msg" => "Error algún dato está vacío"
+						"msg" => "Error algún dato está vacío" 
 				) );
 			}
 		} else {
 			echo json_encode ( array (
 					"status" => "error",
-					"msg" => "Error no han llegado los datos"
+					"msg" => "Error no han llegado los datos al borrar" 
 			) );
 		}
 	}

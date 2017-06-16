@@ -34,7 +34,8 @@ class JwtController extends CI_Controller{
 			$this->datos = [];
 			$this->datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
 			$this->datos ['destino'] = 'Pantalla de Login';
-			$this->template->cargarVista ( 'errors/errorLogin', $datos );
+			$this->zona = 'errors/errorLogin';
+			$this->rol='';
 		}
 		else if ($this->rol ==1){
 			$this->zona = "enlace/".$rutaEnlace;
@@ -54,7 +55,10 @@ class JwtController extends CI_Controller{
 			return true;
 		}
 		else {
-			$this->template->cargarVista ('login/loginGet');
+			$datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
+			$datos ['destino'] = 'Pantalla de Login';
+			$zona = 'errors/errorLogin';
+			$this->template->cargarVista ($zona, $datos);
 		}
 	}
 	

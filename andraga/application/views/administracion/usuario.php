@@ -33,7 +33,7 @@
                     <tr><th>Login</th><th>Rol</th><th></th><th></th></tr>
                     <tr  ng-repeat="usuario in usuarios">
                         <td>{{usuario.login}}</td><td ng-switch="usuario.rol">                        
-                        <span ng-switch-when="1" selected="selected">Enlace</span>
+                        <span ng-switch-when="1">Enlace</span>
                         <span ng-switch-when="2">Juez</span>
                         <span ng-switch-when="3">Administrador</span>
                         </td>

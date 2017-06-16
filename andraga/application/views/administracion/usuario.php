@@ -11,15 +11,20 @@
                 <div id="usuarioN" class="collapse well">
                     <div class="form-group">
                         <label>Login</label>
-                        <input type="text" ng-model="login">
+                        <input type="text" ng-model="login" required="required">
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="text" ng-model="password">
+                        <input type="text" ng-model="password" required="required">
                     </div>
                     <div class="form-group">
                         <label>Rol</label>
-                        <input type="text" ng-model="rol">
+                        <select name="rol" ng-model="rol">
+                        <option value=1>Enlace</option>
+                        <option value=2>Juez</option>
+                        <option value=3>Administrador</option>
+                        </select>
+                        <!-- <input type="text" ng-model="rol">-->
                     </div>
                     <button type="button" ng-click="insertar();" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span></button>
                 </div>
@@ -28,7 +33,7 @@
                     <tr><th>Login</th><th>Rol</th><th></th><th></th></tr>
                     <tr  ng-repeat="usuario in usuarios">
                         <td>{{usuario.login}}</td><td ng-switch="usuario.rol">                        
-                        <span ng-switch-when="1">Enlace</span>
+                        <span ng-switch-when="1" selected="selected">Enlace</span>
                         <span ng-switch-when="2">Juez</span>
                         <span ng-switch-when="3">Administrador</span>
                         </td>
@@ -51,7 +56,12 @@
                     </div>
                     <div class="form-group">
                         <label>Rol</label>
-                        <input type="text" ng-model="rolE">
+                        <select name="rolE" ng-model="rolE">
+                        <option value=1>Enlace</option>
+                        <option value=2>Juez</option>
+                        <option value=3>Administrador</option>
+                        </select>
+                        <!--<input type="text" ng-model="rolE">-->
                     </div>
                     <button type="button" ng-click="modificar();" class="btn btn-info" data-toggle="collapse" data-target="#usuarioE">Modificar</button>
                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#usuarioE" >Cancelar</button>

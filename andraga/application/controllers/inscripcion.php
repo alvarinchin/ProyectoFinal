@@ -42,38 +42,7 @@ class inscripcion extends CI_Controller {
 							"debub" => $status 
 					) );
 					
-					try {
-						$this->load->model ( "rotacion_model" );
-						$numBeansRotacion = $this->adaptador_model->count ( "rotacion" );
-					} catch ( Exception $e ) {
-					}
 					
-					if ($numBeansRotacion != 0) {
-						$dorsalRot = $numBeansRotacion + 1;
-						$orden = $numBeansRotacion + 1;
-						$status = $this->rotacion_model->insert ( $categoria, $especialidad, $deportistas, $dorsalRot, $orden );
-					} else {
-						$this->load->model ( "rotacion_model" );
-						// $numBeansRotacion = $this->adaptador_model->count ( "rotacion" );
-						$dorsalRot = 1;
-						$orden = 1;
-						$status = $this->rotacion_model->insert ( $categoria, $especialidad, $deportistas, $dorsalRot, $orden );
-					}
-					
-					if ($status) {
-						echo json_encode ( array (
-								"status" => "ok",
-								"data" => $_REQUEST,
-								"msg" => "Inserción correcta",
-								"debub" => $status 
-						) );
-					} else {
-						echo json_encode ( array (
-								"status" => "error",
-								"msg" => "Error al insertar rotación nueva, nombre repetido",
-								"debub" => $status 
-						) );
-					}
 				} else {
 					echo json_encode ( array (
 							"status" => "error",

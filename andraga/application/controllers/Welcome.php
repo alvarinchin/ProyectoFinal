@@ -39,7 +39,7 @@ class Welcome extends JwtController {
 		}*/
 		
 		if (isset ($_COOKIE['tkn'])){			
-			$this->redirigeTrasCheck('','gestor','welcome', 'gestor');
+			$this->redirigeTrasCheck('','gestor','welcome', 'pantalla');
 		}
 		else {
 			$this->template->cargarVista('login/loginGet');

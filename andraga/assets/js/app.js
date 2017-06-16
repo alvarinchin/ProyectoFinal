@@ -55,6 +55,9 @@ app.controller('clubCtrl', function($scope, $http, $window) {
 				function(response) {
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
+					if (response.data["status"] == "error") {
+						alert(response.data["msg"]);
+					}
 
 					$scope.nombre = "";
 					$scope.origen = "";
@@ -162,7 +165,9 @@ app.controller('categoriaCtrl', function($scope, $http) {
 				function(response) {
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
-
+					if (response.data["status"] == "error") {
+						alert(response.data["msg"]);
+					}
 					$scope.nombre = "";
 					$scope.autonom = "";
 					$scope.cargar();
@@ -264,7 +269,9 @@ app.controller('tipoCtrl', function($scope, $http) {
 				function(response) {
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
-
+					if (response.data["status"] == "error") {
+						alert(response.data["msg"]);
+					}
 					$scope.descripcion = "";
 
 					$scope.cargar();
@@ -365,7 +372,9 @@ app.controller('especCtrl', function($scope, $http) {
 				function(response) {
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
-
+					if (response.data["status"] == "error") {
+						alert(response.data["msg"]);
+					}
 					$scope.descripcion = "";
 					$scope.num = 0;
 
@@ -474,7 +483,9 @@ app.controller('usuarioCtrl', function($scope, $http, $window) {
 				function(response) {
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
-
+					if (response.data["status"] == "error") {
+						alert(response.data["msg"]);
+					}
 					$scope.login = "";
 					$scope.password = "";
 					$scope.rol = "";
@@ -597,7 +608,9 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 					console.log(response.data["data"]);
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
-
+					if (response.data["status"] == "error") {
+						alert(response.data["msg"]);
+					}
 					$scope.nombre = "";
 					$scope.ape1 = "";
 					$scope.ape2 = "";
@@ -669,111 +682,116 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 	}
 });
 
-app.controller('competicionCtrl', function($scope, $http, $window) {
-	$scope.filtrado = "";
-	$scope.competicion = {
-		"id" : 0,
-		"nombre" : "",
-		"fecha" : ""
-	}
-	$scope.competiciones = [];
-	$scope.nombreE = "";
-	$scope.fechaE = "";
-	$scope.idE = "";
+app.controller('competicionCtrl',
+		function($scope, $http, $window) {
+			$scope.filtrado = "";
+			$scope.competicion = {
+				"id" : 0,
+				"nombre" : "",
+				"fecha" : ""
+			}
+			$scope.competiciones = [];
+			$scope.nombreE = "";
+			$scope.fechaE = "";
+			$scope.idE = "";
 
-	$scope.nombre = "";
-	$scope.fecha = "";
+			$scope.nombre = "";
+			$scope.fecha = "";
 
-	$scope.cargar = function() {
-		$http.get(base_url + "/competicion/listar").then(
-				function(response) {
-					$scope.competiciones = [];
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
+			$scope.cargar = function() {
+				$http.get(base_url + "/competicion/listar").then(
+						function(response) {
+							$scope.competiciones = [];
+							console.log(response.data["status"] + " : "
+									+ response.data["msg"]);
 
-					for (x in response.data["data"]) {
-						$scope.competiciones.push(response.data["data"][x]);
+							for (x in response.data["data"]) {
+								$scope.competiciones
+										.push(response.data["data"][x]);
+							}
+
+						});
+			}
+
+			$scope.cargar();
+
+			$scope.insertar = function() {
+
+				config = {
+					method : "POST",
+					url : base_url + "/competicion/insertar",
+					params : {
+						nombre : $scope.nombre,
+						fecha : $scope.fecha
 					}
+				};
 
-				});
-	}
-
-	$scope.cargar();
-
-	$scope.insertar = function() {
-
-		config = {
-			method : "POST",
-			url : base_url + "/competicion/insertar",
-			params : {
-				nombre : $scope.nombre,
-				fecha : $scope.fecha
+				$http(config).then(
+						function(response) {
+							console.log(response.data["data"]);
+							console.log(response.data["status"] + " : "
+									+ response.data["msg"]);
+							if (response.data["status"] == "error") {
+								alert(response.data["msg"]);
+							}
+							$scope.nombre = "";
+							$scope.fecha = "";
+							$scope.cargar();
+						});
 			}
-		};
 
-		$http(config).then(
-				function(response) {
-					console.log(response.data["data"]);
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.nombre = "";
-					$scope.fecha = "";
-					$scope.cargar();
-				});
-	}
-
-	$scope.datos = function(usuario) {
-		$scope.nombreE = usuario.nombre;
-		$scope.fechaE = usuario.fecha;
-		$scope.idE = usuario.id;
-	}
-
-	$scope.modificar = function() {
-
-		config = {
-			method : "POST",
-			url : base_url + "/competicion/modificar",
-			params : {
-				nombre : $scope.nombreE,
-				fecha : $scope.fechaE,
-				id : $scope.idE
+			$scope.datos = function(usuario) {
+				$scope.nombreE = usuario.nombre;
+				$scope.fechaE = usuario.fecha;
+				$scope.idE = usuario.id;
 			}
-		};
 
-		$http(config).then(
-				function(response) {
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
+			$scope.modificar = function() {
 
-					$scope.nombreE = "";
-					$scope.fechaE = "";
-					$scope.idE = "";
-					$scope.cargar();
-				});
-	}
+				config = {
+					method : "POST",
+					url : base_url + "/competicion/modificar",
+					params : {
+						nombre : $scope.nombreE,
+						fecha : $scope.fechaE,
+						id : $scope.idE
+					}
+				};
 
-	$scope.borrar = function(competicion) {
-		if (confirm("¿Desea borrar la competición " + competicion.nombre + "?")) {
-			config = {
-				method : "POST",
-				url : base_url + "/competicion/borrar",
-				params : {
-					id : competicion.id
+				$http(config).then(
+						function(response) {
+							console.log(response.data["status"] + " : "
+									+ response.data["msg"]);
+
+							$scope.nombreE = "";
+							$scope.fechaE = "";
+							$scope.idE = "";
+							$scope.cargar();
+						});
+			}
+
+			$scope.borrar = function(competicion) {
+				if (confirm("¿Desea borrar la competición "
+						+ competicion.nombre + "?")) {
+					config = {
+						method : "POST",
+						url : base_url + "/competicion/borrar",
+						params : {
+							id : competicion.id
+						}
+					};
+
+					$http(config).then(
+							function(response) {
+
+								console.log(response.data["status"] + " : "
+										+ response.data["msg"]);
+
+								$scope.cargar();
+							});
 				}
-			};
-
-			$http(config).then(
-					function(response) {
-
-						console.log(response.data["status"] + " : "
-								+ response.data["msg"]);
-
-						$scope.cargar();
-					});
-		}
-	}
-});
+			}
+		});
 
 /*
  * app.config(function($mdDateLocaleProvider) { // Example of a French

@@ -379,7 +379,7 @@
 							ng-model="ape2E" >
 					</div>
 					<div class="form-group">
-						<label>Fecha de nacimiento: </label> <input type="date"
+						<label>Fecha de nacimiento: </label> <input type="text"
 							ng-model="fechaE" id="fechaNac" >
 					</div>
 					<div class="form-group">

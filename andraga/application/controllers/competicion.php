@@ -36,11 +36,16 @@ class Competicion extends CI_Controller {
 							"msg" => "Error al insertar competicion nueva, nombre repetido" 
 					) );
 				}
+			} else {
+				echo json_encode ( array (
+						"status" => "error",
+						"msg" => "Debes rellenar todos los campos" 
+				) );
 			}
 		} else {
 			echo json_encode ( array (
 					"status" => "error",
-					"msg" => "Error no han llegado los datos" 
+					"msg" => "Debes rellenar todos los campos" 
 			) );
 		}
 	}

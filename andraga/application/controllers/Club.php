@@ -12,7 +12,9 @@ class Club extends CI_Controller {
 				$campos ["origen"] = $this->utilphp->sanear ( $_REQUEST ["origen"] );
 				$campos ["comunidad"] = $this->utilphp->sanear ( $_REQUEST ["comunidad"] );
 				
-				$status = $this->adaptador_model->insert ( "club", $campos, Array("nombre") );
+				$status = $this->adaptador_model->insert ( "club", $campos, Array (
+						"nombre" 
+				) );
 				
                               
 				if ($status) {
@@ -32,13 +34,13 @@ class Club extends CI_Controller {
 			} else {
 				echo json_encode ( array (
 						"status" => "error",
-						"msg" => "Error algún dato está vacío" 
+						"msg" => "Debes rellenar todos los campos" 
 				) );
 			}
 		} else {
 			echo json_encode ( array (
 					"status" => "error",
-					"msg" => "Error no han llegado los datos" 
+					"msg" => "Debes rellenar los campos" 
 			) );
 		}
 	}

@@ -45,7 +45,7 @@ class Deportista extends CI_Controller {
 			} else {
 				echo json_encode ( array (
 						"status" => "error",
-						"msg" => "Error no han llegado los datos" 
+						"msg" => "Debes rellenar todos los campos" 
 				) );
 			}
 		}

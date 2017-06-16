@@ -29,13 +29,13 @@ class Categoria extends CI_Controller{
             if($status){
                 echo json_encode(array("status"=>"ok","data"=>$_REQUEST,"msg"=>"Inserción correcta"));
                 }else{
-                echo json_encode(array("status"=>"error","msg"=>"Error al insertar club nuevo, nombre repetido"));
+                echo json_encode(array("status"=>"error","msg"=>"Error al insertar categoría nueva, nombre repetido"));
             }
        } else {
-             echo json_encode(array("status"=>"error","msg"=>"Error algún dato está vacío"));
+             echo json_encode(array("status"=>"error","msg"=>"Debes rellenar todos los campos"));
          }
        }else{
-           echo json_encode(array("status"=>"error","msg"=>"Error no han llegado los datos"));
+           echo json_encode(array("status"=>"error","msg"=>"Debes rellenar los campos"));
        }
      }
      

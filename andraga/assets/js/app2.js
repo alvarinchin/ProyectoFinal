@@ -121,6 +121,42 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 		})
 
 	}
+	
+	$scope.crearRotaciones = function(id) {
+		console.log(id);
+		var config = {
+			url : base_url + "/rotacion/insertar",
+			method : "post",
+			params : {
+				id : id
+			}
+		}
+		$http(config).then(function(response) {
+			console.log(response.data["msg"]);
+			$scope.cargar();
+			$scope.cargarInscripciones();
+		})
+
+	}
+
+	$scope.rotacionesSeleccionados = function() {
+		var checks = document.getElementsByName("inscripcion");
+		var selects = [];
+		for (elem in checks) {
+			// console.log(checks[elem]);
+			// console.log(document.myForm[elem].innerHTML);
+			if (checks[elem].checked == true) {
+				selects.push(checks[elem].value);
+
+			}
+		}
+
+		for (id in selects) {
+			// console.log("borrado "+selects[id])
+			$scope.crearRotaciones(selects[id]);
+		}
+
+	}
 
 	$scope.borrarSeleccionados = function() {
 		var checks = document.getElementsByName("inscripcion");
@@ -148,20 +184,6 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 });
 
 app.controller('rotacionCtrl', function($scope, $http) {
-	$scope.filtrado = "";
-	$scope.rotacion = {
-		"id" : 0,
-		"categoria" : "",
-		"especialidad" : "",
-		"dorsal" : ""
-	}
-	$scope.rotaciones = [];
-	$scope.categoriaE = "";
-	$scope.especialidadE = "";
-	$scope.idE = "";
-
-	$scope.categoria = "";
-	$scope.especialidad = "";
 
 	$scope.cargar = function() {
 		$http.get(base_url + "/rotacion/listar").then(
@@ -202,36 +224,6 @@ app.controller('rotacionCtrl', function($scope, $http) {
 				});
 	}
 
-	$scope.datos = function(usuario) {
-		$scope.categoriaE = usuario.categoria;
-		$scope.especialidadE = usuario.especialidad;
-		$scope.idE = usuario.id;
-	}
-
-	$scope.modificar = function() {
-		
-		config = {
-			method : "POST",
-			url : base_url + "/rotacion/modificar",
-			params : {
-				categoria : $scope.categoriaE,
-				especialidad : $scope.especialidadE,
-				id : $scope.idE
-			}
-		};
-
-		$http(config).then(
-				function(response) {
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.categoriaE = "";
-					$scope.especialidadE = "";
-					$scope.idE = "";
-					$scope.cargar();
-				});
-	}
-
 	$scope.borrar = function(id) {
 		if (confirm("¿Desea borrar el elemento?")) {
 			console.log(id);
@@ -253,7 +245,6 @@ app.controller('rotacionCtrl', function($scope, $http) {
 					});
 
 		}
-		
-		
+
 	}
 });

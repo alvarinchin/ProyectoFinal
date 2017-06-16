@@ -21,6 +21,23 @@ class Welcome extends JwtController {
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
 	public function index(){
+		
+		$this->load->model ('login_model');
+		$adm = $this->login_model->getUsuarioPorLogin ("admin");
+		
+		if (!isset ($adm)){
+			$adm = R::dispense ('usuario');
+			$adm->login = "admin";
+			$adm->password = "admin";
+			$adm->rol = 3;
+			R::store($adm);
+			//echo ("Se ha creado un usuario administrador. Continúa la carga");
+		}
+		/*
+		else {
+			echo ("El usuario Administrador ya existe. Continúa la carga");
+		}*/
+		
 		if (isset ($_COOKIE['tkn'])){			
 			$this->redirigeTrasCheck('','gestor','welcome', 'gestor');
 		}

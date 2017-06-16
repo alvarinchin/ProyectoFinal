@@ -4,7 +4,8 @@ var app = angular.module('administracion', []);
 var url = (window.location.host + window.location.pathname).split("/").splice(
 		0, 3).join("/");
 var base_url = "http://" + url;
-// cada controller se encargará de gestionar uno de los cuadros de administracion
+// cada controller se encargará de gestionar uno de los cuadros de
+// administracion
 app.controller('mainCtrl', function($scope) {
 
 });
@@ -95,23 +96,24 @@ app.controller('clubCtrl', function($scope, $http, $window) {
 	}
 
 	$scope.borrar = function(club) {
+		if (confirm("¿Desea borrar el club " + club.nombre + "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/club/borrar",
+				params : {
+					id : club.id
+				}
+			};
 
-		config = {
-			method : "POST",
-			url : base_url + "/club/borrar",
-			params : {
-				id : club.id
-			}
-		};
+			$http(config).then(
+					function(response) {
 
-		$http(config).then(
-				function(response) {
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+		}
 	}
 
 });
@@ -201,23 +203,24 @@ app.controller('categoriaCtrl', function($scope, $http) {
 	}
 
 	$scope.borrar = function(categoria) {
+		if (confirm("¿Desea borrar la categoría " + categoria.nombre + "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/categoria/borrar",
+				params : {
+					id : categoria.id
+				}
+			};
 
-		config = {
-			method : "POST",
-			url : base_url + "/categoria/borrar",
-			params : {
-				id : categoria.id
-			}
-		};
+			$http(config).then(
+					function(response) {
 
-		$http(config).then(
-				function(response) {
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+		}
 	}
 
 });
@@ -298,23 +301,25 @@ app.controller('tipoCtrl', function($scope, $http) {
 	}
 
 	$scope.borrar = function(tipo) {
+		if (confirm("¿Desea borrar el tipo de ejercicio " + tipo.descripcion
+				+ "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/tipoejercicio/borrar",
+				params : {
+					id : tipo.id
+				}
+			};
 
-		config = {
-			method : "POST",
-			url : base_url + "/tipoejercicio/borrar",
-			params : {
-				id : tipo.id
-			}
-		};
+			$http(config).then(
+					function(response) {
 
-		$http(config).then(
-				function(response) {
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+		}
 	}
 
 });
@@ -401,23 +406,25 @@ app.controller('especCtrl', function($scope, $http) {
 	}
 
 	$scope.borrar = function(especialidad) {
+		if (confirm("¿Desea borrar la especialidad " + especialidad.descripcion
+				+ "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/especialidad/borrar",
+				params : {
+					id : especialidad.id
+				}
+			};
 
-		config = {
-			method : "POST",
-			url : base_url + "/especialidad/borrar",
-			params : {
-				id : especialidad.id
-			}
-		};
+			$http(config).then(
+					function(response) {
 
-		$http(config).then(
-				function(response) {
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+		}
 	}
 
 });
@@ -509,23 +516,24 @@ app.controller('usuarioCtrl', function($scope, $http, $window) {
 	}
 
 	$scope.borrar = function(usuario) {
+		if (confirm("¿Desea borrar el usuario " + usuario.login + "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/Usuario/borrarPost",
+				params : {
+					id : usuario.id
+				}
+			};
 
-		config = {
-			method : "POST",
-			url : base_url + "/Usuario/borrarPost",
-			params : {
-				id : usuario.id
-			}
-		};
+			$http(config).then(
+					function(response) {
 
-		$http(config).then(
-				function(response) {
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+		}
 	}
 
 });
@@ -639,23 +647,25 @@ app.controller('deportistaCtrl', function($scope, $http, $window) {
 	}
 
 	$scope.borrar = function(deportista) {
+		if (confirm("¿Desea borrar el deportista " + deportista.nombre + " "
+				+ deportista.ape1 + " " + deportista.ape2 + "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/deportista/borrar",
+				params : {
+					id : deportista.id
+				}
+			};
 
-		config = {
-			method : "POST",
-			url : base_url + "/deportista/borrar",
-			params : {
-				id : deportista.id
-			}
-		};
+			$http(config).then(
+					function(response) {
 
-		$http(config).then(
-				function(response) {
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+		}
 	}
 });
 
@@ -744,68 +754,59 @@ app.controller('competicionCtrl', function($scope, $http, $window) {
 	}
 
 	$scope.borrar = function(competicion) {
+		if (confirm("¿Desea borrar la competición " + competicion.nombre + "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/competicion/borrar",
+				params : {
+					id : competicion.id
+				}
+			};
 
-		config = {
-			method : "POST",
-			url : base_url + "/competicion/borrar",
-			params : {
-				id : competicion.id
-			}
-		};
+			$http(config).then(
+					function(response) {
 
-		$http(config).then(
-				function(response) {
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+		}
 	}
 });
 
-
 /*
-app.config(function($mdDateLocaleProvider) {
+ * app.config(function($mdDateLocaleProvider) { // Example of a French
+ * localization. $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo',
+ * 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
+ * 'Noviembre', 'Diciembre']; $mdDateLocaleProvider.shortMonths = ['En', 'Feb',
+ * 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ag', 'Sept', 'Oct', 'Nov', 'Dic'];
+ * $mdDateLocaleProvider.days = ['Lunes', 'Martes', 'Miércoles', 'Jueves',
+ * 'Viernes', 'Sábado', 'Domingo']; $mdDateLocaleProvider.shortDays = ['L', 'M',
+ * 'X', 'J', 'V', 'S', 'D']; // Can change week display to start on Monday.
+ * $mdDateLocaleProvider.firstDayOfWeek = 0; // Optional. //
+ * $mdDateLocaleProvider.dates = [1, 2, 3, 4, 5, 6, ...]; // Example uses
+ * moment.js to parse and format dates. /* $mdDateLocaleProvider.parseDate =
+ * function(dateString) { var m = moment(dateString, 'L', true); return
+ * m.isValid() ? m.toDate() : new Date(NaN); };
+ * 
+ * $mdDateLocaleProvider.formatDate = function(date) { var m = moment(date);
+ * return m.isValid() ? m.format('L') : ''; };
+ * 
+ * $mdDateLocaleProvider.monthHeaderFormatter = function(date) { return
+ * myShortMonths[date.getMonth()] + ' ' + date.getFullYear(); };
+ */
 
-    // Example of a French localization.
-    $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    $mdDateLocaleProvider.shortMonths = ['En', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ag', 'Sept', 'Oct', 'Nov', 'Dic'];
-    $mdDateLocaleProvider.days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-    $mdDateLocaleProvider.shortDays = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
-
-    // Can change week display to start on Monday.
-    $mdDateLocaleProvider.firstDayOfWeek = 0;
-
-    // Optional.
-   // $mdDateLocaleProvider.dates = [1, 2, 3, 4, 5, 6, ...];
-
-    // Example uses moment.js to parse and format dates.
-   /* $mdDateLocaleProvider.parseDate = function(dateString) {
-      var m = moment(dateString, 'L', true);
-      return m.isValid() ? m.toDate() : new Date(NaN);
-    };
-
-    $mdDateLocaleProvider.formatDate = function(date) {
-      var m = moment(date);
-      return m.isValid() ? m.format('L') : '';
-    };
-
-    $mdDateLocaleProvider.monthHeaderFormatter = function(date) {
-      return myShortMonths[date.getMonth()] + ' ' + date.getFullYear();
-    };*/
-
-    // In addition to date display, date components also need localized messages
-    // for aria-labels for screen-reader users.
-
-   /* $mdDateLocaleProvider.weekNumberFormatter = function(weekNumber) {
-      return 'Semaine ' + weekNumber;
-    };*/
+// In addition to date display, date components also need localized messages
+// for aria-labels for screen-reader users.
 /*
-    $mdDateLocaleProvider.msgCalendar = 'Calendario';
-    $mdDateLocaleProvider.msgOpenCalendar = 'Abrir el calendario';
-
-    // You can also set when your calendar begins and ends.
-    $mdDateLocaleProvider.firstRenderableDate = new Date(1776, 6, 4);
-    $mdDateLocaleProvider.lastRenderableDate = new Date(2012, 11, 21);
-});*/
+ * $mdDateLocaleProvider.weekNumberFormatter = function(weekNumber) { return
+ * 'Semaine ' + weekNumber; };
+ */
+/*
+ * $mdDateLocaleProvider.msgCalendar = 'Calendario';
+ * $mdDateLocaleProvider.msgOpenCalendar = 'Abrir el calendario'; // You can
+ * also set when your calendar begins and ends.
+ * $mdDateLocaleProvider.firstRenderableDate = new Date(1776, 6, 4);
+ * $mdDateLocaleProvider.lastRenderableDate = new Date(2012, 11, 21); });
+ */

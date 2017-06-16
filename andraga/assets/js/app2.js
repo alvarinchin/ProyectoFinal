@@ -91,58 +91,57 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 				});
 
 	}
-        $scope.borrar=function(id){
-            var config={
-                url:base_url+"/rotacion/borrar",
-                method:"post",
-                params:{id:id}
-            }
-            $http(config).then(function(response){
-                $scope.cargar();
-            })
-            
-        }
-        
-         $scope.borrarInscripciones=function(id){
-             console.log(id);
-            var config={
-                url:base_url+"/inscripcion/borrar",
-                method:"post",
-                params:{inscSel:id}
-            }
-            $http(config).then(function(response){
-                console.log(response.data["msg"]);
-                $scope.cargar();
-                 $scope.cargarInscripciones();
-            })
-            
-        }   
+	$scope.borrar = function(id) {
+		var config = {
+			url : base_url + "/rotacion/borrar",
+			method : "post",
+			params : {
+				id : id
+			}
+		}
+		$http(config).then(function(response) {
+			$scope.cargar();
+		})
 
-        
+	}
+
+	$scope.borrarInscripciones = function(id) {
+		console.log(id);
+		var config = {
+			url : base_url + "/inscripcion/borrar",
+			method : "post",
+			params : {
+				inscSel : id
+			}
+		}
+		$http(config).then(function(response) {
+			console.log(response.data["msg"]);
+			$scope.cargar();
+			$scope.cargarInscripciones();
+		})
+
+	}
 
 	$scope.borrarSeleccionados = function() {
 		var checks = document.getElementsByName("inscripcion");
-                var selects=[];
+		var selects = [];
 		for (elem in checks) {
-                    //console.log(checks[elem]);
-                    //console.log(document.myForm[elem].innerHTML);
+			// console.log(checks[elem]);
+			// console.log(document.myForm[elem].innerHTML);
 			if (checks[elem].checked == true) {
 				selects.push(checks[elem].value);
-                               
-                                
+
 			}
 		}
-                
-               if(confirm("¿Desea borrar "+selects.length+" elemento(s)?")){
-                  for(id in selects){
-                      //console.log("borrado "+selects[id])
-                       $scope.borrarInscripciones(selects[id]);
-                  }
-               
-               }
-            }
-            
-           
+
+		if (confirm("¿Desea borrar " + selects.length + " elemento(s)?")) {
+			for (id in selects) {
+				// console.log("borrado "+selects[id])
+				$scope.borrarInscripciones(selects[id]);
+			}
+
+		}
+	}
 
 	$scope.cargarInscripciones();
 	$scope.cargar();
@@ -210,7 +209,7 @@ app.controller('rotacionCtrl', function($scope, $http) {
 	}
 
 	$scope.modificar = function() {
-
+		
 		config = {
 			method : "POST",
 			url : base_url + "/rotacion/modificar",
@@ -234,22 +233,27 @@ app.controller('rotacionCtrl', function($scope, $http) {
 	}
 
 	$scope.borrar = function(id) {
-console.log(id);
-		config = {
-			method : "POST",
-			url : base_url + "/rotacion/borrar",
-			params : {
-				id : id
-			}
-		};
+		if (confirm("¿Desea borrar el elemento?")) {
+			console.log(id);
+			config = {
+				method : "POST",
+				url : base_url + "/rotacion/borrar",
+				params : {
+					id : id
+				}
+			};
 
-		$http(config).then(
-				function(response) {
+			$http(config).then(
+					function(response) {
 
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
 
-					$scope.cargar();
-				});
+						$scope.cargar();
+					});
+
+		}
+		
+		
 	}
 });

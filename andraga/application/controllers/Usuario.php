@@ -18,7 +18,7 @@ class Usuario extends JwtController{
 			 */
 		
 		$this->redirigeTrasCheck('','gestor','usuario','gestor');
-			
+					
 			/*session_start ();
 			
 			if (isset ( $_SESSION ['tkn'] )) {
@@ -48,7 +48,7 @@ class Usuario extends JwtController{
 		
 	
 	public function crearPost(){
-						
+		if ($this->consultarPermisos()){				
 		if (isset ($_REQUEST['login']) && isset($_REQUEST['password']) && isset ($_REQUEST['rol'])){
 			
 			$login = $_REQUEST['login'];
@@ -80,22 +80,21 @@ class Usuario extends JwtController{
 			echo json_encode(array("status"=>"error","msg"=>"Error no han llegado los datos"));
 		}		
 	}
-	
+	}
 	public function listar(){
-		
+		if ($this->consultarPermisos()){
 		$usuarios=$this->adaptador_model->getAll("usuario");
 		if($usuarios!=null){			
 			echo json_encode(array("status"=>"ok","data"=>$usuarios,"msg"=>"Datos cargados"));
 		}else{
 			echo json_encode(array("status"=>"error","msg"=>"error al listar"));
 		}
+		}
 	}
 	
-	public function borrarGet(){
-		$this->template->cargarVista("usuario/borrarGet");
-	}
 	
 	public function borrarPost (){
+		if ($this->consultarPermisos()){
 		if ( isset($_REQUEST["id"])){
 			if ( !empty($_REQUEST["id"])){
 				
@@ -113,12 +112,14 @@ class Usuario extends JwtController{
 			echo json_encode(array("status"=>"error","msg"=>"Error no han llegado los datos"));
 		}
 	}
+	}
 	
 	public function modificarGet(){
 		$this->template->cargarVista("usuario/modificarGet");
 	}
 	
 	public function modificarPost(){
+		if ($this->consultarPermisos()){
 		if ( isset ($_REQUEST['login']) && isset($_REQUEST['password']) && isset ($_REQUEST['rol']) && isset ($_REQUEST['id'])){
 			
 			$login = ($_REQUEST['login']);
@@ -147,6 +148,7 @@ class Usuario extends JwtController{
 		}else{
 			echo json_encode(array("status"=>"error","msg"=>"Error no han llegado los datos"));
 		}
+	}
 	}
 }
 

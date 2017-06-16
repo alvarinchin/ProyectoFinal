@@ -116,7 +116,9 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
                  $scope.cargarInscripciones();
             })
             
-        }
+        }   
+
+        
 
 	$scope.borrarSeleccionados = function() {
 		var checks = document.getElementsByName("inscripcion");

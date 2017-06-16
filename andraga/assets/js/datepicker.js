@@ -1,4 +1,4 @@
-angular
+/*angular
 		.module("jkuri.datepicker", [])
 		.directive(
 				"ngDatepicker",
@@ -139,4 +139,4 @@ angular
 								},
 								template : '<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input" placeholder="{{ placeholder }}"></div><div class="ng-datepicker" ng-show="calendarOpened">  <div class="controls">    <div class="left">      <i class="fa fa-backward prev-year-btn" ng-click="prevYear()"></i>      <i class="fa fa-angle-left prev-month-btn" ng-click="prevMonth()"></i>    </div>    <span class="date" ng-bind="dateValue"></span>    <div class="right">      <i class="fa fa-angle-right next-month-btn" ng-click="nextMonth()"></i>      <i class="fa fa-forward next-year-btn" ng-click="nextYear()"></i>    </div>  </div>  <div class="day-names">    <span ng-repeat="dn in dayNames">      <span>{{ dn }}</span>    </span>  </div>  <div class="calendar">    <span ng-repeat="d in days">      <span class="day" ng-click="selectDate($event, d)" ng-class="{disabled: !d.enabled}">{{ d.day }}</span>    </span>  </div></div>'
 							}
-						} ]);
+						} ]);*/

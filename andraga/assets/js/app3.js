@@ -11,15 +11,81 @@ app.controller('mainCtrl', function($scope) {
         
     }
 });
-app.controller('pantallaCtrl', function($scope, $http) {
-     console.log(base_url+"/rotacion/listar");
+app.controller('pantallaCtrl', function($scope, $http ,$interval) {
+     //console.log(base_url+"/rotacion/listar");
+    $scope.longitud=0;
+           
+   
+        
+    
+    
     $scope.cargar = function() {
         
         $http.get(base_url+"/rotacion/listar").then(function(response){
-            console.log(response);
-            $scope.rotaciones= response.data["data"];
-        })
+            
+             if( $scope.longitud==0){
+                 $scope.rotaciones= response.data["data"];
+                 $scope.longitud = response.data["size"];
+                 $scope.nueva=response.data["data"][(Object.keys(response.data["data"]).length)-1];
+             }
+             
+             //nueva entrada
+            else if( $scope.longitud<response.data["size"]){
+                $scope.rotaciones= response.data["data"];
+                 $scope.longitud = response.data["size"];
+                 $scope.nueva=response.data["data"][(Object.keys(response.data["data"]).length)-1];
+                $scope.mostrarPuntuacion();
+                
+                
+                
+            } else if( $scope.longitud>response.data["size"]){
+                $scope.rotaciones= response.data["data"];
+                 $scope.longitud = response.data["size"];
+                 
+            }
+          
+        });
         
     }
+    
+        $scope.mostrarPuntuacion=function(){
+        $( "#dialog" ).dialog( "open" );
+        puntuacion= $interval(function(){
+           $( "#dialog" ).dialog( "close" );
+        },5000,1);
+        
+        }
+
+    
+    
+    marcador=$interval(function(){
+        $scope.cargar();
+        
+    },1000);
     $scope.cargar();
+    
+    
+
+    
+    
+    
+    
 });
+   $( function() {
+                $( "#dialog" ).dialog({
+                  autoOpen: false,
+                  show: {
+                    effect: "blind",
+                    duration: 1000
+                  },
+                  hide: {
+                    effect: "explode",
+                    duration: 1000
+                  },
+                    height: 600,
+                    width: 800,
+                    dialogClass: "no-close"
+                   
+                });
+
+              } );

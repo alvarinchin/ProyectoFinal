@@ -14,6 +14,8 @@
 	src="<?=base_url()?>/assets/jqueryui/jquery-ui.min.js"></script>
 <link href="<?=base_url()?>/assets/jqueryui/jquery-ui.min.css"
 	rel="stylesheet">
+<link href="<?=base_url()?>/assets/css/custom.css"
+	rel="stylesheet">
 
 <title>Gestor Competiciones</title>
 </head>

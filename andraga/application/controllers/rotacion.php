@@ -30,6 +30,7 @@ class rotacion extends JwtController {
 		$res = [ ];
 		$rotaciones = $this->adaptador_model->getAll ( "rotacion" );
 		foreach ( $rotaciones as $k => $rotacion ) {
+                    
 			$fila = [ ];
 			$ins = $this->adaptador_model->getOne ( "rotacion", $rotacion->id );
 			foreach ( $campos as $ke => $campo ) {
@@ -38,13 +39,15 @@ class rotacion extends JwtController {
                         $fila ["id"]=$rotacion->id;
 			$res [$k] = $fila;
 		}
-		
+          
+	
 		if ($res != null) {
 			// deben devolverse en un echo porque son cadenas de texto
 			echo json_encode ( array (
 					"status" => "ok",
 					"data" => $res,
-					"msg" => "Datos cargados"
+					"msg" => "Datos cargados",
+                                        "size" => sizeof($rotaciones)
 			) );
 		} else {
 			echo json_encode ( array (

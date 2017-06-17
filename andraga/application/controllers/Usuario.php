@@ -17,7 +17,7 @@ class Usuario extends JwtController{
 			 * 3 -> administrador
 			 */
 		
-		$this->redirigeTrasCheck('','gestor','usuario','gestor');
+		$this->redirigeTrasCheck('','gestor','usuario', 'welcome');
 					
 			/*session_start ();
 			

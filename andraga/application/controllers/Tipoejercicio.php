@@ -57,7 +57,7 @@ class Tipoejercicio extends JwtController {
 		}
 	}
 	public function listar() {
-		if ($this->consultarPermisosAdmin()) {
+		if ($this->consultarListar()) {
 			$clubs = $this->adaptador_model->getAll ( "tipoejercicio" );
 			if ($clubs != null) {
 				// deben devolverse en un echo porque son cadenas de texto

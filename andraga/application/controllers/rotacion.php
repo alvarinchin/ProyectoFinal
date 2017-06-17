@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 require_once 'JwtController.php';
 require_once 'vendor/autoload.php';

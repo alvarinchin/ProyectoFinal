@@ -8,13 +8,14 @@ class inscripcion extends CI_Controller {
 	}
 	public function insertar() {
 		if (isset ( $_REQUEST ["idClub"] )) {
-			if (! empty ( $_REQUEST ["idClub"] ) && ! empty ( $_REQUEST ["idDeportistas"] ) && ! empty ( $_REQUEST ["idCompeticion"] ) && ! empty ( $_REQUEST ["idCategoria"] ) && ! empty ( $_REQUEST ["idEspecialidad"] )) {
+			if (! empty ( $_REQUEST ["idClub"] ) && ! empty ( $_REQUEST ["idDeportistas"] ) && ! empty ( $_REQUEST ["idCompeticion"] ) && ! empty ( $_REQUEST ["idCategoria"] ) && ! empty ( $_REQUEST ["idEspecialidad"] )&& ! empty ( $_REQUEST ["idTipoejErcicio"] )) {
 				
 				$club = $this->adaptador_model->getOne ( "club", $this->utilphp->sanear ( $_REQUEST ["idClub"] ) );
 				$competicion = $this->adaptador_model->getOne ( "competicion", $this->utilphp->sanear ( $_REQUEST ["idCompeticion"] ) );
 				$especialidad = $this->adaptador_model->getOne ( "especialidad", $this->utilphp->sanear ( $_REQUEST ["idEspecialidad"] ) );
 				$categoria = $this->adaptador_model->getOne ( "categoria", $this->utilphp->sanear ( $_REQUEST ["idCategoria"] ) );
-				// $campos ["dorsal"]= strtoupper(substr($campos["Club"]["nombre"],0,2)).rand(1, 90);
+				$tipoejercicio = $this->adaptador_model->getOne ( "tipoejercicio", $this->utilphp->sanear ( $_REQUEST ["idTipoejErcicio"] ) );
+                                // $campos ["dorsal"]= strtoupper(substr($campos["Club"]["nombre"],0,2)).rand(1, 90);
 				// $dorsal = $this->utilphp->sanear ( $_REQUEST ["dorsal"] );
 				$deportistas = $this->cargarDeportistas ( $this->utilphp->sanear ( $_REQUEST ["idDeportistas"] ) );
 				// $deportistas=$this->adaptador_model->getOne("deportista",$this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
@@ -26,12 +27,12 @@ class inscripcion extends CI_Controller {
 				}
 				if ($numBeansInscripcion != 0) {
 					$dorsal = $numBeansInscripcion + 1;
-					$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $dorsal );
+					$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $dorsal,$tipoejercicio );
 				} else {
 					$this->load->model ( "inscripcion_model" );
 					// $numBeansInscripcion = $this->adaptador_model->count ( "inscripcion" );
 					$dorsal = 1;
-					$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $dorsal );
+					$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $dorsal,$tipoejercicio  );
 				}
 				
 				if ($status) {
@@ -80,7 +81,8 @@ class inscripcion extends CI_Controller {
 				"especialidad",
 				"competicion",
 				"dorsal",
-				"ownDeportistaList" 
+				"ownDeportistaList" ,
+                                "tipoejercicio"
 		];
 		$res = [ ];
 		$inscripciones = $this->adaptador_model->getAll ( "inscripcion" );

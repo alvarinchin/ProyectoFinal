@@ -27,25 +27,18 @@ class rotacion_model {
 	 * @param Array $campos
 	 * @return boolean
 	 */
-	public function insert($categoria,$especialidad,$deportistas,$dorsal) {
-		
+	public function insert($inscripcion,$orden,$puntuacion) {
+		if($puntuacion==null){
+                    $puntuacion=R::dispense("puntuacion");
+                            }
+            
 		$rotacion = R::dispense("rotacion");
-		
-		$rotacion->especialidad = $especialidad;
-		$rotacion ->categoria = $categoria;
-		$rotacion ->dorsal = $dorsal;
-		
-		foreach ($deportistas as $key => $value) {
-			$rotacion->ownDeportistaList[]=$value;
-		}
-		
-		
-		
-		
-		
+		$rotacion->inscripcion=$inscripcion;
+		$rotacion->orden=$orden;
+                $rotacion->puntuacion=$puntuacion;
 		
 		//  return $campos;
-		if (! $this->existe ( "dorsal", "rotacion","",$rotacion )) {
+		if (! $this->existe ( "inscripcion", "rotacion","",$rotacion )) {
 			R::store ( $rotacion );
 			return true;
 		} else {

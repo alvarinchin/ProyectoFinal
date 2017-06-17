@@ -27,7 +27,7 @@ class inscripcion_model {
 	 * @param Array $campos        	
 	 * @return boolean
 	 */
-	public function insert($club,$competicion,$categoria,$especialidad,$deportistas,$dorsal) {
+	public function insert($club,$competicion,$categoria,$especialidad,$deportistas,$dorsal,$tipoejercicio) {
 		
 		$inscripcion = R::dispense("inscripcion");
                 
@@ -36,7 +36,8 @@ class inscripcion_model {
                                 $inscripcion->especialidad = $especialidad;
                                 $inscripcion ->categoria = $categoria;
                                 $inscripcion ->dorsal = $dorsal;
-             
+                                $inscripcion ->tipoejercicio = $tipoejercicio;
+                                
                                 foreach ($deportistas as $key => $value) {
                                      $inscripcion->ownDeportistaList[]=$value;
                                 }

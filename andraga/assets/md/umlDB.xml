@@ -53,7 +53,7 @@ m2=1..1
 </panel_attributes><additional_attributes>90;70;90;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>400</y><w>330</w><h>170</h></coordinates><panel_attributes>lt=-
 m1=1..1
 m2=1..n
-</panel_attributes><additional_attributes>290;150;290;40;10;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1020</x><y>470</y><w>140</w><h>100</h></coordinates><panel_attributes>TipoEjercicio
+</panel_attributes><additional_attributes>290;150;290;40;10;40;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>470</x><y>1300</y><w>140</w><h>100</h></coordinates><panel_attributes>TipoEjercicio
 -
 _CodEjercicio_
 descripcionEjercicio</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>230</x><y>1200</y><w>110</w><h>100</h></coordinates><panel_attributes>Podium
@@ -73,6 +73,7 @@ m2=1..1
 _IdRotacion_
 _idCategoria_
 _IdEspecialidad_
+_idTipoEjercicio_
 orden</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>590</x><y>880</y><w>100</w><h>160</h></coordinates><panel_attributes>lt=-
 m1=1..1
 m2=1..n
@@ -113,8 +114,8 @@ penalización
 Total
 _tipoejercicio_id_</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>590</x><y>760</y><w>340</w><h>140</h></coordinates><panel_attributes>m1=1..1
 m2=1..1
-</panel_attributes><additional_attributes>10;110;110;110;110;10;320;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1020</x><y>530</y><w>220</w><h>300</h></coordinates><panel_attributes>m1=1..1
-m2=1..n</panel_attributes><additional_attributes>10;270;200;270;200;10;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>0</y><w>610</w><h>1280</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes>10;110;110;110;110;10;320;10</additional_attributes></element><element><id>Relation</id><coordinates><x>560</x><y>910</y><w>50</w><h>410</h></coordinates><panel_attributes>m1=1..1
+m2=1..n</panel_attributes><additional_attributes>10;10;10;390</additional_attributes></element><element><id>Relation</id><coordinates><x>0</x><y>0</y><w>610</w><h>1280</h></coordinates><panel_attributes>lt=-
 m1=1..n
 m2=1..1
 </panel_attributes><additional_attributes>230;1250;10;1250;10;10;570;10;570;43</additional_attributes></element><element><id>UMLClass</id><coordinates><x>510</x><y>43</y><w>110</w><h>90</h></coordinates><panel_attributes>Competición

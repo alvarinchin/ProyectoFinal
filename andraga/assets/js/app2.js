@@ -55,6 +55,13 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 					$scope.especialidades = response.data["data"];
 
 				});
+                                $http.get(base_url + "/tipoejercicio/listar").then(
+				function(response) {
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+					$scope.tiposejercicio = response.data["data"];
+
+				});
 	}
 	$scope.enviar = function() {
 
@@ -64,7 +71,8 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 			idCompeticion : $scope.competicion,
 			idEspecialidad : $scope.especialidad,
 			idCategoria : $scope.categoria,
-			dorsal : $scope.dorsal
+			dorsal : $scope.dorsal,
+                        idTipoejErcicio : $scope.tiposejercicio
 		};
 		var config = {
 			method : "POST",
@@ -248,3 +256,31 @@ app.controller('rotacionCtrl', function($scope, $http) {
 
 	}
 });
+
+
+
+app.controller('puntuacionCtrl', function($scope, $http ) {
+    
+    $scope.activo={};
+    
+    $scope.cargar = function() {
+        
+        $http.get(base_url+"/rotacion/listar").then(function(response){
+            
+            console.log(response.data["data"]);
+            $scope.rotaciones= response.data["data"];
+            
+            
+            
+        }); 
+    }
+        $scope.cargar();
+        
+        
+        $scope.cargarRotacion=function() {
+            
+        
+    }
+        
+        
+    });

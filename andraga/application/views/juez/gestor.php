@@ -6,7 +6,7 @@
 			<div ng-controller="inscripcionesCtrl">
 				<h3>Inscripciones</h3>
 				<!--        clubs-->
-
+<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
 						<label>Club</label> <select size="10" class="form-control"
@@ -17,7 +17,7 @@
 				</div>
 
 				<!--        deportistas-->
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<div class="form-group">
 						<label>Deportistas</label> <input class="form-control" type="text"
 							ng-model="filtro" placeholder="filtro"> <select size="8"
@@ -55,6 +55,17 @@
 						</select>
 					</div>
 				</div>
+                                <div class="col-md-2">
+					<div class="form-group">
+						<label>Tipo Ejercicio</label> <select size="10" class="form-control"
+							ng-model="tiposejercicio">
+							<option ng-repeat="obj in categorias" value="{{obj.id}}">{{obj.nombre}}</option>
+						</select>
+					</div>
+				</div>
+                                
+</div>
+                                <div class="row">
 				<!--        botones-->
 				<div class="col-md-1">
 					<div class="form-group">
@@ -63,7 +74,7 @@
 
 					</div>
 				</div>
-
+                                </div>
 				<!--        inscripciones-->
 
 				<div class="col-md-11">
@@ -77,6 +88,7 @@
 								<th>Especialidad</th>
 								<th>Categoria</th>
 								<th>Dorsal</th>
+                                                                <th>Tipo ejercicio</th>
 								<th>Seleccionar/Deseleccionar todo <input type="checkbox"
 									name="seleccionar" id="idSeleccion"></th>
 							</tr>
@@ -89,6 +101,7 @@
 									<td>{{insc.especialidad.descripcion}}</td>
 									<td>{{insc.categoria.nombre}}</td>
 									<td>{{insc.dorsal}}</td>
+                                                                        <td>{{insc.tipoejercicio.descripcion}}</td>
 									<td name="fila"><input type="checkbox" value="{{insc.id}}"
 										name="inscripcion"></td>
 								</tr>
@@ -133,6 +146,7 @@
 									<th>Especialidad</th>
 									<th>Categoria</th>
 									<th>Dorsal</th>
+                                                                        <th>Tipo de ejercicio</th>
 									<th>¿Borrar?</th>
 								</tr>
 							</thead>
@@ -144,6 +158,7 @@
 									<td>{{rot.especialidad.descripcion}}</td>
 									<td>{{rot.categoria.nombre}}</td>
 									<td>{{rot.dorsal}}</td>
+                                                                        <td>{{rot.tipoejercicio.descripcion}}</td>
 									<td><button class="btn btn-remove" ng-click="borrar(rot.id);">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button></td>

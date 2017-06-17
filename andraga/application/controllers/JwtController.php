@@ -28,7 +28,7 @@ class JwtController extends CI_Controller{
 
 		//echo ($this->rol);
 		$this->zona= '';
-		echo ($this->rol);
+		//echo ($this->rol);
 		if ($this->rol==-1){
 			$this->datos = [];
 			$this->datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';

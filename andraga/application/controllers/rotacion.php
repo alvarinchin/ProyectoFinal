@@ -6,19 +6,17 @@ class rotacion extends JwtController {
 	public function __construct() {
 		parent::__construct ();
 		$this->load->model ( "adaptador_model" );
+                $this->load->model ( "rotacion_model" );
 	}
 	public function insertar() {
 		if (isset ( $_REQUEST ["id"] )) {
 			if (! empty ( $_REQUEST ["id"] )) {
 				
 				$inscripcion = $this->adaptador_model->getOne ( "inscripcion", $this->utilphp->sanear ( $_REQUEST ["id"] ) );
-				
-				$idInscripcion = $this->utilphp->sanear ( $_REQUEST ["id"] );
-				$categoria = $inscripcion ['idCategoria'] ['nombre'];
-				$especialidad = $inscripcion ['idEspecialidad'] ['descripcion'];
-				$dorsal = $inscripcion ['dorsal'];
-				
-				$status = $this->rotacion_model->insert ( $categoria, $especialidad, $dorsal, $idInscripcion );
+				//que se cree y vaya creciendo 
+                                $orden=0;
+                                $puntuacion=null;
+				$status = $this->rotacion_model->insert ( $inscripcion , $orden, $puntuacion);
 				
 				if ($status) {
 					echo json_encode ( array (

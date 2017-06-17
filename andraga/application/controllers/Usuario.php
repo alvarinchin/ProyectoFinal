@@ -1,6 +1,7 @@
 <?php
 
-include_once 'Administracion.php';
+require_once 'vendor/autoload.php';
+require_once 'JwtController.php';
 
 class Usuario extends JwtController{
 	
@@ -48,7 +49,7 @@ class Usuario extends JwtController{
 		
 	
 	public function crearPost(){
-		if ($this->consultarPermisos()){				
+		if ($this->consultarPermisosAdmin()){				
 		if (isset ($_REQUEST['login']) && isset($_REQUEST['password']) && isset ($_REQUEST['rol'])){
 			
 			$login = $_REQUEST['login'];
@@ -82,7 +83,7 @@ class Usuario extends JwtController{
 	}
 	}
 	public function listar(){
-		if ($this->consultarPermisos()){
+		if ($this->consultarPermisosAdmin()){
 		$usuarios=$this->adaptador_model->getAll("usuario");
 		if($usuarios!=null){			
 			echo json_encode(array("status"=>"ok","data"=>$usuarios,"msg"=>"Datos cargados"));
@@ -94,7 +95,7 @@ class Usuario extends JwtController{
 	
 	
 	public function borrarPost (){
-		if ($this->consultarPermisos()){
+		if ($this->consultarPermisosAdmin()){
 		if ( isset($_REQUEST["id"])){
 			if ( !empty($_REQUEST["id"])){
 				
@@ -119,7 +120,7 @@ class Usuario extends JwtController{
 	}
 	
 	public function modificarPost(){
-		if ($this->consultarPermisos()){
+		if ($this->consultarPermisosAdmin()){
 		if ( isset ($_REQUEST['login']) && isset($_REQUEST['password']) && isset ($_REQUEST['rol']) && isset ($_REQUEST['id'])){
 			
 			$login = ($_REQUEST['login']);

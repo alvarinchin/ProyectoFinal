@@ -49,12 +49,56 @@ class JwtController extends CI_Controller{
 		$this->template->cargarVista ( $this->zona, $this->datos, $this->rol );		
 	}
 	
-	public function consultarPermisos (){
-		if ($this->granted){
+	public function consultarPermisosJuez (){
+		
+		if ($this->granted && $this->rol==2){
 			return true;
 		}
+		else if ($this->granted && ($this->rol==1 || $this->rol==3)){
+			$zona = 'errors/errorPermiso';
+			$datos['mensaje'] = 'Permisos incorrectos. Redirigiendo';
+			$datos['destino'] = 'Inicio';
+			$this->template->cargarVista ($zona, $datos, $this->rol);
+		}
 		else {
-			$datos ['mensaje'] = 'Login y contraseña necesarios. Redirigiendo';
+			$datos ['mensaje'] = 'Login y Contraseña necesarios. Redirigiendo';
+			$datos ['destino'] = '';
+			$zona = 'errors/errorLogin';
+			$this->template->cargarVista ($zona, $datos);
+		}
+	}
+	
+	public function consultarListar (){
+		
+		if ($this->granted && ($this->rol==2 || $this->rol==3)){
+			return true;
+		}		
+		else if ($this->rol ==1 ){
+			$zona = 'errors/errorPermiso';
+			$datos['mensaje'] = 'Permisos insuficientes. Redirigiendo';
+			$datos['destino'] = 'Inicio';
+			$this->template->cargarVista ($zona, $datos, $this->rol);
+		}
+		else {
+			$datos ['mensaje'] = 'Login y Contraseña necesarios. Redirigiendo';
+			$datos ['destino'] = '';
+			$zona = 'errors/errorLogin';
+			$this->template->cargarVista ($zona, $datos);
+		}
+	}
+	
+	public function consultarPermisosAdmin (){		
+		if ($this->granted && $this->rol==3){
+			return true;
+		}
+		else if ($this->granted && ($this->rol==1 || $this->rol==2)){
+			$zona = 'errors/errorPermiso';
+			$datos['mensaje'] = 'Permisos incorrectos. Redirigiendo';
+			$datos['destino'] = 'Inicio';
+			$this->template->cargarVista ($zona, $datos, $this->rol);
+		}
+		else {
+			$datos ['mensaje'] = 'Necesario usuario y contraseña. Redirigiendo';
 			$datos ['destino'] = 'Pantalla de Login';
 			$zona = 'errors/errorLogin';
 			$this->template->cargarVista ($zona, $datos);
@@ -74,7 +118,7 @@ class JwtController extends CI_Controller{
 			$usuario = $this->login_model->getUsuarioPorLogin ( $login );
 		}
 		
-		if (! empty ( $usuario ) && $usuario->login == $login && password_verify ( $usuario->password, $password )) {
+		if (! empty ( $usuario ) && password_verify ( $usuario->password, $password )) {
 			
 			return $rol;
 			

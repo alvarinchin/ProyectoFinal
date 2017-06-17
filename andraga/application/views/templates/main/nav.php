@@ -2,6 +2,7 @@
     <div class="navbar-header">
         <a class="navbar-brand" href="<?=base_url()?>">ANDRAGA</a>
     </div>
+    <?php if (isset ($_COOKIE['tkn'])):?>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
             <li><a>Enlace</a></li>
@@ -12,11 +13,12 @@
         <ul class="nav navbar-nav navbar-right">
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
+                	
                     <li class="dropdown"><a class="dropdown-toggle"
-                                            data-toggle="dropdown" href="#">Juez<span class="caret"></span>
+                                            data-toggle="dropdown" href="#">Enlace<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li class="dropdown-header">Juez</li>
+                            <li class="dropdown-header">Enlace</li>
                             <li>
                                 <form class="form" action="<?= base_url()?>acceso/logout"
                                       method="post" id="formulario">
@@ -29,7 +31,7 @@
                             <!-- M�s beans y m�s acciones -->
                             
                         </ul></li>
-                    
+                    <?php endif;?>
                 </ul>
                 
                 

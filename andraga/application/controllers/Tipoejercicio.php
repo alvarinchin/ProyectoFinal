@@ -39,7 +39,7 @@ class Tipoejercicio extends JwtController {
 					} else {
 						echo json_encode ( array (
 								"status" => "error",
-								"msg" => "Error al insertar club nuevo, nombre repetido" 
+								"msg" => "Error al insertar tipo de ejercicio , descripción repetida" 
 						) );
 					}
 				} else {

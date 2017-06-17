@@ -6,75 +6,75 @@
 			<div ng-controller="inscripcionesCtrl">
 				<h3>Inscripciones</h3>
 				<!--        clubs-->
-<div class="row">
-				<div class="col-md-2">
-					<div class="form-group">
-						<label>Club</label> <select size="10" class="form-control"
-							ng-model="club">
-							<option ng-repeat="obj in clubes" value="{{obj.id}}">{{obj.nombre}}</option>
-						</select>
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Club</label> <select size="10" class="form-control"
+								ng-model="club">
+								<option ng-repeat="obj in clubes" value="{{obj.id}}">{{obj.nombre}}</option>
+							</select>
+						</div>
 					</div>
-				</div>
 
-				<!--        deportistas-->
-				<div class="col-md-2">
-					<div class="form-group">
-						<label>Deportistas</label> <input class="form-control" type="text"
-							ng-model="filtro" placeholder="filtro"> <select size="8"
-							class="form-control" ng-model="deportistasSelect">
-							<option ng-repeat="obj in deportistas |filter:filtro"
-								value="{{obj.id}}">{{obj.ape1}} {{obj.ape2}}, {{obj.nombre}}</option>
-						</select>
+					<!--        deportistas-->
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Deportistas</label> <input class="form-control"
+								type="text" ng-model="filtro" placeholder="filtro"> <select
+								size="8" class="form-control" ng-model="deportistasSelect">
+								<option ng-repeat="obj in deportistas |filter:filtro"
+									value="{{obj.id}}">{{obj.ape1}} {{obj.ape2}}, {{obj.nombre}}</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<!--        campeonato-->
-				<div class="col-md-2">
-					<div class="form-group">
-						<label>Competición</label> <select size="10" class="form-control"
-							ng-model="competicion">
-							<option ng-repeat="obj in competiciones" value="{{obj.id}}">{{obj.nombre}}</option>
-						</select>
+					<!--        campeonato-->
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Competición</label> <select size="10" class="form-control"
+								ng-model="competicion">
+								<option ng-repeat="obj in competiciones" value="{{obj.id}}">{{obj.nombre}}</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<!--        especialidad-->
-				<div class="col-md-2">
-					<div class="form-group">
-						<label>Especialidad</label> <select size="10" class="form-control"
-							ng-model="especialidad">
-							<option ng-repeat="obj in especialidades" value="{{obj.id}}">{{obj.descripcion}}
-								: {{obj.num}}</option>
-						</select>
+					<!--        especialidad-->
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Especialidad</label> <select size="10"
+								class="form-control" ng-model="especialidad">
+								<option ng-repeat="obj in especialidades" value="{{obj.id}}">{{obj.descripcion}}
+									: {{obj.num}}</option>
+							</select>
+						</div>
 					</div>
-				</div>
-				<!--        categoria-->
-				<div class="col-md-2">
-					<div class="form-group">
-						<label>Categoría</label> <select size="10" class="form-control"
-							ng-model="categoria">
-							<option ng-repeat="obj in categorias" value="{{obj.id}}">{{obj.nombre}}</option>
-						</select>
+					<!--        categoria-->
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Categoría</label> <select size="10" class="form-control"
+								ng-model="categoria">
+								<option ng-repeat="obj in categorias" value="{{obj.id}}">{{obj.nombre}}</option>
+							</select>
+						</div>
 					</div>
-				</div>
-                                <div class="col-md-2">
-					<div class="form-group">
-						<label>Tipo Ejercicio</label> <select size="10" class="form-control"
-							ng-model="tiposejercicio">
-							<option ng-repeat="obj in categorias" value="{{obj.id}}">{{obj.nombre}}</option>
-						</select>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label>Tipo Ejercicio</label> <select size="10"
+								class="form-control" ng-model="tipoejercicio">
+								<option ng-repeat="obj in tiposejercicio" value="{{obj.id}}">{{obj.descripcion}}</option>
+							</select>
+						</div>
 					</div>
-				</div>
-                                
-</div>
-                                <div class="row">
-				<!--        botones-->
-				<div class="col-md-1">
-					<div class="form-group">
-						<br> <br> <input class="btn btn-primary" type="button"
-							value="Crear inscripción" ng-click="enviar()">
 
+				</div>
+				<div class="row">
+					<!--        botones-->
+					<div class="col-md-1">
+						<div class="form-group">
+							<br> <br> <input class="btn btn-primary" type="button"
+								value="Crear inscripción" ng-click="enviar()">
+
+						</div>
 					</div>
 				</div>
-                                </div>
 				<!--        inscripciones-->
 
 				<div class="col-md-11">
@@ -88,7 +88,7 @@
 								<th>Especialidad</th>
 								<th>Categoria</th>
 								<th>Dorsal</th>
-                                                                <th>Tipo ejercicio</th>
+								<th>Tipo ejercicio</th>
 								<th>Seleccionar/Deseleccionar todo <input type="checkbox"
 									name="seleccionar" id="idSeleccion"></th>
 							</tr>
@@ -101,7 +101,7 @@
 									<td>{{insc.especialidad.descripcion}}</td>
 									<td>{{insc.categoria.nombre}}</td>
 									<td>{{insc.dorsal}}</td>
-                                                                        <td>{{insc.tipoejercicio.descripcion}}</td>
+									<td>{{insc.tipoejercicio.descripcion}}</td>
 									<td name="fila"><input type="checkbox" value="{{insc.id}}"
 										name="inscripcion"></td>
 								</tr>
@@ -146,7 +146,7 @@
 									<th>Especialidad</th>
 									<th>Categoria</th>
 									<th>Dorsal</th>
-                                                                        <th>Tipo de ejercicio</th>
+									<th>Tipo de ejercicio</th>
 									<th>¿Borrar?</th>
 								</tr>
 							</thead>
@@ -158,7 +158,7 @@
 									<td>{{rot.especialidad.descripcion}}</td>
 									<td>{{rot.categoria.nombre}}</td>
 									<td>{{rot.dorsal}}</td>
-                                                                        <td>{{rot.tipoejercicio.descripcion}}</td>
+									<td>{{rot.tipoejercicio.descripcion}}</td>
 									<td><button class="btn btn-remove" ng-click="borrar(rot.id);">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button></td>

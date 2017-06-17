@@ -247,7 +247,7 @@
 						<label>Nombre</label> <input type="text" ng-model="nombre" >
 					</div>
 					<div class="form-group">
-						<label>Fecha</label> <input type="text" ng-model="fecha" >
+						<label>Fecha</label> <input type="text" ng-model="fecha">
 					</div>
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
@@ -283,7 +283,7 @@
 					<div class="form-group">
 						<label>Fecha</label> 
 						<!-- <ng-datepicker ng-model="fechaE"></ng-datepicker> -->
-						 <input type="text" id="calendario"	ng-model="fechaE" > 
+						 <input type="text" id="calendario"	ng-model="fechaE" readonly> 
 							
 					</div>
 					<button type="button" ng-click="modificar();" class="btn btn-info"

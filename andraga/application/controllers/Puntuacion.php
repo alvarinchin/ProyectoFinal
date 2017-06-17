@@ -1,31 +1,27 @@
 <?php
 require_once 'vendor/autoload.php';
 require_once 'JwtController.php';
-
 class Puntuacion extends JwtController {
 	public function __construct() {
 		parent::__construct ();
 		$this->load->model ( "adaptador_model" );
 	}
 	public function insertar() {
-		if ($this->consultarPermisosJuez()) {
+		if ($this->consultarPermisosJuez ()) {
 			if (isset ( $_REQUEST ["dificultad"] )) {
-				if (! empty ( $_REQUEST ["dificultad"] ) && ! empty ( $_REQUEST ["ejecucion"] ) && ! empty ( $_REQUEST ["artistico"] )&& ! empty ( $_REQUEST ["penalizacion"] )&& ! empty ( $_REQUEST ["total"] )&& ! empty ( $_REQUEST ["id_rotacion"] )) {
+				if (! empty ( $_REQUEST ["dificultad"] ) && ! empty ( $_REQUEST ["ejecucion"] ) && ! empty ( $_REQUEST ["artistico"] ) && ! empty ( $_REQUEST ["penalizacion"] ) && ! empty ( $_REQUEST ["total"] ) && ! empty ( $_REQUEST ["id_rotacion"] )) {
 					$campos = [ ];
 					$campos ["dificultad"] = $this->utilphp->sanear ( $_REQUEST ["dificultad"] );
 					$campos ["ejecucion"] = $this->utilphp->sanear ( $_REQUEST ["ejecucion"] );
 					$campos ["artistico"] = $this->utilphp->sanear ( $_REQUEST ["artistico"] );
-                                        $campos ["penalizacion"] = $this->utilphp->sanear ( $_REQUEST ["penalizacion"] );
-                                        $campos ["total"] = $this->utilphp->sanear ( $_REQUEST ["total"] );
-                                        $rotacion=$this->adaptador_model->getOne("rotacion",$this->utilphp->sanear ( $_REQUEST ["id_rotacion"] ));
-                                        $campos ["rotacion"] = $rotacion;
-                                        
-                                        
+					$campos ["penalizacion"] = $this->utilphp->sanear ( $_REQUEST ["penalizacion"] );
+					$campos ["total"] = $this->utilphp->sanear ( $_REQUEST ["total"] );
+					$rotacion = $this->adaptador_model->getOne ( "rotacion", $this->utilphp->sanear ( $_REQUEST ["id_rotacion"] ) );
+					$campos ["rotacion"] = $rotacion;
 					
 					$status = $this->adaptador_model->insert ( "puntuacion", $campos, Array (
 							"nombre" 
 					) );
-                                        
 					
 					if ($status) {
                                             $rotacion->puntuacion=
@@ -57,7 +53,7 @@ class Puntuacion extends JwtController {
 		}
 	}
 	public function listar() {
-		if ($this->consultarListar()) {
+		if ($this->consultarListar ()) {
 			$clubs = $this->adaptador_model->getAll ( "puntuacion" );
 			if ($clubs != null) {
 				// deben devolverse en un echo porque son cadenas de texto
@@ -75,19 +71,17 @@ class Puntuacion extends JwtController {
 		}
 	}
 	public function modificar() {
-	if ($this->consultarPermisosAdmin()) {
+		if ($this->consultarPermisosAdmin ()) {
 			if (isset ( $_REQUEST ["dificultad"] )) {
-				if (! empty ( $_REQUEST ["dificultad"] ) && ! empty ( $_REQUEST ["ejecucion"] ) && ! empty ( $_REQUEST ["artistico"] )&& ! empty ( $_REQUEST ["penalizacion"] )&& ! empty ( $_REQUEST ["total"] )&& ! empty ( $_REQUEST ["id_rotacion"] )) {
+				if (! empty ( $_REQUEST ["dificultad"] ) && ! empty ( $_REQUEST ["ejecucion"] ) && ! empty ( $_REQUEST ["artistico"] ) && ! empty ( $_REQUEST ["penalizacion"] ) && ! empty ( $_REQUEST ["total"] ) && ! empty ( $_REQUEST ["id_rotacion"] )) {
 					$campos = [ ];
 					$campos ["dificultad"] = $this->utilphp->sanear ( $_REQUEST ["dificultad"] );
 					$campos ["ejecucion"] = $this->utilphp->sanear ( $_REQUEST ["ejecucion"] );
 					$campos ["artistico"] = $this->utilphp->sanear ( $_REQUEST ["artistico"] );
-                                        $campos ["penalizacion"] = $this->utilphp->sanear ( $_REQUEST ["penalizacion"] );
-                                        $campos ["total"] = $this->utilphp->sanear ( $_REQUEST ["total"] );
-                                        
-                                        $campos ["rotacion"] = $this->adaptador_model->getOne("rotacion",$this->utilphp->sanear ( $_REQUEST ["id_rotacion"] ));
-                                        
-                                        
+					$campos ["penalizacion"] = $this->utilphp->sanear ( $_REQUEST ["penalizacion"] );
+					$campos ["total"] = $this->utilphp->sanear ( $_REQUEST ["total"] );
+					
+					$campos ["rotacion"] = $this->adaptador_model->getOne ( "rotacion", $this->utilphp->sanear ( $_REQUEST ["id_rotacion"] ) );
 					
 					$status = $this->adaptador_model->insert ( "Puntuacion", $campos, Array (
 							"nombre" 
@@ -119,7 +113,7 @@ class Puntuacion extends JwtController {
 		}
 	}
 	public function borrar() {
-		if ($this->consultarPermisosAdmin()) {
+		if ($this->consultarPermisosAdmin ()) {
 			if (isset ( $_REQUEST ["id"] )) {
 				if (! empty ( $_REQUEST ["id"] )) {
 					

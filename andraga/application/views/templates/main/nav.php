@@ -1,11 +1,10 @@
 <nav class="container navbar navbar-inverse">
     <div class="navbar-header">
-        <a class="navbar-brand" href="<?=base_url()?>">ANDRAGA</a>
+        <a class="navbar-brand" href="<?=base_url()?>">Administrador de competiciones</a>
     </div>
     <?php if (isset ($_COOKIE['tkn'])):?>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a>Enlace</a></li>
             <li><a href="<?=base_url();?>pantalla">Pantalla</a></li>
             
             

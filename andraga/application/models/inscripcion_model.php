@@ -39,7 +39,7 @@ class inscripcion_model {
                                 $inscripcion ->tipoejercicio = $tipoejercicio;
                                 
                                 foreach ($deportistas as $key => $value) {
-                                     $inscripcion->ownDeportistaList[]=$value;
+                                     $inscripcion->ownDeportistaList[$key]=$value;
                                 }
                            
                             

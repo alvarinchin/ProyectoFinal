@@ -8,7 +8,7 @@ class inscripcion extends JwtController {
 		$this->load->model ( "adaptador_model" );
 	}
 	public function insertar() {
-            
+        
             if ($this->consultarPermisosJuez()) {
 		if (isset ( $_REQUEST ["idClub"] )) {
 			if (! empty ( $_REQUEST ["idClub"] ) && ! empty ( $_REQUEST ["idDeportistas"] ) && ! empty ( $_REQUEST ["idCompeticion"] ) && ! empty ( $_REQUEST ["idCategoria"] ) && ! empty ( $_REQUEST ["idEspecialidad"] )&& ! empty ( $_REQUEST ["idTipoejErcicio"] )) {
@@ -20,6 +20,8 @@ class inscripcion extends JwtController {
 				$tipoejercicio = $this->adaptador_model->getOne ( "tipoejercicio", $this->utilphp->sanear ( $_REQUEST ["idTipoejErcicio"] ) );
                                 // $campos ["dorsal"]= strtoupper(substr($campos["Club"]["nombre"],0,2)).rand(1, 90);
 				// $dorsal = $this->utilphp->sanear ( $_REQUEST ["dorsal"] );
+                                
+                                
 				$deportistas = $this->cargarDeportistas ( $this->utilphp->sanear ( $_REQUEST ["idDeportistas"] ) );
 				// $deportistas=$this->adaptador_model->getOne("deportista",$this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
                                     

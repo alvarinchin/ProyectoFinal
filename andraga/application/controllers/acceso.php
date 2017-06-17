@@ -6,6 +6,9 @@ class Acceso extends CI_Controller {
 			setcookie ( 'tkn', '', time () - 3600, '/' );
 			header ( 'Location:' . base_url () . '' );
 		}
+		else {
+			header ('Location:'.base_url().'');
+		}
 	}
 }
 

@@ -19,8 +19,7 @@
                     </div>
                     <div class="form-group">
                         <label>Rol</label>
-                        <select name="rol" ng-model="rol">
-                        <option value=1>Enlace</option>
+                        <select name="rol" ng-model="rol">                        
                         <option value=2>Juez</option>
                         <option value=3>Administrador</option>
                         </select>
@@ -31,7 +30,7 @@
                 
                 <table class="table">
                     <tr><th>Login</th><th>Rol</th><th></th><th></th></tr>
-                    <tr  ng-repeat="usuario in usuarios">
+                    <tr  ng-repeat="usuario in usuarios" ng-if="usuario.rol!=1">
                         <td>{{usuario.login}}</td><td ng-switch="usuario.rol">                        
                         <span ng-switch-when="1">Enlace</span>
                         <span ng-switch-when="2">Juez</span>

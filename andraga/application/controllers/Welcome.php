@@ -24,6 +24,7 @@ class Welcome extends JwtController {
 		
 		$this->load->model ('login_model');
 		$adm = $this->login_model->getUsuarioPorLogin ("admin");
+		$enlace = $this->login_model->getUsuarioPorLogin ("enlace");
 		
 		if (!isset ($adm)){
 			$adm = R::dispense ('usuario');
@@ -31,12 +32,13 @@ class Welcome extends JwtController {
 			$adm->password = "admin";
 			$adm->rol = 3;
 			R::store($adm);
-			//echo ("Se ha creado un usuario administrador. Continúa la carga");
+			
+			$enlace = R::dispense('usuario');
+			$enlace->login = "enlace";
+			$enlace->password = "enlace";
+			$enlace->rol = 1;
+			R::store($enlace);			
 		}
-		/*
-		else {
-			echo ("El usuario Administrador ya existe. Continúa la carga");
-		}*/
 		
 		if (isset ($_COOKIE['tkn'])){			
 			$this->redirigeTrasCheck('','gestor','welcome', 'welcome');

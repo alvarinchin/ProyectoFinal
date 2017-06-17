@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row">
-<div class="col-xs-4"></div>
-<div class="col-xs-4"><img class="img img-circle" alt="logo-fmg-noticia.jpg" src="<?=base_url()?>assets/img/logo-fmg-noticia.jpg"></div>
+<div class="col-xs-2"></div><div class="col-xs-2"></div>
+<div class="col-xs-4"><img class="img" alt="logo.PNG" src="<?=base_url()?>assets/img/logo.PNG" width="400px"></div>
 </div>
 <br/>
 <div class="row">

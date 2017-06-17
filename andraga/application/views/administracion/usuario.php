@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <label>Password</label>
-                        <input type="text" ng-model="password" required="required">
+                        <input type="password" ng-model="password" required="required">
                     </div>
                     <div class="form-group">
                         <label>Rol</label>

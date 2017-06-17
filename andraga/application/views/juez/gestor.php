@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container"  ng-controller="inscripcionesCtrl">
 	<h2>Gestor de competiciones</h2>
 
 	<div class="row">
 		<div class="col-md-12">
-			<div ng-controller="inscripcionesCtrl">
+			<div>
 				<h3>Inscripciones</h3>
 				<!--        clubs-->
 				<div class="row">
@@ -70,7 +70,7 @@
 					<div class="col-md-1">
 						<div class="form-group">
 							<br> <br> <input class="btn btn-primary" type="button"
-								value="Crear inscripción" ng-click="enviar()">
+								value="Crear inscripción" ng-click="enviarInscripcion();">
 
 						</div>
 					</div>
@@ -130,7 +130,7 @@
 	</div>
 
 	<div class="row">
-		<div ng-controller="rotacionCtrl">
+		<div >
 			<div class="col-md-12">
 				<h3>Rotaciones</h3>
 				<!--        inscripciones-->
@@ -159,7 +159,7 @@
 									<td>{{rot.categoria.nombre}}</td>
 									<td>{{rot.dorsal}}</td>
 									<td>{{rot.tipoejercicio.descripcion}}</td>
-									<td><button class="btn btn-remove" ng-click="borrar(rot.id);">
+									<td><button class="btn btn-remove" ng-click="borrarRotacion(rot.id);">
 											<span class="glyphicon glyphicon-remove"></span>
 										</button></td>
 								</tr>

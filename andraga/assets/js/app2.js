@@ -62,8 +62,37 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 					$scope.tiposejercicio = response.data["data"];
 
 				});
+                                
+                                $http.get(base_url + "/rotacion/listar").then(
+				function(response) {
+					$scope.rotaciones = [];
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					for (x in response.data["data"]) {
+						$scope.rotaciones.push(response.data["data"][x]);
+					}
+
+				});
+                                
+                                $http.get(base_url + "/inscripcion/listar").then(
+				function(response) {
+					
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					
+						$scope.inscripciones=response.data["data"];
+					
+
+				});
+                                
+                                
+                          
 	}
-	$scope.enviar = function() {
+           $scope.cargar();
+        
+	$scope.enviarInscripcion = function() {
 
 		$scope.ids = {
 			idClub : $scope.club,
@@ -79,42 +108,20 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 			url : base_url + "/inscripcion/insertar",
 			params : $scope.ids
 		}
+             
 
-		$http(config).then(
-				function(response) {
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-					$scope.cargarInscripciones();
-				});
-
-	}
-
-	$scope.cargarInscripciones = function() {
-		$http.get(base_url + "/inscripcion/listar").then(
-				function(response) {
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-					$scope.inscripciones = response.data["data"];
-
-				});
-
-	}
-	$scope.borrar = function(id) {
-		var config = {
-			url : base_url + "/rotacion/borrar",
-			method : "post",
-			params : {
-				id : id
-			}
-		}
-		$http(config).then(function(response) {
+	$http(config).then(function(response) {
+			console.log(response.data["msg"]);
 			$scope.cargar();
+			
 		})
 
 	}
 
+	
+
 	$scope.borrarInscripciones = function(id) {
-		console.log(id);
+		//console.log(id);
 		var config = {
 			url : base_url + "/inscripcion/borrar",
 			method : "post",
@@ -125,13 +132,13 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 		$http(config).then(function(response) {
 			console.log(response.data["msg"]);
 			$scope.cargar();
-			$scope.cargarInscripciones();
+			
 		})
 
 	}
 
 	$scope.crearRotaciones = function(id) {
-		console.log(id);
+		//console.log(id);
 		var config = {
 			url : base_url + "/rotacion/insertar",
 			method : "post",
@@ -142,7 +149,7 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 		$http(config).then(function(response) {
 			console.log(response.data["msg"]);
 			$scope.cargar();
-			$scope.cargarInscripciones();
+			
 		})
 
 	}
@@ -187,29 +194,11 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 		}
 	}
 
-	$scope.cargarInscripciones();
-	$scope.cargar();
-});
+	
+	
 
-app.controller('rotacionCtrl', function($scope, $http) {
 
-	$scope.cargar = function() {
-		$http.get(base_url + "/rotacion/listar").then(
-				function(response) {
-					$scope.rotaciones = [];
-					console.log(response.data["status"] + " : "
-							+ response.data["msg"]);
-
-					for (x in response.data["data"]) {
-						$scope.rotaciones.push(response.data["data"][x]);
-					}
-
-				});
-	}
-
-	$scope.cargar();
-
-	$scope.insertar = function() {
+	$scope.insertarRotacion = function() {
 
 		config = {
 			method : "POST",
@@ -232,9 +221,9 @@ app.controller('rotacionCtrl', function($scope, $http) {
 				});
 	}
 
-	$scope.borrar = function(id) {
+	$scope.borrarRotacion = function(id) {
 		if (confirm("¿Desea borrar el elemento?")) {
-			console.log(id);
+		//	console.log(id);
 			config = {
 				method : "POST",
 				url : base_url + "/rotacion/borrar",

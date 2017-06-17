@@ -92,16 +92,25 @@ class inscripcion extends JwtController {
                                 "tipoejercicio"
 		];
 		$res = [ ];
+                
 		$inscripciones = $this->adaptador_model->getAll ( "inscripcion" );
+
+   
+                
 		foreach ( $inscripciones as $k => $inscripcion ) {
 			$fila = [ ];
 			$ins = $this->adaptador_model->getOne ( "inscripcion", $inscripcion->id );
+                        $fila["id"]=$inscripcion->id ;
 			foreach ( $campos as $ke => $campo ) {
+                            
 				$fila [$campo] = $ins->$campo;
                                     
-				$res [$k] = $fila;
+				
 			}
-                            
+                        
+                        $res [$k] = $fila;
+                }
+                         
 			if ($res != null) {
 				// deben devolverse en un echo porque son cadenas de texto
 				echo json_encode ( array (
@@ -117,7 +126,7 @@ class inscripcion extends JwtController {
                                     
 			}
 		}
-        }
+        
 	}
 	public function borrar() {
 		if ($this->consultarPermisosJuez()) {

@@ -28,6 +28,7 @@ class Puntuacion extends JwtController {
                                         
 					
 					if ($status) {
+                                            $rotacion->puntuacion=
 						echo json_encode ( array (
 								"status" => "ok",
 								"data" => $_REQUEST,

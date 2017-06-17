@@ -16,7 +16,7 @@ class rotacion extends JwtController {
 				//que se cree y vaya creciendo 
                                 $orden=0;
                                 $puntuacion=null;
-				$status = $this->rotacion_model->insert ( $inscripcion , $orden, $puntuacion);
+				$status = $this->rotacion_model->insert ( $inscripcion , $orden);
 				
 				if ($status) {
 					echo json_encode ( array (
@@ -73,7 +73,9 @@ class rotacion extends JwtController {
 			foreach ( $campos as $ke => $campo ) {
 				$fila [$campo] = $ins->$campo;
 			}
+                        
 			$fila ["id"] = $rotacion->id;
+                        $fila ["puntuacion_id"] = $rotacion->puntuacion_id;
                         $fila ["orden"] = $rotacion->orden;
 			$res [$k] = $fila;
 		}

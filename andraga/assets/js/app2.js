@@ -254,15 +254,59 @@ app.controller('puntuacionCtrl', function($scope, $http) {
 
 		$http.get(base_url + "/rotacion/listar").then(function(response) {
 
-			console.log(response.data["data"]);
+			//console.log(response.data["data"]);
 			$scope.rotaciones = response.data["data"];
-
+                    
+                        $scope.activo=$scope.rotaciones[1];
+                        $scope.cargarRotacion();
+                        
 		});
 	}
-	$scope.cargar();
-
+	
+      
 	$scope.cargarRotacion = function() {
-
+            var rotaciones= document.getElementsByName("rotacion");
+           
+            for ( elem in $scope.rotaciones){
+               if( $scope.rotaciones[elem].puntuacion_id != null){
+                 document.getElementById("rotacion"+$scope.rotaciones[elem].id).style="background-color:rgba(77, 150, 43 ,0.5)";
+               }
+            }
 	}
+         
+        $scope.enviar = function() {
+            //console.log($scope.activo);
+            
+		config = {
+			method : "POST",
+			url : base_url + "/puntuacion/insertar",
+			params : {
+				dificultad : $scope.dificultad,
+				ejecucion : $scope.ejecucion,
+                                artistico:$scope.artistico,
+                                penalizacion:$scope.penalizacion,
+                                total:($scope.dificultad+$scope.ejecucion+$scope.artistico-$scope.penalizacion),
+                                id_rotacion:$scope.activo.id
+			}
+		};
+     console.log(config);
+		$http(config).then(
+				function(response) {
+					
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
 
+                                $scope.dificultad="";
+				$scope.ejecucion="";
+                                $scope.artistico="";
+                                $scope.penalizacion="";
+                                $scope.total="";
+                                $scope.cargarRotacion();
+					$scope.cargar();
+                                        
+				});
+        }
+      $scope.cargar();
 });
+
+

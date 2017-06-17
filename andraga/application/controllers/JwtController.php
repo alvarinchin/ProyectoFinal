@@ -14,9 +14,8 @@ class JwtController extends CI_Controller{
 		$this->cookie = isset($_COOKIE['tkn'])?$_COOKIE['tkn']:null;
 		$this->datos = '';		
 		$this->ruta = '';
-		$this->raiz = '';
-		$this->load->model('jwt_model');
-		$this->rol = $this->jwt_model->comprobarCookie($this->cookie);
+		$this->raiz = '';		
+		$this->rol = $this->comprobarCookie($this->cookie);
 		if (isset($this->cookie)){
 			$this->granted = true;
 		}
@@ -60,6 +59,30 @@ class JwtController extends CI_Controller{
 			$zona = 'errors/errorLogin';
 			$this->template->cargarVista ($zona, $datos);
 		}
+	}
+	
+	public function comprobarCookie($cookie){
+		
+		if (isset($cookie)){
+			
+			$obj = $this->jwtauth->decodificarToken ( $cookie );
+			$login = $obj->data->login;
+			$password = password_hash ( $obj->data->password, PASSWORD_BCRYPT );
+			$rol = $obj->data->rol;
+			
+			$this->load->model ( 'login_model' );
+			$usuario = $this->login_model->getUsuarioPorLogin ( $login );
+		}
+		
+		if (! empty ( $usuario ) && $usuario->login == $login && password_verify ( $usuario->password, $password )) {
+			
+			return $rol;
+			
+		} else {
+			
+			return -1;
+		}
+		
 	}
 	
 }

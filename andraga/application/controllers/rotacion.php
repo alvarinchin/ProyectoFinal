@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <?php
 require_once 'JwtController.php';
 require_once 'vendor/autoload.php';
@@ -16,8 +16,8 @@ class rotacion extends JwtController {
 				$inscripcion = $this->adaptador_model->getOne ( "inscripcion", $this->utilphp->sanear ( $_REQUEST ["id"] ) );
 				//que se cree y vaya creciendo 
                                 $orden=0;
-                                $puntuacion=null;
-				$status = $this->rotacion_model->insert ( $inscripcion , $orden);
+                                $puntuacion=R::dispense("puntuacion");
+				$status = $this->rotacion_model->insert ( $inscripcion , $orden,$puntuacion);
 				
 				if ($status) {
 					echo json_encode ( array (
@@ -62,7 +62,8 @@ class rotacion extends JwtController {
 				"especialidad",
 				"dorsal",
 				"ownDeportistaList",
-                    "tipoejercicio"
+                    "tipoejercicio",
+                    "puntuacion"
 				
 		];
 		$res = [ ];

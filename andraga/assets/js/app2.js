@@ -257,8 +257,9 @@ app.controller('puntuacionCtrl', function($scope, $http) {
 			//console.log(response.data["data"]);
 			$scope.rotaciones = response.data["data"];
                     
-                        $scope.activo=$scope.rotaciones[1];
-                        $scope.cargarRotacion();
+                        $scope.activo=$scope.rotaciones[4];
+                        console.log($scope.activo);
+                      // $scope.cargarRotacion();
                         
 		});
 	}

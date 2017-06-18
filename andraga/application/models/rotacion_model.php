@@ -27,11 +27,12 @@ class rotacion_model {
 	 * @param Array $campos
 	 * @return boolean
 	 */
-	public function insert($inscripcion,$orden) {
+	public function insert($inscripcion,$orden,$puntuacion) {
 		
 		$rotacion = R::dispense("rotacion");
 		$rotacion->inscripcion=$inscripcion;
 		$rotacion->orden=$orden;
+                $rotacion->puntuacion=$puntuacion;
                 
 		
 		//  return $campos;

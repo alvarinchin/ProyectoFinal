@@ -5,6 +5,7 @@ class Puntuacion extends JwtController {
 	public function __construct() {
 		parent::__construct ();
 		$this->load->model ( "adaptador_model" );
+                $this->load->model ( "puntuacion_model" );
 	}
 	public function insertar() {
 		if ($this->consultarPermisosJuez ()) {
@@ -16,15 +17,19 @@ class Puntuacion extends JwtController {
 					$campos ["artistico"] = $this->utilphp->sanear ( $_REQUEST ["artistico"] );
 					$campos ["penalizacion"] = $this->utilphp->sanear ( $_REQUEST ["penalizacion"] );
 					$campos ["total"] = $this->utilphp->sanear ( $_REQUEST ["total"] );
-					$rotacion = $this->adaptador_model->getOne ( "rotacion", $this->utilphp->sanear ( $_REQUEST ["id_rotacion"] ) );
-					$campos ["rotacion"] = $rotacion;
 					
-					$status = $this->adaptador_model->insert ( "puntuacion", $campos, Array (
+                                        $rotacion = $this->adaptador_model->getOne ( "rotacion", $this->utilphp->sanear ( $_REQUEST ["id_rotacion"] ) );
+                                        
+                                        $bean= $this->adaptador_model->getOne("puntuacion",$rotacion->puntuacion_id);
+					//echo  $rotacion;
+					$status = $this->puntuacion_model->insert ( "puntuacion", $campos, Array (
 							"nombre" 
-					) );
-					
+					) ,$bean);
+                                        
+                                        echo $status;
+					return false;
 					if ($status) {
-                                            $rotacion->puntuacion=
+                                            
 						echo json_encode ( array (
 								"status" => "ok",
 								"data" => $_REQUEST,

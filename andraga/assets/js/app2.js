@@ -2,6 +2,7 @@ var app = angular.module('gestion', []);
 var url = (window.location.host + window.location.pathname).split("/").splice(
         0, 3).join("/");
 var base_url = "http://" + url;
+
 // cada controller se ecargará de gestionar uno de los cuadros de administracion
 app.controller('mainCtrl', function($scope) {
     $scope.cargar = function() {
@@ -319,10 +320,10 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
                         console.log(response.data["status"] + " : "
                         + response.data["msg"]);
 
-                $scope.dificultad = "";
-                $scope.ejecucion = "";
-                $scope.artistico = "";
-                $scope.penalizacion = "";
+                $scope.dificultad = 0;
+                $scope.ejecucion = 0;
+                $scope.artistico = 0;
+                $scope.penalizacion = 0;
                 $scope.total = 0;
                 $scope.cargar();
                $timeout($scope.cargarRotacion, 500);

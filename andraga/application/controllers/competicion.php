@@ -210,7 +210,7 @@ class Competicion extends JwtController {
 								) );
 							}
 							
-							header ( 'Location:' . $base_url . 'administrador' );
+							//header ( 'Location:' . $base_url() . 'administrador' );
 						} catch ( Exception $e ) {
 						}
 						

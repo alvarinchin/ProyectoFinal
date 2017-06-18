@@ -407,4 +407,39 @@ app.controller('podiumsCtrl', function($scope, $http) {
         }
 
     }
+    $scope.mostrarRotaciones = function(id) {
+		// console.log(id);
+		var config = {
+			url : base_url + "/rotacion/insertar",
+			method : "post",
+			params : {
+				id : id
+			}
+		}
+		$http(config).then(function(response) {
+			console.log(response.data["msg"]);
+			$scope.cargar();
+
+		})
+
+	}
+
+	$scope.podiumSeleccionado = function() {
+		var checks = document.getElementsByName("podium");
+		var selects = [];
+		for (elem in checks) {
+			// console.log(checks[elem]);
+			// console.log(document.myForm[elem].innerHTML);
+			if (checks[elem].checked == true) {
+				selects.push(checks[elem].value);
+
+			}
+		}
+
+		for (id in selects) {
+			// console.log("borrado "+selects[id])
+			$scope.mostrarRotaciones(selects[id]);
+		}
+
+	}
 });

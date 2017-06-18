@@ -44,7 +44,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-md-5">
+					<div class="col-md-3">
 						<div class="col-md-12">
 							<div class="form-group">
 
@@ -53,22 +53,38 @@
 										<th>Categoria</th>
 										<th>Especialidad</th>
 										<th>¿Borrar?</th>
+										<th></th>
 									</tr>
 									<form name="myForm">
-										<tr ng-repeat="pod in podiums">
-											<td>{{pod.categoria.nombre}}</td>
-											<td>{{pod.especialidad.descripcion}}</td>
+									
+									
+									<tr ng-repeat="pod in podiums">
+										<td>{{pod.categoria.nombre}}</td>
+										<td>{{pod.especialidad.descripcion}}</td>
 
-											<td><button class="btn btn-remove"
-													ng-click="borrarPodium(pod.id);">
-													<span class="glyphicon glyphicon-remove"></span>
-												</button></td>
-										</tr>
+										<td><button class="btn btn-remove"
+												ng-click="borrarPodium(pod.id);">
+												<span class="glyphicon glyphicon-remove"></span>
+											</button></td>
+										<td name="fila"><input type="radio" value="{{pod.id}}"
+											name="podium"></td>
+									</tr>
+
+
 									</form>
 								</table>
 
 
 							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="col-md-12">
+							<br /> <br /> <br />
+							<button type="button" class="btn btn-primary"
+								ng-click="podiumSeleccionado();">
+								Mostrar <br />rotaciones
+							</button>
 						</div>
 					</div>
 				</div>

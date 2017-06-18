@@ -33,6 +33,7 @@
 	};
 
 	function activo_Enlace(){
+		document.getElementById("login").value=null;
 		document.getElementById("login").disabled = document.getElementById("enlace").checked;
 	}
 

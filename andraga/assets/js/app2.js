@@ -247,16 +247,28 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
         $http.get(base_url + "/rotacion/listar").then(
                 function(response) {
 
-                    // console.log(response.data["data"]);
-            $scope.rotaciones = response.data["data"];
+                    rotaciones= response.data["data"];
+            res=[];
+            for( elem in rotaciones){       
+                res.push(rotaciones[elem]);
+            }
+            for (i=0;i<res.length-1;i++){
+                if(res[i].orden>res[i+1].orden){
+                    aux = res[i];
+                    res[i]= res[i+1];
+                    res[i+1]= aux;
+                    i=-1;
+                }
+            }
+            $scope.rotaciones = res;
 
          
-           // console.log($scope.activo);
+            // console.log($scope.activo);
             // $scope.cargarRotacion();
 
         });
     }
-$scope.cargarRotacion = function() {
+    $scope.cargarRotacion = function() {
         var rotaciones= document.getElementsByName("rotacion").length;
            
         activo=true;
@@ -272,6 +284,10 @@ $scope.cargarRotacion = function() {
                 }
                     
             }
+           
+        }
+        if(activo){
+            $scope.activo=null;
         }
            
     }
@@ -279,40 +295,47 @@ $scope.cargarRotacion = function() {
 
     $scope.enviar = function() {
         // console.log($scope.activo);
+        if($scope.activo!=null){
+            config = {
+                method : "POST",
+                url : base_url + "/puntuacion/insertar",
+                params : {
+                    dificultad : $scope.dificultad,
+                    ejecucion : $scope.ejecucion,
+                    artistico : $scope.artistico,
+                    penalizacion : $scope.penalizacion,
+                    total : ($scope.dificultad + $scope.ejecucion
+                            + $scope.artistico - $scope.penalizacion),
+                    id_rotacion : $scope.activo.id
+                }
+            };
+            console.log(config);
+            $http(config).then(
+                    function(response) {
 
-        config = {
-            method : "POST",
-            url : base_url + "/puntuacion/insertar",
-            params : {
-                dificultad : $scope.dificultad,
-                ejecucion : $scope.ejecucion,
-                artistico : $scope.artistico,
-                penalizacion : $scope.penalizacion,
-                total : ($scope.dificultad + $scope.ejecucion
-                        + $scope.artistico - $scope.penalizacion),
-                id_rotacion : $scope.activo.id
-            }
-        };
-        console.log(config);
-        $http(config).then(
-                function(response) {
+                        console.log(response.data["status"] + " : "
+                        + response.data["msg"]);
 
-                    console.log(response.data["status"] + " : "
-                    + response.data["msg"]);
+                $scope.dificultad = "";
+                $scope.ejecucion = "";
+                $scope.artistico = "";
+                $scope.penalizacion = "";
+                $scope.total = "";
+                $scope.cargarRotacion();
+                $scope.cargar();
 
-            $scope.dificultad = "";
-            $scope.ejecucion = "";
-            $scope.artistico = "";
-            $scope.penalizacion = "";
-            $scope.total = "";
-            $scope.cargarRotacion();
-            $scope.cargar();
-
-        });
+            });
+    
+        } else{
+            alert("No hay ninguna rotación disponible");
+        }
     }
+    
+    
+            $scope.cargar();   
+            $timeout($scope.cargarRotacion, 500);
        
-    $scope.cargar();   
-    $timeout($scope.cargarRotacion, 500);
+    
 });
 
 
@@ -408,38 +431,38 @@ app.controller('podiumsCtrl', function($scope, $http) {
 
     }
     $scope.mostrarRotaciones = function(id) {
-		// console.log(id);
-		var config = {
-			url : base_url + "/rotacion/insertar",
-			method : "post",
-			params : {
-				id : id
-			}
-		}
-		$http(config).then(function(response) {
-			console.log(response.data["msg"]);
-			$scope.cargar();
+        // console.log(id);
+        var config = {
+            url : base_url + "/rotacion/insertar",
+            method : "post",
+            params : {
+                id : id
+            }
+        }
+        $http(config).then(function(response) {
+            console.log(response.data["msg"]);
+            $scope.cargar();
 
-		})
+        })
 
-	}
+    }
 
-	$scope.podiumSeleccionado = function() {
-		var checks = document.getElementsByName("podium");
-		var selects = [];
-		for (elem in checks) {
-			// console.log(checks[elem]);
-			// console.log(document.myForm[elem].innerHTML);
-			if (checks[elem].checked == true) {
-				selects.push(checks[elem].value);
+    $scope.podiumSeleccionado = function() {
+        var checks = document.getElementsByName("podium");
+        var selects = [];
+        for (elem in checks) {
+            // console.log(checks[elem]);
+            // console.log(document.myForm[elem].innerHTML);
+            if (checks[elem].checked == true) {
+                selects.push(checks[elem].value);
 
-			}
-		}
+            }
+        }
 
-		for (id in selects) {
-			// console.log("borrado "+selects[id])
-			$scope.mostrarRotaciones(selects[id]);
-		}
+        for (id in selects) {
+            // console.log("borrado "+selects[id])
+            $scope.mostrarRotaciones(selects[id]);
+        }
 
-	}
+    }
 });

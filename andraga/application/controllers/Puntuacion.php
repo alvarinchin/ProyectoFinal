@@ -26,8 +26,7 @@ class Puntuacion extends JwtController {
 							"nombre" 
 					) ,$bean);
                                         
-                                        echo $status;
-					return false;
+                                     
 					if ($status) {
                                             
 						echo json_encode ( array (

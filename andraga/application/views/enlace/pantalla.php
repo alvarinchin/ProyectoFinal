@@ -10,13 +10,18 @@ and open the template in the editor.
     <table class="table">
         <thead>
             <tr>
+                <th>Orden</th>
                 <th>Dorsal</th>
-
+                <th>Club</th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="rotacion in rotaciones">
-                <td>{{rotacion.dorsal}}</td>
+            <tr ng-repeat="rotacion in rotaciones | orderBy: rotacion.orden">
+                <td>{{rotacion.orden}}</td>
+                 <td>{{rotacion.dorsal}}</td>
+                  <td>{{rotacion.club.nombre}}</td>
+                  <td>{{rotacion.puntuacion.total}}</td>
                
             </tr>
         </tbody>

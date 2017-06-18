@@ -57,21 +57,24 @@ class rotacion extends JwtController {
 		return $deportistas;
 	}
 	public function listar() {
-$campos = [
+                    $campos = [
 				"categoria",
 				"especialidad",
 				"dorsal",
 				"ownDeportistaList",
-                    "tipoejercicio",
-                    "puntuacion"
-                        
-		];
+                                "tipoejercicio",
+                                "puntuacion",
+                                "club"      
+        
+                        	];
 		$res = [ ];
-		$rotaciones = $this->adaptador_model->getAll ( "rotacion" );
-             
+		$rotaciones = $this->rotacion_model->getAll ( "rotacion" );
+                  
 		foreach ( $rotaciones as $k => $rotacion ) {
+                   
 			$fila = [ ];
 			$rot = ($this->adaptador_model->getOne ( "rotacion", $rotacion->id ));
+                       
                         $ins= $rot->inscripcion;
 			foreach ( $campos as $ke => $campo ) {
 				$fila [$campo] = $ins->$campo;
@@ -81,6 +84,7 @@ $campos = [
                         $fila ["puntuacion_id"] = $rotacion->puntuacion_id;
                         $fila ["orden"] = $rotacion->orden;
 			$res [$k] = $fila;
+                      
 		}
                     
 		if ($res != null) {

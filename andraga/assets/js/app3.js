@@ -22,28 +22,46 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
     $scope.cargar = function() {
         
         $http.get(base_url+"/rotacion/listar").then(function(response){
-            
+           rotaciones= response.data["data"];
+            res=[];
+            for( elem in rotaciones){       
+                res.push(rotaciones[elem]);
+            }
+         for (i=0;i<res.length-1;i++){
+                if(res[i].orden>res[i+1].orden){
+                    aux = res[i];
+                    res[i]= res[i+1];
+                    res[i+1]= aux;
+                    i=-1;
+                }
+                  
+            }
+           
             if( $scope.longitud==0){
-                $scope.rotaciones= response.data["data"];
-                $scope.longitud = response.data["size"];
-                $scope.nueva=response.data["data"][(Object.keys(response.data["data"]).length)-1];
+                $scope.rotaciones= res
+                $scope.longitud = res.length;
+                $scope.buscarUltima();
+               
             }
             
-            //nueva entrada
-            else if( $scope.longitud<response.data["size"]){
-                $scope.rotaciones= response.data["data"];
-                $scope.longitud = response.data["size"];
-                $scope.nueva=response.data["data"][(Object.keys(response.data["data"]).length)-1];
-                $scope.mostrarPuntuacion();
-                
-                
-                
-            } else if( $scope.longitud>response.data["size"]){
-                $scope.rotaciones= response.data["data"];
-                $scope.longitud = response.data["size"];
-                
+            //nueva rotacion
+            else if( $scope.longitud!=res.length ){
+               
+                $scope.rotaciones= res;
+                $scope.longitud = res.length;
+                 $scope.buscarUltima();
             }
-            
+            if($scope.ultima!=null){
+                 if(res[$scope.ultima].puntuacion.total!=null){
+               $scope.nueva=res[i];
+               $scope.rotaciones= res
+               $scope.longitud = res.length;
+               $scope.mostrarPuntuacion();
+               $scope.buscarUltima();
+            }
+     
+            }
+           
         });
         
     }
@@ -56,6 +74,21 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
         
     }
     
+    $scope.buscarUltima=function(){
+        nueva=false;
+          for( i=res.length-1;i>0;i--){
+                    if(res[i].puntuacion.total==null){
+                        nueva=true;
+                        $scope.ultima=i;
+                  
+                        console.log($scope.ultima);
+                    }
+              
+                }
+                if(!nueva){
+                    $scope.ultima=null;
+                }
+    }
     
     
     marcador=$interval(function(){

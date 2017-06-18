@@ -1,3 +1,8 @@
+<?php 
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$segmentos = explode('/', $uri);
+$controller = $segmentos[3];
+?>
 <nav class="container navbar navbar-inverse">
 	<div class="navbar-header">
 		<a class="navbar-brand" href="<?=base_url()?>">Administrador de
@@ -6,13 +11,10 @@
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
 
-			<li class="dropdown"><a href="<?=base_url();?>gestion">Gestor de
-					competiciones </a>
+			<li class="dropdown"><a href="<?=base_url();?>gestion"><?php if($controller == 'gestion'):?><span style="color:white">Gestor de competiciones</span><?php else:?>Gestor de competiciones<?php endif;?></a>
 			
-			<li class="dropdown"><a href="<?=base_url();?>puntuaciones">
-					Puntuaciones </a> 
-			<li class="dropdown"><a href="<?=base_url();?>podiums"> 
-					Podiums </a> <!-- M�s men�s -->
+			<li class="dropdown"><a href="<?=base_url();?>puntuaciones"><?php if($controller == 'puntuaciones'):?><span style="color:white">Puntuaciones</span><?php else:?>Puntuaciones<?php endif;?></a> 
+			<li class="dropdown"><a href="<?=base_url();?>podiums"><?php if($controller == 'podiums'):?><span style="color:white">Podiums</span><?php else:?>Podiums<?php endif;?></a> <!-- M�s men�s -->
 			
 			
 		

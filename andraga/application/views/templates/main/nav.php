@@ -1,3 +1,8 @@
+<?php 
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$segmentos = explode('/', $uri);
+$controller = $segmentos[3];
+?>
 <nav class="container navbar navbar-inverse">
     <div class="navbar-header">
         <a class="navbar-brand" href="<?=base_url()?>">Administrador de competiciones</a>
@@ -5,7 +10,7 @@
     <?php if (isset ($_COOKIE['tkn'])):?>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a href="<?=base_url();?>pantalla">Pantalla</a></li>
+            <li><a href="<?=base_url();?>pantalla"><?php if($controller == 'pantalla'):?><span style="color:white">Pantalla</span><?php else:?>Pantalla<?php endif;?></a></li>
             
             
         </ul>

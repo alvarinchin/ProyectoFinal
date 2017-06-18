@@ -38,7 +38,7 @@ and open the template in the editor.
                 <div class="row" ><span class="titulo">Artístico: </span><span class="puntos">{{nueva.puntuacion.artistico}}</span></div>
                 <div class="row" ><span class="titulo">Penalización: </span>{{nueva.puntuacion.penalizacion}}<span class="puntos" style="color:red"></span></div>
             </div>
-            <div class="panel-footer panelCustom"><span class="titulo"><b>Total</b></span><span class="puntos">{{nueva.puntuacion.total}}</span></div>
+            <div class="panel-footer panelCustom"><span class="titulo"><b>Total:  </b></span><span class="puntos">{{nueva.puntuacion.total}}</span></div>
         </div>
         
     </div>

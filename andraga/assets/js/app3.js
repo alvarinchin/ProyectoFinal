@@ -41,6 +41,7 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
                 $scope.rotaciones= res
                 $scope.longitud = res.length;
                 $scope.buscarUltima();
+                console.log($scope.ultima);
                
             }
             
@@ -51,6 +52,7 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
                 $scope.longitud = res.length;
                  $scope.buscarUltima();
             }
+            
             if($scope.ultima!=null){
                  if(res[$scope.ultima].puntuacion.total!=null){
                $scope.nueva=res[i];
@@ -69,9 +71,9 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
     $scope.mostrarPuntuacion=function(){
         
         $( "#dialog" ).dialog( "open" );
-        /*puntuacion= $interval(function(){
+        puntuacion= $interval(function(){
             $( "#dialog" ).dialog( "close" );
-        },5000,1);*/
+        },5000,1);
         
     }
     
@@ -89,6 +91,7 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
                 if(!nueva){
                     $scope.ultima=null;
                 }
+                console.log($scope.ultima);
     }
     
     

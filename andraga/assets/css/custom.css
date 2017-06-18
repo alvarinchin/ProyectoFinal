@@ -16,4 +16,14 @@
     color:#9d9d9d;
     background: white;
 }
+.completo{
+    background-color:rgba(77, 150, 43 ,0.5);
+}
+.actual{
+    background-color:rgba(147, 181, 234,0.5);
+}
+.seleccionado{
+    background-color:rgba(150, 187, 247,0.5);
+
+}
 

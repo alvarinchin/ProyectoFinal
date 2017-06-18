@@ -1,6 +1,7 @@
 <nav class="container navbar navbar-inverse">
 	<div class="navbar-header">
-		<a class="navbar-brand" href="<?=base_url()?>">Administrador de competiciones</a>
+		<a class="navbar-brand" href="<?=base_url()?>">Administrador de
+			competiciones</a>
 	</div>
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
@@ -9,7 +10,11 @@
 					competiciones </a>
 			
 			<li class="dropdown"><a href="<?=base_url();?>puntuaciones">
-					Puntuaciones </a> <!-- M�s men�s -->
+					Puntuaciones </a> 
+			<li class="dropdown"><a href="<?=base_url();?>podiums"> 
+					Podiums </a> <!-- M�s men�s -->
+			
+			
 		
 		</ul>
 

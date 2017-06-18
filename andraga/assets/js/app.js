@@ -960,14 +960,12 @@ app
 														$scope.fecha = $scope.fecha ? $scope.fecha
 																: "";
 														$scope.cargar();
-													}else{
-														$scope.nombre = $scope.nombre ? $scope.nombre
-																: "";
-														$scope.fecha = $scope.fecha ? $scope.fecha
-																: "";
+													} else {
+														$scope.nombre = "";
+														$scope.fecha = "";
 														$scope.cargar();
 													}
-													
+
 												});
 							}
 

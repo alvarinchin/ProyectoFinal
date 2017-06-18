@@ -74,11 +74,11 @@ class Usuario extends JwtController{
 				}
 			}
 			else {
-				echo json_encode(array("status"=>"error","msg"=>"Error algún dato está vacío"));
+				echo json_encode(array("status"=>"error","msg"=>"Debes rellenar todos los campos"));
 			}			
 		}
 		else {
-			echo json_encode(array("status"=>"error","msg"=>"Error no han llegado los datos"));
+			echo json_encode(array("status"=>"error","msg"=>"Debes rellenar los campos"));
 		}		
 	}
 	}

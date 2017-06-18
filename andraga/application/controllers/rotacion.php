@@ -65,6 +65,7 @@ class rotacion extends JwtController {
                     
 		return $deportistas;
 	}
+        
 	public function listar() {
                     $campos = [
 				"categoria",
@@ -78,7 +79,7 @@ class rotacion extends JwtController {
                         	];
 		$res = [ ];
 		$rotaciones = $this->rotacion_model->getAll ( "rotacion" );
-                  
+                 ;
 		foreach ( $rotaciones as $k => $rotacion ) {
                    
 			$fila = [ ];
@@ -96,7 +97,7 @@ class rotacion extends JwtController {
 			$res [$k] = $fila;
                       
 		}
-                    
+                 
 		if ($res != null) {
 			// deben devolverse en un echo porque son cadenas de texto
 			echo json_encode ( array (

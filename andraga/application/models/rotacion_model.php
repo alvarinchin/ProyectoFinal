@@ -18,7 +18,7 @@ class rotacion_model {
 	}
 	
 	public function getAll($nombreBean) {
-		return R::findAll ( $nombreBean,'order by orden');
+		return R::findAll ( $nombreBean,'order by orden_id');
 	}
 	
 	/**

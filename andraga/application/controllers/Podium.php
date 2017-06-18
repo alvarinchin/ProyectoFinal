@@ -88,41 +88,26 @@ class Podium extends JwtController {
 	public function listarRotacion() {
 		if ($this->consultarListar ()) {
 			if (isset ( $_REQUEST ["idPodium"] )) {
-				$campos = [ 
-						
-						"categoria",
-						"especialidad" 
-				];
+				
 				$res = [ ];
 				
 				$podium = $this->adaptador_model->getOne ( "podium", $this->utilphp->sanear ( $_REQUEST ["idPodium"] ) );
 				
-				$categoria= $podium['idCategoria'];
-				$especialidad= $podium['idEspecialidad'];
-				
-				$this->load->model ( "inscripcion_model" );
-				
-				$inscripciones = $this->inscripcion_model->getInscCatEsp ( "inscripcion", $this->utilphp->sanear ( $categoria ), $this->utilphp->sanear ( $especialidad ));
-				
+				$categoria= $podium['categoria_id'];
+				$especialidad= $podium['especialidad_id'];
+				$rotaciones = $this->adaptador_model->getAll("rotacion");
+       
 				$this->load->model ( "rotacion_model" );
-				
-				foreach ($inscripciones as $inscr){
-					$rotaciones = $this->rotacion_model->getRotacionPorInscripcion ( "rotacion", $inscr);
-					foreach ( $rotaciones as $k => $rotacion) {
-						$fila = [ ];
-						$ins = $this->adaptador_model->getOne ( "rotacion", $rotacion->id );
-						$fila ["id"] = $rotacion->id;
-						foreach ( $campos as $ke => $campo ) {
-							
-							$fila [$campo] = $ins->$campo;
-						}
-						
-						$res [$k] = $fila;
-					}
+				 $res=[];
+				foreach ($rotaciones as $key => $rot){
+                                            $inscripcion=$this->adaptador_model->getOne("inscripcion",$rot->inscripcion_id);
+                                     if($inscripcion->categoria_id==$categoria && $inscripcion->especialidad_id==$especialidad){
+                                         $res[$key]=$rot;
+                                     }
+                                       
 				}
 				
-			
-				
+                     
 				if ($res != null) {
 					// deben devolverse en un echo porque son cadenas de texto
 					echo json_encode ( array (

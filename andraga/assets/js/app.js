@@ -623,6 +623,34 @@ function($scope, $http, $window) {
             });
         }
     }
+    
+    $scope.bigJoe=function(){
+        if(confirm("¿Estas seguro que quieres borrar TODAS las tablas de la Base de datos?(Tabla usuarios se reiniciaran automatiamente)")){
+            if(confirm("¿seguro? No se podrá deshacer esta acción")){
+                 config = {
+                method : "POST",
+                url : base_url + "/Usuario/botonRojo",
+                params : {
+                    botonRojo : true
+                }
+            };
+
+            $http(config)
+                    .then(
+                    function(response) {
+
+                        console
+                        .log(response.data["status"]
+                        + " : "
+                        + response.data["msg"]);
+
+                if(response.data["status"]=="yermo"){
+                    location.replace(base_url);
+                }
+            });
+            }
+        }
+    }
 
 });
 
@@ -1032,9 +1060,7 @@ function($scope, $http, $window) {
                 
                 
                 $scope.cargar();
-                if(response.data["status"]=="ok"){
-                    location.replace(base_url);
-                }
+               
 
             });
         }

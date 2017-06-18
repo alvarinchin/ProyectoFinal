@@ -71,9 +71,18 @@
                     <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#usuarioE" >Cancelar</button>
                     
                 </div>
-                
+                <div class="col-md-6">
+        <div class="col-md-3">
+            <div class="form-group">
+                <button class="btn btn-danger" ng-click="bigJoe();">Resetear Base de datos</button>
             </div>
-        </div>    
+        </div>
+            </div>
+                
+                
+                 </div>
+         
+       
         
     </div>
 </div>

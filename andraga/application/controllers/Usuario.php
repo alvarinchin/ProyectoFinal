@@ -118,6 +118,15 @@ class Usuario extends JwtController{
 	public function modificarGet(){
 		$this->template->cargarVista("usuario/modificarGet");
 	}
+        public function botonRojo(){
+            if ($this->consultarPermisosAdmin()){
+                if(isset($_REQUEST["botonRojo"]) && $_REQUEST["botonRojo"]==true ){
+                    R::nuke();
+                    echo json_encode(array("status"=>"yermo","msg"=>"Solo lo roce con el dedo"));
+                }
+            }
+		
+	}
 	
 	public function modificarPost(){
 		if ($this->consultarPermisosAdmin()){

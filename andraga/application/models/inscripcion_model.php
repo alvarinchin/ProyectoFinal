@@ -35,7 +35,7 @@ class inscripcion_model {
 				$inscripcion ->competicion = $competicion;
                                 $inscripcion->especialidad = $especialidad;
                                 $inscripcion ->categoria = $categoria;
-                                $inscripcion ->dorsal = $dorsal;
+                                $inscripcion ->dorsal = R::findLast("inscripcion")->dorsal+1;
                                 $inscripcion ->tipoejercicio = $tipoejercicio;
                                 
                                 foreach ($deportistas as $key => $value) {

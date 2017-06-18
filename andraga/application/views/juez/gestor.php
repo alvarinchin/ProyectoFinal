@@ -98,7 +98,7 @@
 									name="seleccionar" id="idSeleccion"></th>
 							</tr>
 							<form name="myForm">
-								<tr ng-repeat="insc in inscripciones">
+								<tr ng-repeat="insc in inscripciones" >
 									<td>{{insc.club.nombre}}</td>
 									<td><p ng-repeat="dep in insc.ownDeportistaList">{{dep.ape1}}
 											{{dep.ape2}}, {{dep.nombre}}</p></td>

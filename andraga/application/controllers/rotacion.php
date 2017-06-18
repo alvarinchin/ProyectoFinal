@@ -8,6 +8,7 @@ class rotacion extends JwtController {
 		parent::__construct ();
 		$this->load->model ( "adaptador_model" );
                 $this->load->model ( "rotacion_model" );
+                $this->load->model ( "Orden_model" );
 	}
 	public function insertar() {
 		if (isset ( $_REQUEST ["id"] )) {
@@ -15,10 +16,16 @@ class rotacion extends JwtController {
                             
 				$inscripcion = $this->adaptador_model->getOne ( "inscripcion", $this->utilphp->sanear ( $_REQUEST ["id"] ) );
 				//que se cree y vaya creciendo 
-                                $orden=0;
-                                $puntuacion=R::dispense("puntuacion");
-				$status = $this->rotacion_model->insert ( $inscripcion , $orden,$puntuacion);
-                                    
+                              
+                               
+				$status = $this->rotacion_model->insert ( $inscripcion);
+                                
+                                
+                                $orden=$this->adaptador_model->getOne("orden",$status->orden_id);
+                                $orden->rotacion=$status;
+                                $orden->competicion=$this->adaptador_model->getOne("competicion",$inscripcion->competicion_id);
+                               echo $this->Orden_model->insert($orden);
+                          return false;
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",

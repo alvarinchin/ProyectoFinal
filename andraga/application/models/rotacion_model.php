@@ -27,18 +27,21 @@ class rotacion_model {
 	 * @param Array $campos
 	 * @return boolean
 	 */
-	public function insert($inscripcion,$orden,$puntuacion) {
+	public function insert($inscripcion) {
 		
 		$rotacion = R::dispense("rotacion");
 		$rotacion->inscripcion=$inscripcion;
-		$rotacion->orden=$orden;
-                $rotacion->puntuacion=$puntuacion;
+		$rotacion->orden=R::dispense("orden");
+                
+                $rotacion->puntuacion= R::dispense("puntuacion");;
                 
 		
 		//  return $campos;
 		if (! $this->existe ( "inscripcion", "rotacion","",$rotacion )) {
 			R::store ( $rotacion );
-			return true;
+                        
+                        
+			return $rotacion;
 		} else {
 			return false;
 		}

@@ -5,6 +5,7 @@ class inscripcion extends JwtController {
 	public function __construct() {
 		parent::__construct ();
 		$this->load->model ( "adaptador_model" );
+                	$this->load->model ( "inscripcion_model" );
 	}
 	public function insertar() {
 		if ($this->consultarPermisosJuez ()) {
@@ -17,26 +18,12 @@ class inscripcion extends JwtController {
 					$categoria = $this->adaptador_model->getOne ( "categoria", $this->utilphp->sanear ( $_REQUEST ["idCategoria"] ) );
 					$tipoejercicio = $this->adaptador_model->getOne ( "tipoejercicio", $this->utilphp->sanear ( $_REQUEST ["idTipoejErcicio"] ) );
 					// $campos ["dorsal"]= strtoupper(substr($campos["Club"]["nombre"],0,2)).rand(1, 90);
-					// $dorsal = $this->utilphp->sanear ( $_REQUEST ["dorsal"] );
+                                       
 					
 					$deportistas = $this->cargarDeportistas ( $this->utilphp->sanear ( $_REQUEST ["idDeportistas"] ) );
-					// $deportistas=$this->adaptador_model->getOne("deportista",$this->utilphp->sanear ($_REQUEST ["idDeportistas"]));
-					
-					try {
-						$this->load->model ( "inscripcion_model" );
-						$numBeansInscripcion = $this->adaptador_model->count ( "inscripcion" );
-					} catch ( Exception $e ) {
-					}
-					if ($numBeansInscripcion != 0) {
-						$dorsal = $numBeansInscripcion + 1;
-						$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $dorsal, $tipoejercicio );
-					} else {
-						$this->load->model ( "inscripcion_model" );
-						// $numBeansInscripcion = $this->adaptador_model->count ( "inscripcion" );
-						$dorsal = 1;
-						$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $dorsal, $tipoejercicio );
-					}
-					
+				
+					$status = $this->inscripcion_model->insert ( $club, $competicion, $categoria, $especialidad, $deportistas, $tipoejercicio );
+			
 					if ($status) {
 						echo json_encode ( array (
 								"status" => "ok",

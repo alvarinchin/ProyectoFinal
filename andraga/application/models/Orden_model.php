@@ -35,7 +35,7 @@ class Orden_model {
                 
 		
                        $pos=R::findLast("orden");
-                       return $pos;
+                       return "::::".$pos;
                              $bean->posicion=$pos+1;
                         
                        

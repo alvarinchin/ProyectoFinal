@@ -33,7 +33,7 @@ class rotacion_model {
 		$rotacion->inscripcion=$inscripcion;
 		$rotacion->orden=R::dispense("orden");
                 
-                $rotacion->puntuacion= R::dispense("puntuacion");;
+                $rotacion->puntuacion= R::dispense("puntuacion");
                 
 		
 		//  return $campos;

@@ -76,7 +76,10 @@ class adaptador_model {
 		return true;
 	}
 	
-	
+	public function borrar($nombreBean) {
+		R::trashAll( $nombreBean);
+		return true;
+	}
 	/**
 	 *
 	 * @param String $nombre        	

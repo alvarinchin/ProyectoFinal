@@ -1,4 +1,9 @@
 <div class="container"  ng-controller="inscripcionesCtrl">
+	<div class="row">
+	<div class="col-xs-8">
+	<img src="<?= base_url()?>assets/img/logo.png" class="img img-rounded" width="25%" height="25%">
+	</div>
+	</div>
 	<h2>Gestor de competiciones</h2>
 
 	<div class="row">

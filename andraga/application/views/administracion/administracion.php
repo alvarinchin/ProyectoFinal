@@ -1,4 +1,9 @@
 <div class="container">
+	<div class="row">
+	<div class="col-xs-8">
+	<img src="assets/img/logo.png" class="img img-rounded" width="25%" height="25%">
+	</div>
+	</div>
 	<h1>ADMINISTRACIÓN</h1>
 	<div class="row">
 

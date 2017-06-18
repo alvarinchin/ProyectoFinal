@@ -26,7 +26,15 @@ class Competicion_Model extends CI_Model {
 		
 		return $lista;
 	}
-
+	public function count($nombreBean) {
+		$numBeans = R::count ( $nombreBean );
+		return $numBeans;
+	}
+	
+	public function delete($nombreBean) {
+		R::trash ( $nombreBean);
+		return true;
+	}
 }
 
 ?>

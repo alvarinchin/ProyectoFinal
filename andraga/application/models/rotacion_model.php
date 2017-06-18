@@ -64,6 +64,11 @@ class rotacion_model {
 		R::trash ( $nombreBean, $id );
 		return true;
 	}
+	
+	public function getRotacionPorInscripcion ( $nombreBean, $inscr){
+		$rotaciones=R::load($nombreBean,$inscr);
+		return $rotaciones;
+	}
 	/**
 	 *
 	 * @param String $nombre

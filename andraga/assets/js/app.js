@@ -1030,43 +1030,9 @@ app
 																+ response.data["msg"]);
 
 												$scope.cargar();
+												$window.location.reload();
 											});
 						}
 					}
 				});
 
-/*
- * app.config(function($mdDateLocaleProvider) { // Example of a French
- * localization. $mdDateLocaleProvider.months = ['Enero', 'Febrero', 'Marzo',
- * 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre',
- * 'Noviembre', 'Diciembre']; $mdDateLocaleProvider.shortMonths = ['En', 'Feb',
- * 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ag', 'Sept', 'Oct', 'Nov', 'Dic'];
- * $mdDateLocaleProvider.days = ['Lunes', 'Martes', 'Miércoles', 'Jueves',
- * 'Viernes', 'Sábado', 'Domingo']; $mdDateLocaleProvider.shortDays = ['L', 'M',
- * 'X', 'J', 'V', 'S', 'D']; // Can change week display to start on Monday.
- * $mdDateLocaleProvider.firstDayOfWeek = 0; // Optional. //
- * $mdDateLocaleProvider.dates = [1, 2, 3, 4, 5, 6, ...]; // Example uses
- * moment.js to parse and format dates. /* $mdDateLocaleProvider.parseDate =
- * function(dateString) { var m = moment(dateString, 'L', true); return
- * m.isValid() ? m.toDate() : new Date(NaN); };
- * 
- * $mdDateLocaleProvider.formatDate = function(date) { var m = moment(date);
- * return m.isValid() ? m.format('L') : ''; };
- * 
- * $mdDateLocaleProvider.monthHeaderFormatter = function(date) { return
- * myShortMonths[date.getMonth()] + ' ' + date.getFullYear(); };
- */
-
-// In addition to date display, date components also need localized messages
-// for aria-labels for screen-reader users.
-/*
- * $mdDateLocaleProvider.weekNumberFormatter = function(weekNumber) { return
- * 'Semaine ' + weekNumber; };
- */
-/*
- * $mdDateLocaleProvider.msgCalendar = 'Calendario';
- * $mdDateLocaleProvider.msgOpenCalendar = 'Abrir el calendario'; // You can
- * also set when your calendar begins and ends.
- * $mdDateLocaleProvider.firstRenderableDate = new Date(1776, 6, 4);
- * $mdDateLocaleProvider.lastRenderableDate = new Date(2012, 11, 21); });
- */

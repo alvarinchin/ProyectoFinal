@@ -250,7 +250,7 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
                     // console.log(response.data["data"]);
             $scope.rotaciones = response.data["data"];
 
-            $scope.activo = $scope.rotaciones[4];
+         
            // console.log($scope.activo);
             // $scope.cargarRotacion();
 

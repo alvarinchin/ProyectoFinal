@@ -15,6 +15,7 @@
                <table class="table table-resposive">
                     <thead>
                             <tr>
+                                    <th></th>
                                     <th>Orden</th>
                                     <th>Especialidad</th>
                                     <th>Categoria</th>
@@ -22,7 +23,10 @@
                             </tr>
                     </thead>
                     <tbody>
-                            <tr ng-repeat="rot in rotaciones" name="rotacion" id="rotacion{{rot.id}}" >
+                    <tr ng-repeat="rot in rotaciones" name="rotacion" id="rotacion{{rot.id}}" >
+                         <td><span ng-if="rot.puntuacion.total!=null" class="glyphicon glyphicon-ok"></span>
+                         <span ng-if="rot == activo" class="glyphicon glyphicon-chevron-right"></span>
+                         </td>
                                     <td>{{rot.orden}}</td>
                                     <td>{{rot.especialidad.descripcion}}</td>
                                     <td>{{rot.categoria.nombre}}</td>
@@ -32,8 +36,8 @@
             </table>  
                
             </div>    
-            <div class="col-md-1"></div>
-            <div class="col-md-8">
+            <div class="col-md-2"></div>
+            <div class="col-md-7">
                 <div>
                 <div class="form-group" >
                     <label for="">Dificultad</label>

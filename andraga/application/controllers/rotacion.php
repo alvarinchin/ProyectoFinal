@@ -1,4 +1,4 @@
-
+    
 <?php
 require_once 'JwtController.php';
 require_once 'vendor/autoload.php';
@@ -12,13 +12,13 @@ class rotacion extends JwtController {
 	public function insertar() {
 		if (isset ( $_REQUEST ["id"] )) {
 			if (! empty ( $_REQUEST ["id"] )) {
-				
+                            
 				$inscripcion = $this->adaptador_model->getOne ( "inscripcion", $this->utilphp->sanear ( $_REQUEST ["id"] ) );
 				//que se cree y vaya creciendo 
                                 $orden=0;
                                 $puntuacion=R::dispense("puntuacion");
 				$status = $this->rotacion_model->insert ( $inscripcion , $orden,$puntuacion);
-				
+                                    
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",
@@ -50,24 +50,25 @@ class rotacion extends JwtController {
 		$deportistas = [ ];
 		$ids = explode ( ",", $ids );
 		foreach ( $ids as $key => $value ) {
-			
+                    
 			$deportistas [$key] = $this->adaptador_model->getOne ( "deportista", $value );
 		}
-		
+                    
 		return $deportistas;
 	}
 	public function listar() {
-		$campos = [
+$campos = [
 				"categoria",
 				"especialidad",
 				"dorsal",
 				"ownDeportistaList",
                     "tipoejercicio",
                     "puntuacion"
-				
+                        
 		];
 		$res = [ ];
 		$rotaciones = $this->adaptador_model->getAll ( "rotacion" );
+             
 		foreach ( $rotaciones as $k => $rotacion ) {
 			$fila = [ ];
 			$rot = ($this->adaptador_model->getOne ( "rotacion", $rotacion->id ));
@@ -75,13 +76,13 @@ class rotacion extends JwtController {
 			foreach ( $campos as $ke => $campo ) {
 				$fila [$campo] = $ins->$campo;
 			}
-                        
+                        $fila ["puntuacion"] = $this->adaptador_model->getOne("puntuacion",$rotacion->puntuacion_id);
 			$fila ["id"] = $rotacion->id;
                         $fila ["puntuacion_id"] = $rotacion->puntuacion_id;
                         $fila ["orden"] = $rotacion->orden;
 			$res [$k] = $fila;
 		}
-		
+                    
 		if ($res != null) {
 			// deben devolverse en un echo porque son cadenas de texto
 			echo json_encode ( array (
@@ -99,9 +100,9 @@ class rotacion extends JwtController {
 	public function borrar() {
 		if (isset ( $_REQUEST ["id"] )) {
 			if (! empty ( $_REQUEST ["id"] )) {
-				
+                            
 				$status = $this->adaptador_model->delete ( "rotacion", $this->utilphp->sanear ( $_REQUEST ["id"] ) );
-				
+                                    
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",

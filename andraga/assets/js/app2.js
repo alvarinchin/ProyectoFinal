@@ -246,7 +246,7 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 	}
 });
 
-app.controller('puntuacionCtrl', function($scope, $http) {
+app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
 
 	$scope.activo = {};
 
@@ -254,25 +254,33 @@ app.controller('puntuacionCtrl', function($scope, $http) {
 
 		$http.get(base_url + "/rotacion/listar").then(function(response) {
 
-			//console.log(response.data["data"]);
+			
 			$scope.rotaciones = response.data["data"];
-                    
-                        $scope.activo=$scope.rotaciones[4];
-                        console.log($scope.activo);
-                      // $scope.cargarRotacion();
+                       
+                  //$scope.cargarRotacion
                         
 		});
 	}
 	
       
 	$scope.cargarRotacion = function() {
-            var rotaciones= document.getElementsByName("rotacion");
+            var rotaciones= document.getElementsByName("rotacion").length;
            
-            for ( elem in $scope.rotaciones){
-               if( $scope.rotaciones[elem].puntuacion_id != null){
-                 document.getElementById("rotacion"+$scope.rotaciones[elem].id).style="background-color:rgba(77, 150, 43 ,0.5)";
+           activo=true;
+            for ( i in $scope.rotaciones){
+                
+               if( $scope.rotaciones[i].puntuacion.total != null){
+                 document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(77, 150, 43 ,0.5)";
+               }else{
+                   if(activo){
+                        $scope.activo=$scope.rotaciones[i];
+                        document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(147, 181, 234,0.5)";
+                        activo=false;
+                   }
+                    
                }
             }
+           
 	}
          
         $scope.enviar = function() {
@@ -290,7 +298,7 @@ app.controller('puntuacionCtrl', function($scope, $http) {
                                 id_rotacion:$scope.activo.id
 			}
 		};
-     console.log(config);
+    // console.log(config);
 		$http(config).then(
 				function(response) {
 					
@@ -302,12 +310,15 @@ app.controller('puntuacionCtrl', function($scope, $http) {
                                 $scope.artistico="";
                                 $scope.penalizacion="";
                                 $scope.total="";
-                                $scope.cargarRotacion();
+                              //  $scope.cargarRotacion();
 					$scope.cargar();
+                                        $scope.cargarRotacion();
                                         
 				});
         }
       $scope.cargar();
+     
+     $timeout($scope.cargarRotacion, 500);
 });
 
 

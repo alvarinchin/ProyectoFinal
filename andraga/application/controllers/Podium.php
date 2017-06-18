@@ -18,7 +18,7 @@ class Podium extends JwtController {
 					$status = $this->podium_model->insert ( $categoria, $especialidad );
 					
 					if ($status) {
-						//$rotacion->puntuacion=
+						// $rotacion->puntuacion=
 						echo json_encode ( array (
 								"status" => "ok",
 								"data" => $_REQUEST,
@@ -49,10 +49,10 @@ class Podium extends JwtController {
 	public function listar() {
 		if ($this->consultarListar ()) {
 			
-			$campos = [
+			$campos = [ 
 					
 					"categoria",
-					"especialidad"
+					"especialidad" 
 			];
 			$res = [ ];
 			
@@ -75,13 +75,67 @@ class Podium extends JwtController {
 				echo json_encode ( array (
 						"status" => "ok",
 						"data" => $res,
-						"msg" => "Datos cargados"
+						"msg" => "Datos cargados" 
 				) );
 			} else {
 				echo json_encode ( array (
 						"status" => "error",
-						"msg" => "error en BD"
+						"msg" => "error en BD" 
 				) );
+			}
+		}
+	}
+	public function listarRotacion() {
+		if ($this->consultarListar ()) {
+			if (isset ( $_REQUEST ["idPodium"] )) {
+				$campos = [ 
+						
+						"categoria",
+						"especialidad" 
+				];
+				$res = [ ];
+				
+				$podium = $this->adaptador_model->getOne ( "podium", $this->utilphp->sanear ( $_REQUEST ["idPodium"] ) );
+				
+				$categoria= $podium['idCategoria'];
+				$especialidad= $podium['idEspecialidad'];
+				
+				$this->load->model ( "inscripcion_model" );
+				
+				$inscripciones = $this->inscripcion_model->getInscCatEsp ( "inscripcion", $this->utilphp->sanear ( $categoria ), $this->utilphp->sanear ( $especialidad ));
+				
+				$this->load->model ( "rotacion_model" );
+				
+				foreach ($inscripciones as $inscr){
+					$rotaciones = $this->rotacion_model->getRotacionPorInscripcion ( "rotacion", $inscr);
+					foreach ( $rotaciones as $k => $rotacion) {
+						$fila = [ ];
+						$ins = $this->adaptador_model->getOne ( "rotacion", $rotacion->id );
+						$fila ["id"] = $rotacion->id;
+						foreach ( $campos as $ke => $campo ) {
+							
+							$fila [$campo] = $ins->$campo;
+						}
+						
+						$res [$k] = $fila;
+					}
+				}
+				
+			
+				
+				if ($res != null) {
+					// deben devolverse en un echo porque son cadenas de texto
+					echo json_encode ( array (
+							"status" => "ok",
+							"data" => $res,
+							"msg" => "Datos cargados" 
+					) );
+				} else {
+					echo json_encode ( array (
+							"status" => "error",
+							"msg" => "error en BD" 
+					) );
+				}
 			}
 		}
 	}

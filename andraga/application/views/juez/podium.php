@@ -5,11 +5,12 @@
 </style>
 
 <div class="container" ng-controller="podiumsCtrl">
-<div class="row">
-	<div class="col-xs-8">
-	<img src="<?=base_url()?>assets/img/logo.png" class="img img-rounded" width="25%" height="25%">
+	<div class="row">
+		<div class="col-xs-8">
+			<img src="<?=base_url()?>assets/img/logo.png" class="img img-rounded"
+				width="25%" height="25%">
+		</div>
 	</div>
-</div>
 	<h2>Gestor de podiums</h2>
 
 	<div class="row">
@@ -61,19 +62,19 @@
 										<th></th>
 									</tr>
 									<form name="myForm">
-									
-									
-									<tr ng-repeat="pod in podiums">
-										<td>{{pod.categoria.nombre}}</td>
-										<td>{{pod.especialidad.descripcion}}</td>
 
-										<td><button class="btn btn-remove"
-												ng-click="borrarPodium(pod.id);">
-												<span class="glyphicon glyphicon-remove"></span>
-											</button></td>
-										<td name="fila"><input type="radio" value="{{pod.id}}"
-											name="podium"></td>
-									</tr>
+
+										<tr ng-repeat="pod in podiums">
+											<td>{{pod.categoria.nombre}}</td>
+											<td>{{pod.especialidad.descripcion}}</td>
+
+											<td><button class="btn btn-remove"
+													ng-click="borrarPodium(pod.id);">
+													<span class="glyphicon glyphicon-remove"></span>
+												</button></td>
+											<td name="fila"><input type="radio" value="{{pod.id}}"
+												name="podium"></td>
+										</tr>
 
 
 									</form>
@@ -96,7 +97,35 @@
 
 				<!--        inscripciones-->
 
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table">
+							<thead>
+								<tr>
+									<th>Orden</th>
+									<th>Deportista</th>
+									<th>Especialidad</th>
+									<th>Categoria</th>
+									<th>Dorsal</th>
+									<th>Tipo de ejercicio</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="rotVin in rotacionesVinculadas">
+									<td>{{rot.orden}}</td>
+									<td><p ng-repeat="dep in rotVin.ownDeportistaList">{{dep.ape1}}
+											{{dep.ape2}}, {{dep.nombre}}</p></td>
+									<td>{{rotVin.especialidad.descripcion}}</td>
+									<td>{{rotVin.categoria.nombre}}</td>
+									<td>{{rotVin.dorsal}}</td>
+									<td>{{rotVin.tipoejercicio.descripcion}}</td>
 
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
 				<!-- botones 
 
 				<div class="col-md-1">

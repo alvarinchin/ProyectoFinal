@@ -69,9 +69,9 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
     $scope.mostrarPuntuacion=function(){
         
         $( "#dialog" ).dialog( "open" );
-        puntuacion= $interval(function(){
+        /*puntuacion= $interval(function(){
             $( "#dialog" ).dialog( "close" );
-        },5000,1);
+        },5000,1);*/
         
     }
     

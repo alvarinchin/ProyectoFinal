@@ -251,22 +251,31 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
             $scope.rotaciones = response.data["data"];
 
             $scope.activo = $scope.rotaciones[4];
-            console.log($scope.activo);
+           // console.log($scope.activo);
             // $scope.cargarRotacion();
 
         });
     }
-
-    $scope.cargarRotacion = function() {
-        var rotaciones = document.getElementsByName("rotacion");
-
-        for (elem in $scope.rotaciones) {
-            if ($scope.rotaciones[elem].puntuacion_id != null) {
-                document.getElementById("rotacion"
-                        + $scope.rotaciones[elem].id).style = "background-color:rgba(77, 150, 43 ,0.5)";
+$scope.cargarRotacion = function() {
+        var rotaciones= document.getElementsByName("rotacion").length;
+           
+        activo=true;
+        for ( i in $scope.rotaciones){
+                
+            if( $scope.rotaciones[i].puntuacion.total != null){
+                document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(77, 150, 43 ,0.5)";
+            }else{
+                if(activo){
+                    $scope.activo=$scope.rotaciones[i];
+                    document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(147, 181, 234,0.5)";
+                    activo=false;
+                }
+                    
             }
         }
+           
     }
+    
 
     $scope.enviar = function() {
         // console.log($scope.activo);
@@ -301,82 +310,8 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
 
         });
     }
-    $scope.cargar();
-});
-
-app.controller('podiumsCtrl', function($scope, $http) {
-
-    $scope.cargar = function() {
-
-        $http.get(base_url + "/categoria/listar").then(
-                function(response) {
-
-
-			
-                    $scope.rotaciones = response.data["data"];
-                       
-            //$scope.cargarRotacion
-                        
-        });
-    }
-	
-      
-    $scope.cargarRotacion = function() {
-        var rotaciones= document.getElementsByName("rotacion").length;
-           
-        activo=true;
-        for ( i in $scope.rotaciones){
-                
-            if( $scope.rotaciones[i].puntuacion.total != null){
-                document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(77, 150, 43 ,0.5)";
-            }else{
-                if(activo){
-                    $scope.activo=$scope.rotaciones[i];
-                    document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(147, 181, 234,0.5)";
-                    activo=false;
-                }
-                    
-            }
-        }
-           
-    }
-         
-    $scope.enviar = function() {
-        //console.log($scope.activo);
-            
-        config = {
-            method : "POST",
-            url : base_url + "/puntuacion/insertar",
-            params : {
-                dificultad : $scope.dificultad,
-                ejecucion : $scope.ejecucion,
-                artistico:$scope.artistico,
-                penalizacion:$scope.penalizacion,
-                total:($scope.dificultad+$scope.ejecucion+$scope.artistico-$scope.penalizacion),
-                id_rotacion:$scope.activo.id
-            }
-        };
-        // console.log(config);
-        $http(config).then(
-
-                function(response) {
-                    console.log(response.data["status"] + " : "
-                    + response.data["msg"]);
-            $scope.especialidades = response.data["data"];
-
-            $scope.dificultad="";
-            $scope.ejecucion="";
-            $scope.artistico="";
-            $scope.penalizacion="";
-            $scope.total="";
-            //  $scope.cargarRotacion();
-            $scope.cargar();
-            $scope.cargarRotacion();
-                                        
-        });
-    }
-    $scope.cargar();
-     
+       
+    $scope.cargar();   
     $timeout($scope.cargarRotacion, 500);
 });
 

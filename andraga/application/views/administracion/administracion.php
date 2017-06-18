@@ -27,7 +27,7 @@
 					</div>
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span>
+						<span class="glyphicon glyphicon-floppy-disk"></span>
 					</button>
 				</div>
 
@@ -37,8 +37,8 @@
 					</tr>
 					<tr ng-repeat="club in clubes">
 						<td>{{club.nombre}}</td>
-						<td><button class="btn btn-primary" ng-click="borrar(club)">
-								<span class="glyphicon glyphicon-remove"></span>
+						<td><button class="btn btn-danger" ng-click="borrar(club)">
+								<span class="glyphicon glyphicon-trash"></span>
 							</button></td>
 						<td><button class="btn btn-primary" ng-click="datos(club)"
 								data-toggle="collapse" data-target="#clubE">
@@ -85,7 +85,7 @@
 
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span>
+						<span class="glyphicon glyphicon-floppy-disk"></span>
 					</button>
 				</div>
 
@@ -95,8 +95,8 @@
 					</tr>
 					<tr ng-repeat="categoria in categorias">
 						<td>{{categoria.nombre}}</td>
-						<td><button class="btn btn-primary" ng-click="borrar(categoria)">
-								<span class="glyphicon glyphicon-remove"></span>
+						<td><button class="btn btn-danger" ng-click="borrar(categoria)">
+								<span class="glyphicon glyphicon-trash"></span>
 							</button></td>
 						<td><button class="btn btn-primary" ng-click="datos(categoria)"
 								data-toggle="collapse" data-target="#catgE">
@@ -136,7 +136,7 @@
 					</div>
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span>
+						<span class="glyphicon glyphicon-floppy-disk"></span>
 					</button>
 				</div>
 
@@ -146,8 +146,8 @@
 					</tr>
 					<tr ng-repeat="tipo in tipos">
 						<td>{{tipo.descripcion}}</td>
-						<td><button class="btn btn-primary" ng-click="borrar(tipo)">
-								<span class="glyphicon glyphicon-remove"></span>
+						<td><button class="btn btn-danger" ng-click="borrar(tipo)">
+								<span class="glyphicon glyphicon-trash"></span>
 							</button></td>
 						<td><button class="btn btn-primary" ng-click="datos(tipo)"
 								data-toggle="collapse" data-target="#tipoE" >
@@ -193,7 +193,7 @@
 
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span>
+						<span class="glyphicon glyphicon-floppy-disk"></span>
 					</button>
 				</div>
 
@@ -205,9 +205,9 @@
 					<tr ng-repeat="especialidad in especialidades">
 						<td>{{especialidad.descripcion}}</td>
 						<td>Num: {{especialidad.num}}</td>
-						<td><button class="btn btn-primary"
+						<td><button class="btn btn-danger"
 								ng-click="borrar(especialidad)">
-								<span class="glyphicon glyphicon-remove"></span>
+								<span class="glyphicon glyphicon-trash"></span>
 							</button></td>
 						<td><button class="btn btn-primary" ng-click="datos(especialidad)"
 								data-toggle="collapse" data-target="#espE">
@@ -256,7 +256,7 @@
 					</div>
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span>
+						<span class="glyphicon glyphicon-floppy-disk"></span>
 					</button>
 				</div>
 
@@ -268,8 +268,8 @@
 					<tr ng-repeat="competicion in competiciones">
 						<td>{{competicion.nombre}}</td>
 						<td>{{competicion.fecha}}</td>
-						<td><button class="btn btn-primary" ng-click="borrar(competicion)">
-								<span class="glyphicon glyphicon-remove"></span>
+						<td><button class="btn btn-danger" ng-click="borrar(competicion)">
+								<span class="glyphicon glyphicon-trash"></span>
 							</button></td>
 						<td><button class="btn btn-primary" ng-click="datos(competicion)"
 								data-toggle="collapse" data-target="#competicionE">
@@ -344,7 +344,7 @@
 					</div>
 					<button type="button" ng-click="insertar();"
 						class="btn btn-success">
-						<span class="glyphicon glyphicon-plus"></span>
+						<span class="glyphicon glyphicon-floppy-disk"></span>
 					</button>
 				</div>
 
@@ -358,8 +358,8 @@
 						<td>{{deportista.nombre}}</td>
 						<td>{{deportista.ape1}}</td>
 						<td>{{deportista.ape2}}</td>
-						<td><button class="btn btn-primary" ng-click="borrar(deportista)">
-								<span class="glyphicon glyphicon-remove"></span>
+						<td><button class="btn btn-danger" ng-click="borrar(deportista)">
+								<span class="glyphicon glyphicon-trash"></span>
 							</button></td>
 						<td><button class="btn btn-primary" ng-click="datos(deportista)"
 								data-toggle="collapse" data-target="#deportistaE">

@@ -4,7 +4,7 @@
 
 		<div class="col-xs-1"></div>
 		<div class="col-xs-10">
-			<img src="<?=base_url()?>/assets/img/fondoJuez.png" width="800px">
+			<img src="<?=base_url()?>/assets/img/fondoJuez.png" width="100%">
 		</div>
 		<div class="col-xs-1"></div>
 	</div>

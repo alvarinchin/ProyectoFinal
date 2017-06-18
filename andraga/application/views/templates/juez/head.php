@@ -16,7 +16,7 @@
 	rel="stylesheet">
 <link href="<?=base_url()?>assets/css/custom.css"
 	rel="stylesheet">
-
+<link rel="shortcut icon" href="<?=base_url()?>/assets/img/favicon.ico" />
 <title>Gestor Competiciones</title>
 </head>
 <body>

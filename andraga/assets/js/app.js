@@ -10,133 +10,123 @@ app.controller('mainCtrl', function($scope) {
 
 });
 
-app
-		.controller(
-				'clubCtrl',
-				function($scope, $http, $window) {
+app.controller('clubCtrl', function($scope, $http, $window) {
 
-					$scope.club = {
-						"codClub" : 0,
-						"nombre" : "",
-						"origen" : "",
-						"comunidad" : ""
-					}
-					$scope.nombreE = "";
-					$scope.origenE = "";
-					$scope.comunidadE = ""
-					$scope.idE = ""
+	$scope.club = {
+		"codClub" : 0,
+		"nombre" : "",
+		"origen" : "",
+		"comunidad" : ""
+	}
+	$scope.nombreE = "";
+	$scope.origenE = "";
+	$scope.comunidadE = ""
+	$scope.idE = ""
 
-					$scope.campos = [ "nombre", "origen", "comunidad" ];
-					$scope.nombre;
-					$scope.origen;
-					$scope.comunidad;
+	$scope.campos = [ "nombre", "origen", "comunidad" ];
+	$scope.nombre;
+	$scope.origen;
+	$scope.comunidad;
 
-					$scope.cargar = function() {
-						$http.get(base_url + "/club/listar").then(
-								function(response) {
-									console.log(response.data["status"] + " : "
-											+ response.data["msg"]);
-									$scope.clubes = response.data["data"];
+	$scope.cargar = function() {
+		$http.get(base_url + "/club/listar").then(
+				function(response) {
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+					$scope.clubes = response.data["data"];
 
-								});
-					}
+				});
+	}
 
-					$scope.cargar();
-					$scope.insertar = function() {
+	$scope.cargar();
+	$scope.insertar = function() {
 
-						config = {
-							method : "POST",
-							url : base_url + "/club/insertar",
-							params : {
-								nombre : $scope.nombre,
-								origen : $scope.origen,
-								comunidad : $scope.comunidad
-							}
-						};
+		config = {
+			method : "POST",
+			url : base_url + "/club/insertar",
+			params : {
+				nombre : $scope.nombre,
+				origen : $scope.origen,
+				comunidad : $scope.comunidad
+			}
+		};
 
-						$http(config)
-								.then(
-										function(response) {
-											console.log(response.data["status"]
-													+ " : "
-													+ response.data["msg"]);
-											if (response.data["status"] == "error") {
-												alert(response.data["msg"]);
-											}
-
-											$scope.nombre = $scope.nombre ? $scope.nombre
-													: "";
-											$scope.origen = $scope.origen ? $scope.origen
-													: "";
-											$scope.comunidad = $scope.comunidad ? $scope.comunidad
-													: "";
-											$scope.cargar();
-										});
-					}
-
-					$scope.datos = function(club) {
-						$scope.nombreE = club.nombre;
-						$scope.origenE = club.origen;
-						$scope.comunidadE = club.comunidad;
-						$scope.idE = club.id;
-					}
-
-					$scope.modificar = function() {
-
-						config = {
-							method : "POST",
-							url : base_url + "/club/modificar",
-							params : {
-								nombre : $scope.nombreE,
-								id : $scope.idE,
-								origen : $scope.origenE,
-								comunidad : $scope.comunidadE
-							}
-						};
-
-						$http(config)
-								.then(
-										function(response) {
-											console.log(response.data["status"]
-													+ " : "
-													+ response.data["msg"]);
-											$scope.idE = "";
-											$scope.nombreE = $scope.nombreE ? $scope.nombreE
-													: "";
-											$scope.origenE = $scope.origenE ? $scope.origenE
-													: "";
-											$scope.comunidadE = $scope.comunidadE ? $scope.comunidadE
-													: "";
-											$scope.cargar();
-										});
-					}
-
-					$scope.borrar = function(club) {
-						if (confirm("¿Desea borrar el club " + club.nombre
-								+ "?")) {
-							config = {
-								method : "POST",
-								url : base_url + "/club/borrar",
-								params : {
-									id : club.id
-								}
-							};
-
-							$http(config)
-									.then(
-											function(response) {
-
-												console
-														.log(response.data["status"]
-																+ " : "
-																+ response.data["msg"]);
-
-												$scope.cargar();
-											});
-						}
+		$http(config).then(
+				function(response) {
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+					if (response.data["status"] == "error") {
+						alert(response.data["msg"]);
+						$scope.nombre = $scope.nombre ? $scope.nombre : "";
+						$scope.origen = $scope.origen ? $scope.origen : "";
+						$scope.comunidad = $scope.comunidad ? $scope.comunidad
+								: "";
+						$scope.cargar();
+					} else {
+						$scope.nombre = "";
+						$scope.origen = "";
+						$scope.comunidad = "";
+						$scope.cargar();
 					}
 
 				});
+	}
+
+	$scope.datos = function(club) {
+		$scope.nombreE = club.nombre;
+		$scope.origenE = club.origen;
+		$scope.comunidadE = club.comunidad;
+		$scope.idE = club.id;
+	}
+
+	$scope.modificar = function() {
+
+		config = {
+			method : "POST",
+			url : base_url + "/club/modificar",
+			params : {
+				nombre : $scope.nombreE,
+				id : $scope.idE,
+				origen : $scope.origenE,
+				comunidad : $scope.comunidadE
+			}
+		};
+
+		$http(config).then(
+				function(response) {
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+					$scope.idE = "";
+					$scope.nombreE = $scope.nombreE ? $scope.nombreE : "";
+					$scope.origenE = $scope.origenE ? $scope.origenE : "";
+					$scope.comunidadE = $scope.comunidadE ? $scope.comunidadE
+							: "";
+					$scope.cargar();
+				});
+	}
+
+	$scope.borrar = function(club) {
+		if (confirm("¿Desea borrar el club " + club.nombre + "?")) {
+			config = {
+				method : "POST",
+				url : base_url + "/club/borrar",
+				params : {
+					id : club.id
+				}
+			};
+
+			$http(config).then(
+					function(response) {
+
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
+
+						$scope.cargar();
+					});
+		}
+	}
+
+});
 
 app.controller('categoriaCtrl', function($scope, $http) {
 
@@ -184,11 +174,15 @@ app.controller('categoriaCtrl', function($scope, $http) {
 							+ response.data["msg"]);
 					if (response.data["status"] == "error") {
 						alert(response.data["msg"]);
+						$scope.nombre = $scope.nombre ? $scope.nombre : "";
+						$scope.autonom = "";
+						$scope.cargar();
+					} else {
+						$scope.nombre = "";
+						$scope.autonom = "";
+						$scope.cargar();
 					}
 
-					$scope.nombre = $scope.nombre ? $scope.nombre : "";
-					$scope.autonom = "";
-					$scope.cargar();
 				});
 	}
 
@@ -294,11 +288,16 @@ app
 													+ response.data["msg"]);
 											if (response.data["status"] == "error") {
 												alert(response.data["msg"]);
-											}
-											$scope.descripcion = $scope.descripcion ? $scope.descripcion
-													: "";
+												$scope.descripcion = $scope.descripcion ? $scope.descripcion
+														: "";
 
-											$scope.cargar();
+												$scope.cargar();
+											} else {
+												$scope.descripcion = "";
+
+												$scope.cargar();
+											}
+
 										});
 					}
 
@@ -412,14 +411,19 @@ app
 													+ response.data["msg"]);
 											if (response.data["status"] == "error") {
 												alert(response.data["msg"]);
+												$scope.descripcion = $scope.descripcion ? $scope.descripcion
+														: "";
+												$scope.num = $scope.num ? $scope.num
+														: 0;
+
+												$scope.cargar();
+											} else {
+												$scope.descripcion = "";
+												$scope.num = 0;
+
+												$scope.cargar();
 											}
 
-											$scope.descripcion = $scope.descripcion ? $scope.descripcion
-													: "";
-											$scope.num = $scope.num ? $scope.num
-													: 0;
-
-											$scope.cargar();
 										});
 					}
 
@@ -538,15 +542,22 @@ app
 													+ response.data["msg"]);
 											if (response.data["status"] == "error") {
 												alert(response.data["msg"]);
-											}
-											$scope.login = $scope.login ? $scope.login
-													: "";
-											$scope.password = $scope.password ? $scope.password
-													: "";
-											$scope.rol = $scope.rol ? $scope.rol
-													: "";
+												$scope.login = $scope.login ? $scope.login
+														: "";
+												$scope.password = $scope.password ? $scope.password
+														: "";
+												$scope.rol = $scope.rol ? $scope.rol
+														: "";
 
-											$scope.cargar();
+												$scope.cargar();
+											} else {
+												$scope.login = "";
+												$scope.password = "";
+												$scope.rol = "";
+
+												$scope.cargar();
+											}
+
 										});
 					}
 
@@ -734,7 +745,7 @@ app
 						diaIn = fechaArray[0];
 						mesIn = fechaArray[1];
 						anioIn = fechaArray[2];
-						
+
 						if (formatoFecha.test($scope.fecha)) {
 							console.log("Formato de fecha válido");
 							var ok = $scope.validarFecha(diaIn, mesIn, anioIn);
@@ -762,23 +773,31 @@ app
 																	+ response.data["msg"]);
 													if (response.data["status"] == "error") {
 														alert(response.data["msg"]);
+														$scope.nombre = $scope.nombre ? $scope.nombre
+																: "";
+														$scope.ape1 = $scope.ape1 ? $scope.ape1
+																: "";
+														$scope.ape2 = $scope.ape2 ? $scope.ape2
+																: "";
+														$scope.fecha = $scope.fecha ? $scope.fecha
+																: "";
+														$scope.numerofederacion = $scope.numerofederacion ? $scope.numerofederacion
+																: "";
+														$scope.cargar();
+													} else {
+														$scope.nombre = "";
+														$scope.ape1 = "";
+														$scope.ape2 = "";
+														$scope.fecha = "";
+														$scope.numerofederacion = "";
+														$scope.cargar();
 													}
-													$scope.nombre = $scope.nombre ? $scope.nombre
-															: "";
-													$scope.ape1 = $scope.ape1 ? $scope.ape1
-															: "";
-													$scope.ape2 = $scope.ape2 ? $scope.ape2
-															: "";
-													$scope.fecha = $scope.fecha ? $scope.fecha
-															: "";
-													$scope.numerofederacion = $scope.numerofederacion ? $scope.numerofederacion
-															: "";
-													$scope.cargar();
+
 												});
-							}else{
+							} else {
 								alert("La fecha introducida es superior a la actual");
 							}
-						}else{
+						} else {
 							alert("El formato de fecha introducida no es correcto. Ej: 22/03/2007");
 						}
 
@@ -936,12 +955,19 @@ app
 																	+ response.data["msg"]);
 													if (response.data["status"] == "error") {
 														alert(response.data["msg"]);
+														$scope.nombre = $scope.nombre ? $scope.nombre
+																: "";
+														$scope.fecha = $scope.fecha ? $scope.fecha
+																: "";
+														$scope.cargar();
+													}else{
+														$scope.nombre = $scope.nombre ? $scope.nombre
+																: "";
+														$scope.fecha = $scope.fecha ? $scope.fecha
+																: "";
+														$scope.cargar();
 													}
-													$scope.nombre = $scope.nombre ? $scope.nombre
-															: "";
-													$scope.fecha = $scope.fecha ? $scope.fecha
-															: "";
-													$scope.cargar();
+													
 												});
 							}
 

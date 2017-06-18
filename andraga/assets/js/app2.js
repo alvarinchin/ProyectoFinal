@@ -273,13 +273,15 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
            
         activo=true;
         for ( i in $scope.rotaciones){
-                
+                document.getElementById("rotacion"+$scope.rotaciones[i].id).className="";
             if( $scope.rotaciones[i].puntuacion.total != null){
-                document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(77, 150, 43 ,0.5)";
+                
+                document.getElementById("rotacion"+$scope.rotaciones[i].id).className="completo";
             }else{
                 if(activo){
                     $scope.activo=$scope.rotaciones[i];
-                    document.getElementById("rotacion"+$scope.rotaciones[i].id).style="background-color:rgba(147, 181, 234,0.5)";
+                   
+                    document.getElementById("rotacion"+$scope.rotaciones[i].id).className="actual";
                     activo=false;
                 }
                     
@@ -321,8 +323,8 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
                 $scope.artistico = "";
                 $scope.penalizacion = "";
                 $scope.total = "";
-                $scope.cargarRotacion();
                 $scope.cargar();
+               $timeout($scope.cargarRotacion, 500);
 
             });
     

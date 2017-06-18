@@ -28,21 +28,16 @@ class Orden_model {
 	 * @return boolean
 	 */
 	public function insert($bean) {
-		
-		// AÑADIDO $nombreBean a la invo del método "existe".
-            
-          
-                
-		
-                       $pos=R::findLast("orden");
-                       return "::::".$pos;
-                             $bean->posicion=$pos+1;
-                        
-                       
-		
-			
-			if(R::store ( $bean )){
-			
+                        R::store($bean);
+                        $filas = R::findAll("orden",'order by id');
+                        $pos=1;
+                        foreach ($filas as $key => $value) {
+                            $value->posicion=$pos;
+                            $pos+=1;
+                        }
+                     
+      
+			if(   R::storeAll($filas)){
                         return true;
 		} else {
 			return false;

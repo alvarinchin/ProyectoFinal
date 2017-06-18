@@ -24,8 +24,10 @@ class rotacion extends JwtController {
                                 $orden=$this->adaptador_model->getOne("orden",$status->orden_id);
                                 $orden->rotacion=$status;
                                 $orden->competicion=$this->adaptador_model->getOne("competicion",$inscripcion->competicion_id);
-                               echo $this->Orden_model->insert($orden);
-                          return false;
+                                 
+                                $this->Orden_model->insert($orden);
+                            
+                        
 				if ($status) {
 					echo json_encode ( array (
 							"status" => "ok",
@@ -85,6 +87,7 @@ class rotacion extends JwtController {
                         $ins= $rot->inscripcion;
 			foreach ( $campos as $ke => $campo ) {
 				$fila [$campo] = $ins->$campo;
+                               
 			}
                         $fila ["puntuacion"] = $this->adaptador_model->getOne("puntuacion",$rotacion->puntuacion_id);
 			$fila ["id"] = $rotacion->id;

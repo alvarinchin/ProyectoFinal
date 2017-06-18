@@ -32,7 +32,7 @@
                          <td><span ng-if="rot.puntuacion.total!=null" class="glyphicon glyphicon-ok"></span>
                          <span ng-if="rot == activo" class="glyphicon glyphicon-chevron-right"></span>
                          </td>
-                                    <td>{{rot.orden}}</td>
+                                    <td>{{rot.orden.posicion}}</td>
                                     <td>{{rot.especialidad.descripcion}}</td>
                                     <td>{{rot.categoria.nombre}}</td>
                                     <td>{{rot.dorsal}}</td>   

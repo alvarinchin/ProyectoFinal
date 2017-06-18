@@ -157,7 +157,7 @@
 							</thead>
 							<tbody>
 								<tr ng-repeat="rot in rotaciones">
-									<td>{{rot.orden}}</td>
+									<td>{{rot.orden.posicion}}</td>
 									<td><p ng-repeat="dep in rot.ownDeportistaList">{{dep.ape1}}
 											{{dep.ape2}}, {{dep.nombre}}</p></td>
 									<td>{{rot.especialidad.descripcion}}</td>
@@ -177,16 +177,7 @@
 	</div>
 </div>
 
-<script type="text/javascript">
-	$( "table tbody" ).sortable( {
-		update: function( event, ui ) {
-	    $(this).children().each(function(index) {
-				$(this).find('td').first().html(index + 1)
-	    });
-	  }
-	});
 
-</script>
 
 
 

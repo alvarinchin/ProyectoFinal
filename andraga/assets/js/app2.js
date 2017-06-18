@@ -296,6 +296,7 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
     
 
     $scope.enviar = function() {
+        if(confirm("¿Desea enviar esta respuesta?")){
         // console.log($scope.activo);
         if($scope.activo!=null){
             config = {
@@ -322,7 +323,7 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
                 $scope.ejecucion = "";
                 $scope.artistico = "";
                 $scope.penalizacion = "";
-                $scope.total = "";
+                $scope.total = 0;
                 $scope.cargar();
                $timeout($scope.cargarRotacion, 500);
 
@@ -331,6 +332,7 @@ app.controller('puntuacionCtrl', function($scope, $http,$timeout) {
         } else{
             alert("No hay ninguna rotación disponible");
         }
+    }
     }
     
     

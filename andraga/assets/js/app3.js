@@ -28,7 +28,7 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
                 res.push(rotaciones[elem]);
             }
          for (i=0;i<res.length-1;i++){
-                if(res[i].orden>res[i+1].orden){
+                if(res[i].orden.posicion>res[i+1].orden.posicion){
                     aux = res[i];
                     res[i]= res[i+1];
                     res[i+1]= aux;
@@ -67,6 +67,7 @@ app.controller('pantallaCtrl', function($scope, $http ,$interval) {
     }
     
     $scope.mostrarPuntuacion=function(){
+        
         $( "#dialog" ).dialog( "open" );
         puntuacion= $interval(function(){
             $( "#dialog" ).dialog( "close" );

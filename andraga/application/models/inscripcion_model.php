@@ -28,7 +28,7 @@ class inscripcion_model {
 	 * @param Array $campos        	
 	 * @return boolean
 	 */
-	public function insert($club,$competicion,$categoria,$especialidad,$deportistas,$dorsal,$tipoejercicio) {
+	public function insert($club,$competicion,$categoria,$especialidad,$deportistas,$tipoejercicio) {
 		
 		$inscripcion = R::dispense("inscripcion");
                 

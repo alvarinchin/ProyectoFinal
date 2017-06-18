@@ -97,7 +97,7 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
             idEspecialidad : $scope.especialidad,
             idCategoria : $scope.categoria,
             dorsal : $scope.dorsal,
-            idTipoejErcicio : $scope.tipoejercicio
+            idTipoEjercicio : $scope.tipoejercicio
         };
         var config = {
             method : "POST",

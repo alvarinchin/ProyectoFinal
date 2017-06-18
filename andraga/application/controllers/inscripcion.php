@@ -10,13 +10,13 @@ class inscripcion extends JwtController {
 	public function insertar() {
 		if ($this->consultarPermisosJuez ()) {
 			if (isset ( $_REQUEST ["idClub"] )) {
-				if (! empty ( $_REQUEST ["idClub"] ) && ! empty ( $_REQUEST ["idDeportistas"] ) && ! empty ( $_REQUEST ["idCompeticion"] ) && ! empty ( $_REQUEST ["idCategoria"] ) && ! empty ( $_REQUEST ["idEspecialidad"] ) && ! empty ( $_REQUEST ["idTipoejErcicio"] )) {
+				if (! empty ( $_REQUEST ["idClub"] ) && ! empty ( $_REQUEST ["idDeportistas"] ) && ! empty ( $_REQUEST ["idCompeticion"] ) && ! empty ( $_REQUEST ["idCategoria"] ) && ! empty ( $_REQUEST ["idEspecialidad"] ) && ! empty ( $_REQUEST ["idTipoEjercicio"] )) {
 					
 					$club = $this->adaptador_model->getOne ( "club", $this->utilphp->sanear ( $_REQUEST ["idClub"] ) );
 					$competicion = $this->adaptador_model->getOne ( "competicion", $this->utilphp->sanear ( $_REQUEST ["idCompeticion"] ) );
 					$especialidad = $this->adaptador_model->getOne ( "especialidad", $this->utilphp->sanear ( $_REQUEST ["idEspecialidad"] ) );
 					$categoria = $this->adaptador_model->getOne ( "categoria", $this->utilphp->sanear ( $_REQUEST ["idCategoria"] ) );
-					$tipoejercicio = $this->adaptador_model->getOne ( "tipoejercicio", $this->utilphp->sanear ( $_REQUEST ["idTipoejErcicio"] ) );
+					$tipoejercicio = $this->adaptador_model->getOne ( "tipoejercicio", $this->utilphp->sanear ( $_REQUEST ["idTipoEjercicio"] ) );
 					// $campos ["dorsal"]= strtoupper(substr($campos["Club"]["nombre"],0,2)).rand(1, 90);
                                        
 					

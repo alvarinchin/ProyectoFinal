@@ -136,70 +136,81 @@ class Competicion extends JwtController {
 					$status = $this->adaptador_model->delete ( "competicion", $_REQUEST ["id"] );
 					
 					if ($status) {
-						try {							
-							$status1 =$this->adaptador_model->borrar ( "clubes" );
-							if (!$status1) {
+						try {
+							$clubs = $this->adaptador_model->getAll ( "club" );
+							$status1 = $this->adaptador_model->borrar ( $clubs );
+							if (! $status1) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un club "
+										"msg" => "Error al borrar un club " 
 								) );
 							}
-							$status2 =$this->adaptador_model->borrar( "categorias" );
-							if (!$status2) {
+							$categorias = $this->adaptador_model->getAll ( "categoria" );
+							$status2 = $this->adaptador_model->borrar ( $categorias );
+							if (! $status2) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un categoria "
+										"msg" => "Error al borrar un categoria " 
 								) );
 							}
-							$status3 =$this->adaptador_model->borrar( "tiposejercicio" );
-							if (!$status3) {
+							$tipoejercicio = $this->adaptador_model->getAll ( "tipoejercicio" );
+							$status3 = $this->adaptador_model->borrar ( $tipoejercicio );
+							if (! $status3) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un tipo"
+										"msg" => "Error al borrar un tipo" 
 								) );
 							}
-							$status4 =$this->adaptador_model->borrar( "especialidades" );
-							if (!$status4) {
+							$especialidad = $this->adaptador_model->getAll ( "especialidad" );
+							$status4 = $this->adaptador_model->borrar ( $especialidad );
+							if (! $status4) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un especialidades "
+										"msg" => "Error al borrar un especialidades " 
 								) );
 							}
-							$status5 =$this->adaptador_model->borrar( "deportistas" );
-							if (!$status5) {
+							$deportista = $this->adaptador_model->getAll ( "deportista" );
+							$status5 = $this->adaptador_model->borrar ( $deportista );
+							if (! $status5) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un deportistas "
+										"msg" => "Error al borrar un deportistas " 
 								) );
 							}
-							$status6 =$this->adaptador_model->borrar( "inscripciones" );
-							if (!$status6) {
+							$inscripcion = $this->adaptador_model->getAll ( "inscripcion" );
+							$status6 = $this->adaptador_model->borrar ( $inscripcion );
+							if (! $status6) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un inscripciones "
+										"msg" => "Error al borrar un inscripciones " 
 								) );
 							}
-							$status7 =$this->adaptador_model->borrar( "rotaciones" );
-							if (!$status7) {
+							$rotacion = $this->adaptador_model->getAll ( "rotacion" );
+							$status7 = $this->adaptador_model->borrar ( $rotacion );
+							if (! $status7) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un rotaciones "
+										"msg" => "Error al borrar un rotaciones " 
 								) );
 							}
-							$status8 =$this->adaptador_model->borrar( "puntuaciones" );
-							if (!$status8) {
+							$puntuacion = $this->adaptador_model->getAll ( "puntuacion" );
+							$status8 = $this->adaptador_model->borrar ( $puntuacion );
+							if (! $status8) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un puntuaciones "
+										"msg" => "Error al borrar un puntuaciones " 
 								) );
 							}
-							$status9 =$this->adaptador_model->borrar( "podiums" );
-							if (!$status9) {
+							$podium = $this->adaptador_model->getAll ( "podium" );
+							$status9 = $this->adaptador_model->borrar ( $podium );
+							if (! $status9) {
 								echo json_encode ( array (
 										"status" => "error",
-										"msg" => "Error al borrar un podiums "
+										"msg" => "Error al borrar un podiums " 
 								) );
 							}
+							
+							header ( 'Location:' . $base_url . 'administrador' );
 						} catch ( Exception $e ) {
 						}
 						

@@ -1,7 +1,11 @@
 <?php 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$segmentos = explode('/', $uri);
-$controller = $segmentos[3];
+
+
+$controller = substr($uri, 1);
+        
+     
+
 ?>
 <nav class="container navbar navbar-inverse">
     <div class="navbar-header">

@@ -1,7 +1,7 @@
 var app = angular.module('gestion', []);
-var url = (window.location.host + window.location.pathname).split("/").splice(
-        0, 3).join("/");
-var base_url = "http://" + url;
+//var url = (window.location.host + window.location.pathname).split("/").splice(
+     //   0, 3).join("/");
+var base_url = "http://" + window.location.host;
 
 // cada controller se ecargará de gestionar uno de los cuadros de administracion
 app.controller('mainCtrl', function($scope) {

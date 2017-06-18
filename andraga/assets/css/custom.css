@@ -31,12 +31,12 @@
 }
 
 .cabeceraT{
-	font-size: 2.5em;	
+	font-size: 4em;	
 	color: white;
 	line-height: 50px;
 	width: 20%;
-	text-shadow: 2px 2px black;
-	background-color: #729ee5;
+	/*text-shadow: 3px 3px black;*/
+	background-color: #757f8c;
 			
 }
 
@@ -56,13 +56,14 @@
 }
 
 .cuerpoT{
-	font-size: 1.5em;	
+	font-size: 3.5em;	
 	text-align: center;
 	color:white;	
 	line-height: 10px;
 	width: 20%;
-	text-shadow: 2px 2px black;
-	background-color: #a7c3ef;					
+	/*text-shadow: 3px 3px black;*/
+	background-color: #43484f;
+	font-weight: bold;					
 }
 
 .table>tbody>tr>td{

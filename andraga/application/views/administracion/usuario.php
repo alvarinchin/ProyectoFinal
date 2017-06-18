@@ -41,7 +41,7 @@
                         <span ng-switch-when="2">Juez</span>
                         <span ng-switch-when="3">Administrador</span>
                         </td>
-                        <td><button class="btn btn-primary" ng-click="borrar(usuario)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                        <td><button class="btn btn-danger" ng-click="borrar(usuario)"><span class="glyphicon glyphicon-trash"></span></button></td>
                         <td><button class="btn btn-primary" ng-click="datos(usuario)"data-toggle="collapse" data-target="#usuarioE"><span class="glyphicon glyphicon-pencil"></span></button></td>
                         
                     </tr>

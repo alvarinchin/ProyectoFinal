@@ -62,8 +62,8 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 					$scope.tiposejercicio = response.data["data"];
 
 				});
-                                
-                                $http.get(base_url + "/rotacion/listar").then(
+
+		$http.get(base_url + "/rotacion/listar").then(
 				function(response) {
 					$scope.rotaciones = [];
 					console.log(response.data["status"] + " : "
@@ -74,24 +74,20 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 					}
 
 				});
-                                
-                                $http.get(base_url + "/inscripcion/listar").then(
+
+		$http.get(base_url + "/inscripcion/listar").then(
 				function(response) {
-					
+
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
 
-					
-						$scope.inscripciones=response.data["data"];
-					
+					$scope.inscripciones = response.data["data"];
 
 				});
-                                
-                                
-                          
+
 	}
-           $scope.cargar();
-        
+	$scope.cargar();
+
 	$scope.enviarInscripcion = function() {
 
 		$scope.ids = {
@@ -108,20 +104,17 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 			url : base_url + "/inscripcion/insertar",
 			params : $scope.ids
 		}
-             
 
-	$http(config).then(function(response) {
+		$http(config).then(function(response) {
 			console.log(response.data["msg"]);
 			$scope.cargar();
-			
+
 		})
 
 	}
 
-	
-
 	$scope.borrarInscripciones = function(id) {
-		//console.log(id);
+		// console.log(id);
 		var config = {
 			url : base_url + "/inscripcion/borrar",
 			method : "post",
@@ -132,13 +125,13 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 		$http(config).then(function(response) {
 			console.log(response.data["msg"]);
 			$scope.cargar();
-			
+
 		})
 
 	}
 
 	$scope.crearRotaciones = function(id) {
-		//console.log(id);
+		// console.log(id);
 		var config = {
 			url : base_url + "/rotacion/insertar",
 			method : "post",
@@ -149,7 +142,7 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 		$http(config).then(function(response) {
 			console.log(response.data["msg"]);
 			$scope.cargar();
-			
+
 		})
 
 	}
@@ -194,10 +187,6 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 		}
 	}
 
-	
-	
-
-
 	$scope.insertarRotacion = function() {
 
 		config = {
@@ -223,7 +212,7 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 
 	$scope.borrarRotacion = function(id) {
 		if (confirm("¿Desea borrar el elemento?")) {
-		//	console.log(id);
+			// console.log(id);
 			config = {
 				method : "POST",
 				url : base_url + "/rotacion/borrar",
@@ -246,68 +235,164 @@ app.controller('inscripcionesCtrl', function($scope, $http) {
 	}
 });
 
-app.controller('puntuacionCtrl', function($scope, $http) {
+app
+		.controller(
+				'puntuacionCtrl',
+				function($scope, $http) {
 
-	$scope.activo = {};
+					$scope.activo = {};
+
+					$scope.cargar = function() {
+
+						$http.get(base_url + "/rotacion/listar").then(
+								function(response) {
+
+									// console.log(response.data["data"]);
+									$scope.rotaciones = response.data["data"];
+
+									$scope.activo = $scope.rotaciones[4];
+									console.log($scope.activo);
+									// $scope.cargarRotacion();
+
+								});
+					}
+
+					$scope.cargarRotacion = function() {
+						var rotaciones = document.getElementsByName("rotacion");
+
+						for (elem in $scope.rotaciones) {
+							if ($scope.rotaciones[elem].puntuacion_id != null) {
+								document.getElementById("rotacion"
+										+ $scope.rotaciones[elem].id).style = "background-color:rgba(77, 150, 43 ,0.5)";
+							}
+						}
+					}
+
+					$scope.enviar = function() {
+						// console.log($scope.activo);
+
+						config = {
+							method : "POST",
+							url : base_url + "/puntuacion/insertar",
+							params : {
+								dificultad : $scope.dificultad,
+								ejecucion : $scope.ejecucion,
+								artistico : $scope.artistico,
+								penalizacion : $scope.penalizacion,
+								total : ($scope.dificultad + $scope.ejecucion
+										+ $scope.artistico - $scope.penalizacion),
+								id_rotacion : $scope.activo.id
+							}
+						};
+						console.log(config);
+						$http(config).then(
+								function(response) {
+
+									console.log(response.data["status"] + " : "
+											+ response.data["msg"]);
+
+									$scope.dificultad = "";
+									$scope.ejecucion = "";
+									$scope.artistico = "";
+									$scope.penalizacion = "";
+									$scope.total = "";
+									$scope.cargarRotacion();
+									$scope.cargar();
+
+								});
+					}
+					$scope.cargar();
+				});
+
+app.controller('podiumsCtrl', function($scope, $http) {
 
 	$scope.cargar = function() {
 
-		$http.get(base_url + "/rotacion/listar").then(function(response) {
-
-			//console.log(response.data["data"]);
-			$scope.rotaciones = response.data["data"];
-                    
-                        $scope.activo=$scope.rotaciones[4];
-                        console.log($scope.activo);
-                      // $scope.cargarRotacion();
-                        
-		});
-	}
-	
-      
-	$scope.cargarRotacion = function() {
-            var rotaciones= document.getElementsByName("rotacion");
-           
-            for ( elem in $scope.rotaciones){
-               if( $scope.rotaciones[elem].puntuacion_id != null){
-                 document.getElementById("rotacion"+$scope.rotaciones[elem].id).style="background-color:rgba(77, 150, 43 ,0.5)";
-               }
-            }
-	}
-         
-        $scope.enviar = function() {
-            //console.log($scope.activo);
-            
-		config = {
-			method : "POST",
-			url : base_url + "/puntuacion/insertar",
-			params : {
-				dificultad : $scope.dificultad,
-				ejecucion : $scope.ejecucion,
-                                artistico:$scope.artistico,
-                                penalizacion:$scope.penalizacion,
-                                total:($scope.dificultad+$scope.ejecucion+$scope.artistico-$scope.penalizacion),
-                                id_rotacion:$scope.activo.id
-			}
-		};
-     console.log(config);
-		$http(config).then(
+		$http.get(base_url + "/categoria/listar").then(
 				function(response) {
-					
+
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+					$scope.categorias = response.data["data"];
+
+				});
+
+		$http.get(base_url + "/especialidad/listar").then(
+				function(response) {
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+					$scope.especialidades = response.data["data"];
+
+				});
+
+		$http.get(base_url + "/rotacion/listar").then(
+				function(response) {
+					$scope.rotaciones = [];
 					console.log(response.data["status"] + " : "
 							+ response.data["msg"]);
 
-                                $scope.dificultad="";
-				$scope.ejecucion="";
-                                $scope.artistico="";
-                                $scope.penalizacion="";
-                                $scope.total="";
-                                $scope.cargarRotacion();
-					$scope.cargar();
-                                        
+					for (x in response.data["data"]) {
+						$scope.rotaciones.push(response.data["data"][x]);
+					}
+
 				});
-        }
-      $scope.cargar();
+
+		$http.get(base_url + "/podium/listar").then(
+				function(response) {
+
+					console.log(response.data["status"] + " : "
+							+ response.data["msg"]);
+
+					$scope.podiums = response.data["data"];
+
+				});
+
+	}
+	$scope.cargar();
+
+	$scope.enviarPodium = function() {
+
+		$scope.ids = {
+
+			idCategoria : $scope.categoria,
+			idEspecialidad : $scope.especialidad
+
+		};
+		var config = {
+			method : "POST",
+			url : base_url + "/podium/insertar",
+			params : $scope.ids
+		}
+
+		$http(config).then(function(response) {
+			console.log(response.data["msg"]);
+			$scope.cargar();
+
+		})
+
+	}
+
+	$scope.borrarPodium = function(id) {
+		if (confirm("¿Desea borrar este podium?")) {
+			// console.log(id);
+			config = {
+				method : "POST",
+				url : base_url + "/podium/borrar",
+				params : {
+					id : id
+				}
+			};
+
+			$http(config).then(
+					function(response) {
+
+						console.log(response.data["status"] + " : "
+								+ response.data["msg"]);
+
+						$scope.cargar();
+					});
+
+		}
+
+	}
 });
-
-

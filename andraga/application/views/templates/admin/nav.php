@@ -16,11 +16,11 @@ $controller = substr($uri, 1);
 	</div>
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
-			<li><a href="<?=base_url();?>administrador"><?php if($controller == 'administrador'):?><span
+			<li class="menu"><a href="<?=base_url();?>administrador"><?php if($controller == 'administrador'):?><span
 					style="color: white">Administración</span><?php else:?>Administración<?php endif;?></a></li>
 
 
-			<li class="dropdown"><a class="dropdown-toggle"
+			<li class="dropdown menu"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span><?php if($controller == 'usuario'):?><span
 					style="color: white">Usuarios</span><?php else:?>Usuarios<?php endif;?><span
 					class="caret"></span> </a>

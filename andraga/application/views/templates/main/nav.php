@@ -14,7 +14,7 @@ $controller = substr($uri, 1);
     <?php if (isset ($_COOKIE['tkn'])):?>
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-            <li><a href="<?=base_url();?>pantalla"><?php if($controller == 'pantalla'):?><span style="color:white">Pantalla</span><?php else:?>Pantalla<?php endif;?></a></li>
+            <li class="menu"><a href="<?=base_url();?>pantalla"><?php if($controller == 'pantalla'):?><span style="color:white">Pantalla</span><?php else:?>Pantalla<?php endif;?></a></li>
             
             
         </ul>

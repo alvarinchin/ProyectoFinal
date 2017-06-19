@@ -15,10 +15,10 @@ $controller = substr($uri, 1);
 	<div class="collapse navbar-collapse" id="myNavbar">
 		<ul class="nav navbar-nav">
 
-			<li class="dropdown"><a href="<?=base_url();?>gestion"><?php if($controller == 'gestion'):?><span style="color:white">Gestor de competiciones</span><?php else:?>Gestor de competiciones<?php endif;?></a>
+			<li class="dropdown menu"><a href="<?=base_url();?>gestion"><?php if($controller == 'gestion'):?><span style="color:white">Gestor de competiciones</span><?php else:?>Gestor de competiciones<?php endif;?></a>
 			
-			<li class="dropdown"><a href="<?=base_url();?>puntuaciones"><?php if($controller == 'puntuaciones'):?><span style="color:white">Puntuaciones</span><?php else:?>Puntuaciones<?php endif;?></a> 
-			<li class="dropdown"><a href="<?=base_url();?>podiums"><?php if($controller == 'podiums'):?><span style="color:white">Podiums</span><?php else:?>Podiums<?php endif;?></a> <!-- M�s men�s -->
+			<li class="dropdown menu"><a href="<?=base_url();?>puntuaciones"><?php if($controller == 'puntuaciones'):?><span style="color:white">Puntuaciones</span><?php else:?>Puntuaciones<?php endif;?></a> 
+			<li class="dropdown menu"><a href="<?=base_url();?>podiums"><?php if($controller == 'podiums'):?><span style="color:white">Podiums</span><?php else:?>Podiums<?php endif;?></a> <!-- M�s men�s -->
 			
 			
 		

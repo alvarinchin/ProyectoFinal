@@ -1,103 +1,167 @@
-.ui-dialog{
-    background-color: white;
-    
+.ui-dialog {
+	background-color: white;
 }
+
 .no-close .ui-dialog-titlebar-close {
-  display: none;
+	display: none;
 }
 
-.ui-dialog-titlebar{
-    display:none;
+.ui-dialog-titlebar {
+	display: none;
 }
-.ui-widget.ui-widget-content{
-    border-color: #101010;
-}
-.ui-widget-content{
-    color:#9d9d9d;
-    background: white;
-}
-.completo{
-    background-color:rgba(77, 150, 43 ,0.5);
-}
-.actual{
-    background-color:rgba(147, 181, 234,0.5);
-}
-.seleccionado{
-    background-color:rgba(150, 187, 247,0.5);
 
+.ui-widget.ui-widget-content {
+	border-color: #101010;
 }
-.table{
+
+.ui-widget-content {
+	color: #9d9d9d;
+	background: white;
+}
+
+.completo {
+	background-color: rgba(77, 150, 43, 0.5);
+}
+
+.actual {
+	background-color: rgba(147, 181, 234, 0.5);
+}
+
+.seleccionado {
+	background-color: rgba(150, 187, 247, 0.5);
+}
+
+.table {
 	border-collapse: separate;
 }
 
-.cabeceraT{
-	font-size: 4em;	
+.cabeceraT {
+	font-size: 4em;
 	color: white;
 	line-height: 50px;
 	width: 20%;
 	/*text-shadow: 3px 3px black;*/
 	background-color: #757f8c;
-			
 }
 
-.p1{
+.p1 {
 	text-align: center;
 	border-radius: 25px 0 0 25px;
 }
-.p2{
+
+.p2 {
 	text-align: center;
-}
-.p3{
-	text-align: center;
-}
-.p4{	
-	text-align: center;
-	border-radius: 0 25px 25px 0;	
 }
 
-.cuerpoT{
-	font-size: 3.5em;	
+.p3 {
 	text-align: center;
-	color:white;	
+}
+
+.p4 {
+	text-align: center;
+	border-radius: 0 25px 25px 0;
+}
+
+.cuerpoT {
+	font-size: 3.5em;
+	text-align: center;
+	color: white;
 	line-height: 10px;
 	width: 20%;
 	/*text-shadow: 3px 3px black;*/
 	background-color: #43484f;
-	font-weight: bold;					
+	font-weight: bold;
 }
 
-.table>tbody>tr>td{
-	border-top: none;	
+.table>tbody>tr>td {
+	border-top: none;
 }
-.cuerpoT:first-child .t:first-child{
+
+.cuerpoT:first-child .t:first-child {
 	border-radius: 25px 0 0 0;
 }
 
-.cuerpoT:first-child .t:last-child{
+.cuerpoT:first-child .t:last-child {
 	border-radius: 0 25px 0 0;
 }
 
-.cuerpoT:last-child .t:first-child{
+.cuerpoT:last-child .t:first-child {
 	border-radius: 0 0 0 25px;
 }
 
-.cuerpoT:last-child .t:last-child{
+.cuerpoT:last-child .t:last-child {
 	border-radius: 0 0 25px 0;
 }
-#dialog{
-	background-color:#b1c8ed;
+
+#dialog {
+	background-color: #b1c8ed;
 }
-.contenedor{
+
+.contenedor {
 	width: 98%;
 	height: 95%;
 	background-color: #729ee5;
 }
-.panelCustom{
-	font-size: 2.5em;	
+
+.panelCustom {
+	font-size: 2.5em;
 	color: white;
 	line-height: 50px;
 	width: 20%;
 	text-shadow: 2px 2px black;
 	background-color: #729ee5;
-	width:100%;		
+	width: 100%;
+}
+
+.menuOpciones {
+	background: #7bbcd5;
+	text-align: center;
+	border-radius: 15px;
+	border: 1px solid grey;
+}
+
+.menuOpciones:hover {
+	color: white;
+	background: #5b899a;
+	box-shadow: 10px 10px 5px grey;
+}
+
+.menuCreacion {
+	background: #f5f3c4;
+	text-align: center;
+	border-radius: 15px;
+	border: 1px solid grey;
+	box-shadow: 10px 10px 5px grey;
+}
+
+.menuCreacion table tr td {
+	text-align: left;
+}
+
+.menuModificacion {
+	background: #f7d6e9;
+	text-align: center;
+	border-radius: 15px;
+	border: 1px solid grey;
+	box-shadow: 10px 10px 5px grey;
+}
+
+.inscripciones {
+	background: #dbf7d6;
+}
+
+.rotaciones {
+	background: #f7d8d6;
+}
+
+.puntuaciones {
+	background: #d6eaf7;
+}
+
+.podiums {
+	background: #f7e3d6;
+}
+
+.menu:hover{
+	background:  #888685;
 }
